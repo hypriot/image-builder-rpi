@@ -24,5 +24,5 @@ RUN gem update --no-document --system && \
 
 COPY build.sh /build.sh
 
-# create rootfs
+# build sd card image
 CMD /build.sh
