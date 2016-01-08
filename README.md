@@ -10,12 +10,12 @@ To set it up with your Vagrant VM execute the following command:
 ```
 docker-machine create -d generic \
   --generic-ssh-user vagrant \
-  --generic-ssh-key ~/.vagrant.d/insecure_private_key \
+  --generic-ssh-key .vagrant/machines/default/virtualbox/private_key \
   --generic-ip-address 127.0.0.1 \
   --generic-ssh-port 2222 \
   image-builder
 ```
 
-From here one just use `make` to make a new SD-Card image:
+From here just use `make` to make a new SD-Card image:
 
 `make sd-image`
