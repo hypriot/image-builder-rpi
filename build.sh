@@ -1,37 +1,44 @@
 #!/bin/bash -e
 set -x
-# This script should be run inside of a Docker container only
+# This script should be run only inside of a Docker container
 if [ ! -f /.dockerinit ]; then
-  echo "ERROR: script works in Docker only!"
+  echo "ERROR: script works only in a Docker container!"
   exit 1
 fi
 
-# setting up some important variables to control the build process
+### setting up some important variables to control the build process
+
+# where to store our created sd-image file
+BUILD_RESULT="/workspace"
+
+# where to store our base file system
+ROOTFS_TAR="rootfs-arm64.tar.gz"
+ROOTFS_TAR_PATH="${BUILD_RESULT}/rootfs-arm64.tar.gz"
+
+# what kernel to use
 KERNEL_DATETIME=${KERNEL_DATETIME:="20151103-193133"}
 KERNEL_VERSION=${KERNEL_VERSION:="4.1.12"}
 
-SD_CARD_SIZE="1500"        # "1500" = approx. 1.5 GB
-BOOT_PARTITION_SIZE="64"   # "64" = 64 MB
-
-_FSTAB="
-proc			/proc	proc	defaults	0	0
-/dev/mmcblk0p1	/boot	vfat	defaults	0	0
-/dev/mmcblk0p2	/	  	ext4	defaults,noatime       0       1
-"
-
-BOOTFS_START=2048
-BOOTFS_SIZE=$(expr ${BOOT_PARTITION_SIZE} \* 2048)
-ROOTFS_START=$(expr ${BOOTFS_SIZE} + ${BOOTFS_START})
-SD_MINUS_DD=$(expr ${SD_CARD_SIZE} - 256)
-ROOTFS_SIZE=$(expr ${SD_MINUS_DD} \* 1000000 / 512 - ${ROOTFS_START})
-
+# building the name of our sd-card image file
 BUILD_TIME="$(date +%Y%m%d-%H%M%S)"
-IMAGE_PATH="/data/image_builder_rpi-${BUILD_TIME}.img"
+IMAGE_NAME="image-builder-rpi-${BUILD_TIME}.img"
 
-echo "Creating image"
-dd if=/dev/zero of=${IMAGE_PATH} bs=1MB count=${SD_CARD_SIZE}
+# size of root and boot partion
+ROOT_PARTITION_SIZE="1400M"
+BOOT_PARTITION_SIZE="64M"
 
+# download our base root file system
+if [ ! -f "${ROOTFS_TAR_PATH}" ]; then
+  wget -q -O ${ROOTFS_TAR_PATH} https://github.com/hypriot/os-rootfs/releases/download/v0.4/${ROOTFS_TAR}
+fi
 
+# create the image and add root base filesystem
+guestfish -N /${IMAGE_NAME}=bootroot:vfat:ext4:${ROOT_PARTITION_SIZE}:${BOOT_PARTITION_SIZE} <<_EOF_
+        mount /dev/sda2 /
+        tar-in ${ROOTFS_TAR_PATH} / compress:gzip
+_EOF_
 
+mv /${IMAGE_NAME} /workspace/${IMAGE_NAME}
 
-
+# test sd-image that we have built
+rspec /workspace/test
