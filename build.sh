@@ -12,8 +12,8 @@ fi
 BUILD_RESULT="/workspace"
 
 # where to store our base file system
-ROOTFS_TAR="rootfs-arm64.tar.gz"
-ROOTFS_TAR_PATH="${BUILD_RESULT}/rootfs-arm64.tar.gz"
+ROOTFS_TAR="rootfs-armhf.tar.gz"
+ROOTFS_TAR_PATH="${BUILD_RESULT}/${ROOTFS_TAR}"
 
 # what kernel to use
 KERNEL_DATETIME=${KERNEL_DATETIME:="20151103-193133"}
