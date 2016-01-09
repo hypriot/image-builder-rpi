@@ -2,14 +2,17 @@
 # vi: set ft=ruby :
 
 Vagrant.configure(2) do |config|
-  config.vm.box = "ubuntu/trusty64"
-  # Create a public network, which generally matched to bridged network.
-  # Bridged networks make the machine appear as another physical device on
-  # your network.
-  config.vm.network "public_network"
+  config.vm.box = "boxcutter/ubuntu1404"
+
   config.vm.network "forwarded_port", guest: 2376, host: 2376
   config.vm.synced_folder ".", "#{`pwd`.chomp}"
 
+  ["vmware_fusion", "vmware_workstation"].each do |provider|
+    config.vm.provider provider do |v|
+      # Customize the amount of memory on the VM:
+      v.memory = "2048"
+    end
+  end
 
   config.vm.provider "virtualbox" do |vb|
     vb.name = "image-builder"
