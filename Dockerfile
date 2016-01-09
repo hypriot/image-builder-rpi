@@ -21,9 +21,9 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
     rm -rf /var/lib/apt/lists/*
 
 RUN gem update --system && \
-    gem install --no-document serverspec && \
-    gem install --no-document pry-byebug && \
-    gem install --no-document bundler
+    gem install --no-document serverspec \ 
+    pry-byebug \
+    bundler
 
 COPY build.sh /build.sh
 

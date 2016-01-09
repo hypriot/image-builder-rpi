@@ -27,4 +27,21 @@ describe "SD-Card Image" do
       expect(stdout).to contain('sda2: ext4')
     end
   end
+
+  context "Root filesystem" do
+    let(:stdout) { command("guestfish add #{image_path} : run : mount /dev/sda2 / : cat /etc/os-release").stdout }
+
+    it "is based on debian" do
+      expect(stdout).to contain('debian')
+    end
+
+    it "is debian version jessie" do
+      expect(stdout).to contain('jessie')
+    end
+
+    it "is a HypriotOS" do
+      expect(stdout).to contain('HypriotOS')
+    end
+  end
+
 end

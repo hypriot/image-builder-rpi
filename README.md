@@ -25,8 +25,16 @@ Now set the Docker environments to this new docker machine:
 eval $(docker-machine env image-builder)
 ```
 
-From here just use `make` to make a new SD-Card image:
+From here you can...
+  - ... just use `make` to make a new SD-Card image:
 
 ```bash
 make sd-image
+```
+
+  - ... run tests:
+```bash
+make shell
+./build.sh
+rspec --format documentation --color test/image_spec.rb 
 ```
