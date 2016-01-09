@@ -7,11 +7,9 @@ Vagrant.configure(2) do |config|
   config.vm.network "forwarded_port", guest: 2376, host: 2376
   config.vm.synced_folder ".", "#{`pwd`.chomp}"
 
-  ["vmware_fusion", "vmware_workstation"].each do |provider|
-    config.vm.provider provider do |v|
-      # Customize the amount of memory on the VM:
-      v.memory = "2048"
-    end
+  config.vm.provider "vmware_fusion" do |v|
+    # Customize the amount of memory on the VM:
+    v.memory = "2048"
   end
 
   config.vm.provider "virtualbox" do |vb|
