@@ -20,8 +20,7 @@ KERNEL_DATETIME=${KERNEL_DATETIME:="20151103-193133"}
 KERNEL_VERSION=${KERNEL_VERSION:="4.1.12"}
 
 # building the name of our sd-card image file
-BUILD_TIME="$(date +%Y%m%d-%H%M%S)"
-IMAGE_NAME="image-builder-rpi-${BUILD_TIME}.img"
+IMAGE_NAME="sd-card-rpi.img"
 
 # size of root and boot partion
 ROOT_PARTITION_SIZE="1400M"
@@ -38,7 +37,7 @@ guestfish -N /${IMAGE_NAME}=bootroot:vfat:ext4:${ROOT_PARTITION_SIZE}:${BOOT_PAR
         tar-in ${ROOTFS_TAR_PATH} / compress:gzip
 _EOF_
 
-mv /${IMAGE_NAME} /workspace/${IMAGE_NAME}
+mv -f /${IMAGE_NAME} /workspace/${IMAGE_NAME}
 
 # test sd-image that we have built
 rspec /workspace/test
