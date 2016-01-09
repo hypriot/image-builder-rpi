@@ -13,7 +13,6 @@ Vagrant.configure(2) do |config|
   end
 
   config.vm.provider "virtualbox" do |vb|
-    vb.name = "image-builder"
     # Customize the amount of memory on the VM:
     vb.memory = "2048"
   end
