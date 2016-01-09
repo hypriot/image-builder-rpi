@@ -2,7 +2,9 @@
 
 This is work in progress and not yet finished.
 
-# Setting up Docker
+# Setting up build environment
+Make sure you have [vagrant](https://docs.vagrantup.com/v2/installation/) and [docker-machine](https://docs.docker.com/machine/install-machine/) installed.
+
 A `vagrant up` in the root folder of this repository sets up a Ubuntu Trusty VM with the latest Docker installed.
 
 To use this Docker instance from your host one can use `docker-machine`.  
