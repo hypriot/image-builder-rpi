@@ -1,4 +1,4 @@
-# image-builder-rpi
+# image-builder-rpi [![Build Status](https://travis-ci.org/hypriot/image-builder-rpi.svg)](https://travis-ci.org/hypriot/image-builder-rpi)
 
 This is work in progress and not yet finished.
 
