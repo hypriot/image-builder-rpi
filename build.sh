@@ -40,4 +40,4 @@ _EOF_
 mv -f /${IMAGE_NAME} /workspace/${IMAGE_NAME}
 
 # test sd-image that we have built
-rspec /workspace/test
+rspec --format documentation --color /workspace/test
