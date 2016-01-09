@@ -37,7 +37,11 @@ guestfish -N /${IMAGE_NAME}=bootroot:vfat:ext4:${ROOT_PARTITION_SIZE}:${BOOT_PAR
         tar-in ${ROOTFS_TAR_PATH} / compress:gzip
 _EOF_
 
+
+
+
 # test sd-image that we have built
 rspec --format documentation --color /${BUILD_RESULT}/test
 
 pigz --zip -c "${IMAGE_NAME}" > "${BUILD_RESULT}/${IMAGE_NAME}.zip"
+ls -lah ${BUILD_RESULT}
