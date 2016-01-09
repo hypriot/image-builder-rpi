@@ -40,4 +40,4 @@ _EOF_
 # test sd-image that we have built
 rspec --format documentation --color /${BUILD_RESULT}/test
 
-pigz --zip -c "${BUILD_RESULT}/${IMAGE_NAME}" > "${BUILD_RESULT}/${IMAGE_NAME}.zip"
+pigz --zip -c "${IMAGE_NAME}" > "${BUILD_RESULT}/${IMAGE_NAME}.zip"
