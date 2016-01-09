@@ -2,7 +2,7 @@ require 'serverspec'
 set :backend, :exec
 
 describe "SD-Card Image" do
-  let(:image_path) { return '/workspace/sd-card-rpi.img' }
+  let(:image_path) { return '/sd-card-rpi.img' }
 
   it "exists" do
     image_file = file(image_path)
