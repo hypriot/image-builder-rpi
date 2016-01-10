@@ -36,5 +36,5 @@ make sd-image
 ```bash
 make shell
 ./build.sh
-rspec -f d test/image_spec.rb 
+rspec --format documentation --color test/image_spec.rb 
 ```
