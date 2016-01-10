@@ -10,4 +10,5 @@ describe "Kernel" do
     it "returns the correct kernel" do
       expect(stdout).to contain('4.1.12-hypriotos')
     end
+  end
 end
