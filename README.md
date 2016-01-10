@@ -16,13 +16,13 @@ docker-machine create -d generic \
   --generic-ssh-key $(vagrant ssh-config | grep IdentityFile | awk '{gsub(/"/, "", $2); print $2}') \
   --generic-ip-address $(vagrant ssh-config | grep HostName | awk '{print $2}') \
   --generic-ssh-port $(vagrant ssh-config | grep Port | awk '{print $2}') \
-  image-builder
+  image-builder-rpi
 ```
 
 Now set the Docker environments to this new docker machine:
 
 ```bash
-eval $(docker-machine env image-builder)
+eval $(docker-machine env image-builder-rpi)
 ```
 
 From here you can...
