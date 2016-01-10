@@ -2,7 +2,7 @@ require 'serverspec'
 set :backend, :exec
 
 describe "SD-Card Image" do
-  let(:image_path) { return '/sd-card-rpi.img' }
+  let(:image_path) { return 'sd-card-rpi.img' }
 
   it "exists" do
     image_file = file(image_path)
@@ -44,4 +44,19 @@ describe "SD-Card Image" do
     end
   end
 
+  context "Binary dpkg" do
+    let(:stdout) { command("guestfish add #{image_path} : run : mount /dev/sda2 / : file-architecture /usr/bin/dpkg").stdout }
+
+    it "is compiled for ARM architecture" do
+      expect(stdout).to contain('arm')
+    end
+  end
+
+  context "Binary vi" do
+    let(:stdout) { command("guestfish add #{image_path} : run : mount /dev/sda2 / : file-architecture /usr/bin/dpkg").stdout }
+
+    it "is compiled for ARM architecture" do
+      expect(stdout).to contain('arm')
+    end
+  end
 end
