@@ -51,12 +51,4 @@ describe "SD-Card Image" do
       expect(stdout).to contain('arm')
     end
   end
-
-  context "Binary vi" do
-    let(:stdout) { command("guestfish add #{image_path} : run : mount /dev/sda2 / : file-architecture /usr/bin/dpkg").stdout }
-
-    it "is compiled for ARM architecture" do
-      expect(stdout).to contain('arm')
-    end
-  end
 end
