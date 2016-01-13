@@ -13,7 +13,8 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
     kpartx \
     lvm2 \
     dosfstools \
-    pigz \
+    zip \
+    unzip \
     awscli \
     ruby \
     ruby-dev \
@@ -21,7 +22,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
     rm -rf /var/lib/apt/lists/*
 
 RUN gem update --system && \
-    gem install --no-document serverspec \ 
+    gem install --no-document serverspec \
     pry-byebug \
     bundler
 
