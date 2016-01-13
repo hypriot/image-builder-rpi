@@ -8,21 +8,25 @@ fi
 
 ### setting up some important variables to control the build process
 
-# where to store our created sd-image file
+# place to store our created sd-image file
 BUILD_RESULT_PATH="/workspace"
+
+# place to build our sd-image
 BUILD_PATH="/build"
 
-# where to store our base file system
+# config vars for the root file system
 ROOTFS_TAR="rootfs-armhf.tar.gz"
 ROOTFS_TAR_PATH="${BUILD_RESULT_PATH}/${ROOTFS_TAR}"
 ROOTFS_TAR_VERSION="v0.4"
 
-# where to store our raw image
+# name of the ready made raw image for RPi
 RAW_IMAGE="rpi-raw.img"
+RAW_IMAGE_VERSION="v0.0.5"
 
+# name of the sd-image we gonna create
 IMAGE_NAME="sd-card-rpi.img"
 
-# size of root and boot partion in Megabytes
+# size of root- and boot-partion in megabytes
 ROOT_PARTITION_SIZE="1435"
 BOOT_PARTITION_SIZE="64"
 
@@ -39,9 +43,11 @@ fi
 tar xf ${ROOTFS_TAR_PATH} -C ${BUILD_PATH}
 
 # register qemu-arm with binfmt
+# to ensure that binaries we use in the chroot
+# are executed via qemu-arm
 update-binfmts --enable qemu-arm
 
-# set up mount points for pseudo filesystems
+# set up mount points for the pseudo filesystems
 mkdir -p ${BUILD_PATH}/{proc,sys,dev/pts}
 
 mount -o bind /dev ${BUILD_PATH}/dev
@@ -49,63 +55,28 @@ mount -o bind /dev/pts ${BUILD_PATH}/dev/pts
 mount -t proc none ${BUILD_PATH}/proc
 mount -t sysfs none ${BUILD_PATH}/sys
 
-#make our build directory the current root
-#and install Rasberry Pi firmware and kernel packages
-chroot ${BUILD_PATH} /bin/bash <<"EOCHROOT"
-  # set up /etc/resolv.conf
-  export DEST=$(readlink -m /etc/resolv.conf)
-  mkdir -p $(dirname $DEST)
-  echo "nameserver 8.8.8.8" > $DEST
+# make our build directory the current root
+# and install the Rasberry Pi firmware, kernel packages,
+# docker tools and some customizations
+chroot ${BUILD_PATH} /bin/bash < ${BUILD_RESULT_PATH}/chroot-script.sh
 
-  # set up hypriot repository
-  apt-get update
-  wget -q https://packagecloud.io/gpg.key -O - | apt-key add -
-  echo 'deb https://packagecloud.io/Hypriot/rpi/debian/ jessie main' > /etc/apt/sources.list.d/hypriot.list
-  apt-get update
-  apt-get install -y raspberrypi-bootloader
-  apt-get install -y libraspberrypi0
-  apt-get install -y libraspberrypi-dev
-  apt-get install -y libraspberrypi-bin
-  apt-get install -y libraspberrypi-doc
-  apt-get install -y linux-headers-4.1.12-hypriotos-v7+
-  apt-get install -y linux-headers-4.1.12-hypriotos+
-
-  # enable serial console
-  printf "# Spawn a getty on Raspberry Pi serial line\nT0:23:respawn:/sbin/getty -L ttyAMA0 115200 vt100\n" >> /etc/inittab
-
-  # boot/cmdline.txt
-  echo "+dwc_otg.lpm_enable=0 console=tty1 root=/dev/mmcblk0p2 rootfstype=ext4 cgroup-enable=memory swapaccount=1 elevator=deadline rootwait console=ttyAMA0,115200 kgdboc=ttyAMA0,115200" > /boot/cmdline.txt
-
-  # /etc/modules
-  echo "vchiq
-  snd_bcm2835
-  bcm2708-rng
-  " >> /etc/modules
-
-  # create /etc/fstab
-  echo "
-proc /proc proc defaults 0 0
-/dev/mmcblk0p1 /boot vfat defaults 0 0
-/dev/mmcblk0p2 / ext4 defaults,noatime 0 1
-" > /etc/fstab
-  exit
-EOCHROOT
-
+# unmount pseudo filesystems
 umount -l ${BUILD_PATH}/dev/pts
 umount -l ${BUILD_PATH}/dev
 umount -l ${BUILD_PATH}/proc
 umount -l ${BUILD_PATH}/sys
 
 # package image filesytem into two tarballs - one for bootfs and one for rootfs
+# ensure that there are no leftover artifacts in the pseudo filesystems
 rm -rf ${BUILD_PATH}/{dev,sys,proc}/*
 
 tar -czf /image_with_kernel_boot.tar.gz -C ${BUILD_PATH}/boot .
 rm -Rf ${BUILD_PATH}/boot
 tar -czf /image_with_kernel_root.tar.gz -C ${BUILD_PATH} .
 
-#download our base root file system
+# download the ready-made raw image for the RPi
 if [ ! -f "${BUILD_RESULT_PATH}/${RAW_IMAGE}.zip" ]; then
-  wget -q -O ${BUILD_RESULT_PATH}/${RAW_IMAGE}.zip https://github.com/hypriot/image-builder-raw/releases/download/v0.0.5/${RAW_IMAGE}.zip
+  wget -q -O ${BUILD_RESULT_PATH}/${RAW_IMAGE}.zip https://github.com/hypriot/image-builder-raw/releases/download/${RAW_IMAGE_VERSION}/${RAW_IMAGE}.zip
   unzip ${BUILD_RESULT_PATH}/${RAW_IMAGE}
 fi
 
