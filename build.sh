@@ -20,10 +20,6 @@ ROOTFS_TAR_VERSION="v0.4"
 # where to store our raw image
 RAW_IMAGE="rpi-raw.img"
 
-# what kernel to use
-KERNEL_DATETIME=${KERNEL_DATETIME:="20151103-193133"}
-KERNEL_VERSION=${KERNEL_VERSION:="4.1.12"}
-
 IMAGE_NAME="sd-card-rpi.img"
 
 # size of root and boot partion in Megabytes
@@ -53,13 +49,13 @@ mount -o bind /dev/pts ${BUILD_PATH}/dev/pts
 mount -t proc none ${BUILD_PATH}/proc
 mount -t sysfs none ${BUILD_PATH}/sys
 
-#make our build directory the current root
-#and install Rasberry Pi firmware and kernel packages
-chroot ${BUILD_PATH} /bin/bash <<"EOCHROOT"
+# make our build directory the current root
+# and install Rasberry Pi firmware and kernel packages
+chroot ${BUILD_PATH} /bin/bash <<EOCHROOT
   # set up /etc/resolv.conf
-  export DEST=$(readlink -m /etc/resolv.conf)
-  mkdir -p $(dirname $DEST)
-  echo "nameserver 8.8.8.8" > $DEST
+  export DEST=\$(readlink -m /etc/resolv.conf)
+  mkdir -p \$(dirname \$DEST)
+  echo "nameserver 8.8.8.8" > \$DEST
 
   # set up hypriot repository
   apt-get update
