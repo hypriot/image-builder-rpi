@@ -14,8 +14,7 @@ wget -q https://packagecloud.io/gpg.key -O - | apt-key add -
 echo 'deb https://packagecloud.io/Hypriot/rpi/debian/ jessie main' > /etc/apt/sources.list.d/hypriot.list
 
 # set up hypriot schatzkiste repository for generic packages
-wget -q https://packagecloud.io/gpg.key -O - | apt-key add -
-echo 'deb https://packagecloud.io/Hypriot/Schatzkiste/debian/ wheezy main' > /etc/apt/sources.list.d/hypriot.list
+echo 'deb https://packagecloud.io/Hypriot/Schatzkiste/debian/ wheezy main' >> /etc/apt/sources.list.d/hypriot.list
 
 # reload package sources
 apt-get update
