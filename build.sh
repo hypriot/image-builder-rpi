@@ -21,6 +21,7 @@ ROOTFS_TAR_VERSION="v0.4"
 
 # name of the ready made raw image for RPi
 RAW_IMAGE="rpi-raw.img"
+RAW_IMAGE_VERSION="v0.0.5"
 
 # name of the sd-image we gonna create
 IMAGE_NAME="sd-card-rpi.img"
@@ -113,7 +114,7 @@ tar -czf /image_with_kernel_root.tar.gz -C ${BUILD_PATH} .
 
 # download the ready-made raw image for the RPi
 if [ ! -f "${BUILD_RESULT_PATH}/${RAW_IMAGE}.zip" ]; then
-  wget -q -O ${BUILD_RESULT_PATH}/${RAW_IMAGE}.zip https://github.com/hypriot/image-builder-raw/releases/download/v0.0.5/${RAW_IMAGE}.zip
+  wget -q -O ${BUILD_RESULT_PATH}/${RAW_IMAGE}.zip https://github.com/hypriot/image-builder-raw/releases/download/${RAW_IMAGE_VERSION}/${RAW_IMAGE}.zip
   unzip ${BUILD_RESULT_PATH}/${RAW_IMAGE}
 fi
 
