@@ -20,10 +20,6 @@ ROOTFS_TAR_VERSION="v0.4"
 # where to store our raw image
 RAW_IMAGE="rpi-raw.img"
 
-# what kernel to use
-KERNEL_DATETIME=${KERNEL_DATETIME:="20151103-193133"}
-KERNEL_VERSION=${KERNEL_VERSION:="4.1.12"}
-
 IMAGE_NAME="sd-card-rpi.img"
 
 # size of root and boot partion in Megabytes
