@@ -20,13 +20,14 @@ echo 'deb https://packagecloud.io/Hypriot/Schatzkiste/debian/ wheezy main' >> /e
 apt-get update
 
 # install kernel- and firmware-packages
-apt-get install -y raspberrypi-bootloader
-apt-get install -y libraspberrypi0
-apt-get install -y libraspberrypi-dev
-apt-get install -y libraspberrypi-bin
-apt-get install -y libraspberrypi-doc
-apt-get install -y linux-headers-4.1.12-hypriotos-v7+
-apt-get install -y linux-headers-4.1.12-hypriotos+
+apt-get install -y \
+  raspberrypi-bootloader \
+  libraspberrypi0 \
+  libraspberrypi-dev \
+  libraspberrypi-bin \
+  libraspberrypi-doc \
+  linux-headers-4.1.12-hypriotos-v7+ \
+  linux-headers-4.1.12-hypriotos+
 
 # enable serial console
 printf "# Spawn a getty on Raspberry Pi serial line\nT0:23:respawn:/sbin/getty -L ttyAMA0 115200 vt100\n" >> /etc/inittab

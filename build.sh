@@ -77,11 +77,9 @@ tar -czf /image_with_kernel_root.tar.gz -C ${BUILD_PATH} .
 # download the ready-made raw image for the RPi
 if [ ! -f "${BUILD_RESULT_PATH}/${RAW_IMAGE}.zip" ]; then
   wget -q -O ${BUILD_RESULT_PATH}/${RAW_IMAGE}.zip https://github.com/hypriot/image-builder-raw/releases/download/${RAW_IMAGE_VERSION}/${RAW_IMAGE}.zip
-  unzip ${BUILD_RESULT_PATH}/${RAW_IMAGE}
 fi
 
-rm -f /${IMAGE_NAME}
-cp ${RAW_IMAGE} /${IMAGE_NAME}
+unzip -p ${BUILD_RESULT_PATH}/${RAW_IMAGE} > /${IMAGE_NAME}
 
 # create the image and add root base filesystem
 guestfish -a "/${IMAGE_NAME}"<<_EOF_
