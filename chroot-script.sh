@@ -8,9 +8,18 @@ echo "nameserver 8.8.8.8" > $DEST
 # set up hypriot repository
 # and install RPi kernel and firmware
 apt-get update
+
+# set up hypriot rpi repository for rpi specific kernel- and firmware-packages
 wget -q https://packagecloud.io/gpg.key -O - | apt-key add -
 echo 'deb https://packagecloud.io/Hypriot/rpi/debian/ jessie main' > /etc/apt/sources.list.d/hypriot.list
+
+# set up hypriot schatzkiste repository for generic packages
+echo 'deb https://packagecloud.io/Hypriot/Schatzkiste/debian/ wheezy main' >> /etc/apt/sources.list.d/hypriot.list
+
+# reload package sources
 apt-get update
+
+# install kernel- and firmware-packages
 apt-get install -y raspberrypi-bootloader
 apt-get install -y libraspberrypi0
 apt-get install -y libraspberrypi-dev
@@ -37,3 +46,9 @@ proc /proc proc defaults 0 0
 /dev/mmcblk0p1 /boot vfat defaults 0 0
 /dev/mmcblk0p2 / ext4 defaults,noatime 0 1
 " > /etc/fstab
+
+# install hypriot packages for docker-tools
+apt-get install -y \
+  docker-hypriot \
+  docker-compose \
+  docker-machine
