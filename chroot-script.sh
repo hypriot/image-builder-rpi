@@ -53,3 +53,6 @@ apt-get install -y \
   docker-hypriot \
   docker-compose \
   docker-machine
+
+# enable Docker systemd service
+systemctl enable docker
