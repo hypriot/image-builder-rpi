@@ -1,0 +1,9 @@
+[Unit]
+Description=Resize root disk to maximum size
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/hypriot-resize-rootdisk
+
+[Install]
+WantedBy=multi-user.target
