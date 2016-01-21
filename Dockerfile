@@ -26,7 +26,7 @@ RUN gem update --system && \
     pry-byebug \
     bundler
 
-COPY build.sh /build.sh
+COPY builder/ /builder/
 
 # build sd card image
-CMD /build.sh
+CMD /builder/build.sh
