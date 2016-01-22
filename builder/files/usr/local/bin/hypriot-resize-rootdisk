@@ -34,6 +34,7 @@ PART_START=${PART_START::-1}
 [ "$PART_START" ] || return 1
 # Return value will likely be error for fdisk as it fails to reload the
 # partition table because the root fs is mounted
+set +e
 fdisk /dev/mmcblk0 <<EOF
 p
 d
@@ -46,6 +47,7 @@ $PART_START
 p
 w
 EOF
+set -e
 
 partprobe
 /sbin/resize2fs /dev/disk/by-label/root
