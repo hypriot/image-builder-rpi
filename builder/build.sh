@@ -17,7 +17,7 @@ BUILD_PATH="/build"
 # config vars for the root file system
 ROOTFS_TAR="rootfs-armhf.tar.gz"
 ROOTFS_TAR_PATH="${BUILD_RESULT_PATH}/${ROOTFS_TAR}"
-ROOTFS_TAR_VERSION="v0.6"
+ROOTFS_TAR_VERSION="v0.6.0"
 
 # name of the ready made raw image for RPi
 RAW_IMAGE="rpi-raw.img"
