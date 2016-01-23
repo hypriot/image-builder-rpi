@@ -1,6 +1,3 @@
-#!/bin/bash
-set -ex
-
 if ! [ -h /dev/disk/by-label/root ]; then
   echo "/dev/disk/by-label/root does not exist or is not a symlink. Don't know how to expand"
   return 0
@@ -51,6 +48,3 @@ set -e
 
 partprobe
 /sbin/resize2fs /dev/disk/by-label/root
-
-# do not resize after first resize again
-systemctl disable hypriot-resize-rootdisk.service
