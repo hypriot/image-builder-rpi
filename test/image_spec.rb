@@ -1,9 +1,6 @@
-require 'serverspec'
-set :backend, :exec
+require_relative 'spec_helper'
 
 describe "SD-Card Image" do
-  let(:image_path) { return 'sd-card-rpi.img' }
-
   it "exists" do
     image_file = file(image_path)
 
@@ -11,7 +8,7 @@ describe "SD-Card Image" do
   end
 
   context "Partition table" do
-    let(:stdout) { command("guestfish add #{image_path} : run : list-filesystems").stdout }
+    let(:stdout) { run("list-filesystems").stdout }
 
     it "has two partitions" do
       partitions = stdout.split(/\r?\n/)
@@ -29,7 +26,7 @@ describe "SD-Card Image" do
   end
 
   context "Root filesystem" do
-    let(:stdout) { command("guestfish add #{image_path} : run : mount /dev/sda2 / : cat /etc/os-release").stdout }
+    let(:stdout) { run_mounted("cat /etc/os-release").stdout }
 
     it "is based on debian" do
       expect(stdout).to contain('debian')
@@ -42,10 +39,14 @@ describe "SD-Card Image" do
     it "is a HypriotOS" do
       expect(stdout).to contain('HypriotOS')
     end
+
+    it "is not dirty" do
+      expect(stdout).not_to contain('dirty')
+    end
   end
 
   context "Binary dpkg" do
-    let(:stdout) { command("guestfish add #{image_path} : run : mount /dev/sda2 / : file-architecture /usr/bin/dpkg").stdout }
+    let(:stdout) { run_mounted("file-architecture /usr/bin/dpkg").stdout }
 
     it "is compiled for ARM architecture" do
       expect(stdout).to contain('arm')
@@ -53,7 +54,7 @@ describe "SD-Card Image" do
   end
 
   context "Binary vi" do
-    let(:stdout) { command("guestfish add #{image_path} : run : mount /dev/sda2 / : file-architecture /usr/bin/dpkg").stdout }
+    let(:stdout) { run_mounted("file-architecture /usr/bin/dpkg").stdout }
 
     it "is compiled for ARM architecture" do
       expect(stdout).to contain('arm')
@@ -61,7 +62,7 @@ describe "SD-Card Image" do
   end
 
   context "/etc/fstab" do
-    let(:stdout) { command("guestfish add #{image_path} : run : mount /dev/sda2 / : cat /etc/fstab").stdout }
+    let(:stdout) { run_mounted("cat /etc/fstab").stdout }
 
     it "has a vfat boot entry" do
       expect(stdout).to contain('/dev/mmcblk0p1 /boot vfat')
