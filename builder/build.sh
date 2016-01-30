@@ -97,11 +97,11 @@ guestfish -a "/${IMAGE_NAME}"<<_EOF_
   tar-in /image_with_kernel_boot.tar.gz /boot compress:gzip
 _EOF_
 
-# test sd-image that we have built
-rspec --format documentation --color /${BUILD_RESULT_PATH}/test
-
 # ensure that the travis-ci user can access the sd-card image file
 umask 0000
 
 # compress image
 zip ${BUILD_RESULT_PATH}/${IMAGE_NAME}.zip ${IMAGE_NAME}
+
+# test sd-image that we have built
+rspec --format documentation --color ${BUILD_RESULT_PATH}/builder/test
