@@ -1,8 +1,28 @@
-# image-builder-rpi [![Join the chat at https://gitter.im/hypriot/talk](https://badges.gitter.im/hypriot/talk.svg)](https://gitter.im/hypriot/talk?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Build Status](https://travis-ci.org/hypriot/image-builder-rpi.svg)](https://travis-ci.org/hypriot/image-builder-rpi)
+# image-builder-rpi
+[![Join the chat at https://gitter.im/hypriot/talk](https://badges.gitter.im/hypriot/talk.svg)](https://gitter.im/hypriot/talk?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Build Status](https://travis-ci.org/hypriot/image-builder-rpi.svg)](https://travis-ci.org/hypriot/image-builder-rpi)
 
-This is work in progress and not yet finished.
+**Disclaimer:** This is work in progress and not yet finished. If you want a stable version of HypriotOS for the Raspberry Pi, go to our [download page](http://blog.hypriot.com/downloads/). But if you want to help us and give feedback for the upcoming HypriotOS please read on.
 
-# Setting up build environment
+This repo builds the SD card image with HypriotOS for the Raspberry Pi. To build this SD card image we have to
+
+ * take the files for the root filesystem from [`os-rootfs`](https://github.com/hypriot/os-rootfs)
+ * take the empty raw filesystem from [`image-buidler-raw`](https://github.com/hypriot/image-builder-raw) with the two partitions
+ * add Hypriot's Debian repos
+ * install the Raspberry Pi kernel from [`rpi-kernel`](https://github.com/hypriot/rpi-kernel)
+ * install Docker tools
+
+Here is an example how all the GitHub repos play together:
+
+![Architecture](http://blog.hypriot.com/images/hypriotos-xxx/hypriotos_buildpipeline.jpg)
+
+## Contributing
+
+You can contribute to this repo by forking it and sending us pull requests. Feedback is always welcome!
+
+You can build the root filesystem locally with Vagrant.
+
+## Setting up build environment
 Make sure you have [vagrant](https://docs.vagrantup.com/v2/installation/) and [docker-machine](https://docs.docker.com/machine/install-machine/) installed.
 
 A `vagrant up` in the root folder of this repository sets up a Ubuntu Trusty VM with the latest Docker installed.
@@ -39,16 +59,6 @@ make shell
 rspec --format documentation --color test/image_spec.rb
 ```
 
-## CI
+## License
 
-### make new releases
-
-Edit the version number and trigger a new release.
-
-```bash
-vi VERSION
-git add VERSION
-git commit -m "[ci skip] update version $(cat VERSION)"
-git push
-make release
-```
+MIT - see the [LICENSE](./LICENSE) file for details.
