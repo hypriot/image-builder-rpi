@@ -3,7 +3,7 @@ services:
   - docker
 language: bash
 script:
-  - make sd-image
+  - VERSION=${TRAVIS_TAG} make sd-image
 deploy:
   provider: releases
   api_key:

@@ -24,7 +24,7 @@ RAW_IMAGE="rpi-raw.img"
 RAW_IMAGE_VERSION="v0.0.6"
 
 # name of the sd-image we gonna create
-IMAGE_VERSION=${VERSION:="v0.0.0"}
+IMAGE_VERSION=${VERSION:="dirty"}
 IMAGE_NAME="sd-card-rpi-${IMAGE_VERSION}.img"
 
 # size of root- and boot-partion in megabytes

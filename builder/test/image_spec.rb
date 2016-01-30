@@ -3,7 +3,6 @@ require_relative 'spec_helper'
 describe "SD-Card Image" do
   it "exists" do
     image_file = file(image_path)
-
     expect(image_file).to exist
   end
 
@@ -12,7 +11,6 @@ describe "SD-Card Image" do
 
     it "has two partitions" do
       partitions = stdout.split(/\r?\n/)
-
       expect(partitions.size).to be 2
     end
 

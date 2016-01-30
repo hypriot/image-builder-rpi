@@ -1,8 +1,5 @@
 default: build
 
-VERSION := $(shell cat VERSION)
-export VERSION
-
 build:
 	docker build -t image-builder-rpi .
 
@@ -12,6 +9,6 @@ sd-image: build
 shell: build
 	docker run -ti --privileged -v $(shell pwd):/workspace -v /boot:/boot -v /lib/modules:/lib/modules -e VERSION image-builder-rpi bash
 
-release:
-	git tag ${VERSION}
-	git push origin ${VERSION}
+tag:
+	git tag ${TAG}
+	git push origin ${TAG}
