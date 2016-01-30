@@ -36,5 +36,19 @@ make sd-image
 ```bash
 make shell
 ./build.sh
-rspec --format documentation --color test/image_spec.rb 
+rspec --format documentation --color test/image_spec.rb
+```
+
+## CI
+
+### make new releases
+
+Edit the version number and trigger a new release.
+
+```bash
+vi VERSION
+git add VERSION
+git commit -m "[ci skip] update version $(cat VERSION)"
+git push
+make release
 ```

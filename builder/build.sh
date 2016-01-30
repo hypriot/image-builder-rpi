@@ -17,14 +17,15 @@ BUILD_PATH="/build"
 # config vars for the root file system
 ROOTFS_TAR="rootfs-armhf.tar.gz"
 ROOTFS_TAR_PATH="${BUILD_RESULT_PATH}/${ROOTFS_TAR}"
-ROOTFS_TAR_VERSION="v0.6.0"
+ROOTFS_TAR_VERSION="v0.6.1"
 
 # name of the ready made raw image for RPi
 RAW_IMAGE="rpi-raw.img"
-RAW_IMAGE_VERSION="v0.0.5"
+RAW_IMAGE_VERSION="v0.0.6"
 
 # name of the sd-image we gonna create
-IMAGE_NAME="sd-card-rpi.img"
+IMAGE_VERSION=${VERSION:="dirty"}
+IMAGE_NAME="sd-card-rpi-${IMAGE_VERSION}.img"
 
 # size of root- and boot-partion in megabytes
 ROOT_PARTITION_SIZE="1435"
@@ -96,11 +97,11 @@ guestfish -a "/${IMAGE_NAME}"<<_EOF_
   tar-in /image_with_kernel_boot.tar.gz /boot compress:gzip
 _EOF_
 
-# test sd-image that we have built
-rspec --format documentation --color /${BUILD_RESULT_PATH}/test
-
 # ensure that the travis-ci user can access the sd-card image file
 umask 0000
 
 # compress image
 zip ${BUILD_RESULT_PATH}/${IMAGE_NAME}.zip ${IMAGE_NAME}
+
+# test sd-image that we have built
+rspec --format documentation --color ${BUILD_RESULT_PATH}/builder/test
