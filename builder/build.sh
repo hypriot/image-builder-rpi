@@ -104,4 +104,4 @@ umask 0000
 zip ${BUILD_RESULT_PATH}/${IMAGE_NAME}.zip ${IMAGE_NAME}
 
 # test sd-image that we have built
-rspec --format documentation --color ${BUILD_RESULT_PATH}/builder/test
+VERSION=${IMAGE_VERSION} rspec --format documentation --color ${BUILD_RESULT_PATH}/builder/test
