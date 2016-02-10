@@ -21,7 +21,7 @@ ROOTFS_TAR_VERSION="v0.6.1"
 
 # name of the ready made raw image for RPi
 RAW_IMAGE="rpi-raw.img"
-RAW_IMAGE_VERSION="v0.0.6"
+RAW_IMAGE_VERSION="v0.1.0"
 
 # name of the sd-image we gonna create
 IMAGE_VERSION=${VERSION:="dirty"}
