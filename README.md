@@ -2,15 +2,15 @@
 [![Join the chat at https://gitter.im/hypriot/talk](https://badges.gitter.im/hypriot/talk.svg)](https://gitter.im/hypriot/talk?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Build Status](https://travis-ci.org/hypriot/image-builder-rpi.svg)](https://travis-ci.org/hypriot/image-builder-rpi)
 
-**Disclaimer:** This is work in progress and not yet finished. If you want a stable version of HypriotOS for the Raspberry Pi, go to our [download page](http://blog.hypriot.com/downloads/). But if you want to help us and give feedback for the upcoming HypriotOS please read on.
+**Disclaimer:** This is work in progress and not yet finished. If you want a stable version of HypriotOS for the Raspberry Pi, go to our [download page](http://blog.hypriot.com/downloads/). But if you want to help us and give feedback for the upcoming HypriotOS please read on. You can find the latest SD-Card image in the [GitHub releases page](https://github.com/hypriot/image-builder-rpi/releases).
 
-This repo builds the SD card image with HypriotOS for the Raspberry Pi. To build this SD card image we have to
+This repo builds the SD card image with HypriotOS for the Raspberry Pi 2. To build this SD-Card image we have to
 
  * take the files for the root filesystem from [`os-rootfs`](https://github.com/hypriot/os-rootfs)
  * take the empty raw filesystem from [`image-buidler-raw`](https://github.com/hypriot/image-builder-raw) with the two partitions
  * add Hypriot's Debian repos
  * install the Raspberry Pi kernel from [`rpi-kernel`](https://github.com/hypriot/rpi-kernel)
- * install Docker tools
+ * install Docker tools Docker Engine, Docker Compose and Docker Machine
 
 Here is an example how all the GitHub repos play together:
 
