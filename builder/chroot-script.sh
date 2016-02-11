@@ -1,4 +1,5 @@
-#!/bin/bash -ex
+#!/bin/bash
+set -ex
 
 # set up /etc/resolv.conf
 export DEST=$(readlink -m /etc/resolv.conf)
@@ -52,3 +53,7 @@ apt-get install -y \
 
 # enable Docker systemd service
 systemctl enable docker
+
+echo "Installing rpi-serial-console script"
+wget -q https://raw.githubusercontent.com/lurch/rpi-serial-console/master/rpi-serial-console -O usr/local/bin/rpi-serial-console
+chmod +x usr/local/bin/rpi-serial-console
