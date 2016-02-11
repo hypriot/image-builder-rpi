@@ -53,7 +53,8 @@ proc /proc proc defaults 0 0
 apt-get install -y \
   "docker-hypriot=${DOCKER_ENGINE_VERSION}" \
   "docker-compose=${DOCKER_COMPOSE_VERSION}" \
-  "docker-machine=${DOCKER_MACHINE_VERSION}"
+  "docker-machine=${DOCKER_MACHINE_VERSION}" \
+  "device-init=${DEVICE_INIT_VERSION}"
 
 # enable Docker systemd service
 systemctl enable docker
