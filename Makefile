@@ -10,7 +10,7 @@ shell: build
 	docker run -ti --privileged -v $(shell pwd):/workspace -v /boot:/boot -v /lib/modules:/lib/modules -e VERSION image-builder-rpi bash
 
 test:
-	VERSION=dirty docker run -ti --privileged -v $(shell pwd):/workspace -v /boot:/boot -v /lib/modules:/lib/modules -e VERSION image-builder-rpi bash -c "unzip /workspace/sd-card-rpi-dirty.img.zip && rspec --format documentation --color /workspace/builder/test/*_spec.rb"
+	VERSION=dirty docker run --rm -ti --privileged -v $(shell pwd):/workspace -v /boot:/boot -v /lib/modules:/lib/modules -e VERSION image-builder-rpi bash -c "unzip /workspace/sd-card-rpi-dirty.img.zip && rspec --format documentation --color /workspace/builder/test/*_spec.rb"
 
 vagrant:
 	vagrant up
@@ -26,10 +26,10 @@ docker-machine: vagrant
 test-integration: test-integration-image test-integration-docker
 
 test-integration-image:
-	docker run -ti -v $(shell pwd)/builder/test-integration:/serverspec:ro -e BOARD uzyexe/serverspec:2.24.3 bash -c "rspec --format documentation --color spec/hypriotos-image"
+	docker run --rm -ti -v $(shell pwd)/builder/test-integration:/serverspec:ro -e BOARD uzyexe/serverspec:2.24.3 bash -c "rspec --format documentation --color spec/hypriotos-image"
 
 test-integration-docker:
-	docker run -ti -v $(shell pwd)/builder/test-integration:/serverspec:ro -e BOARD uzyexe/serverspec:2.24.3 bash -c "rspec --format documentation --color spec/hypriotos-image"
+	docker run --rm -ti -v $(shell pwd)/builder/test-integration:/serverspec:ro -e BOARD uzyexe/serverspec:2.24.3 bash -c "rspec --format documentation --color spec/hypriotos-image"
 
 tag:
 	git tag ${TAG}
