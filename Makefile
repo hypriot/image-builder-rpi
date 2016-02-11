@@ -12,13 +12,15 @@ shell: build
 test:
 	VERSION=dirty docker run -ti --privileged -v $(shell pwd):/workspace -v /boot:/boot -v /lib/modules:/lib/modules -e VERSION image-builder-rpi bash -c "unzip /workspace/sd-card-rpi-dirty.img.zip && rspec --format documentation --color /workspace/builder/test/*_spec.rb"
 
-docker-machine:
+vagrant:
 	vagrant up
+
+docker-machine: vagrant
 	docker-machine create -d generic \
-	  --generic-ssh-user $(shell vagrant ssh-config | grep ' User ' | awk '{print $2}') \
-	  --generic-ssh-key $(shell vagrant ssh-config | grep IdentityFile | awk '{gsub(/"/, "", $2); print $2}') \
-	  --generic-ip-address $(shell vagrant ssh-config | grep HostName | awk '{print $2}') \
-	  --generic-ssh-port $(shell vagrant ssh-config | grep Port | awk '{print $2}') \
+	  --generic-ssh-user $(shell vagrant ssh-config | grep ' User ' | cut -d ' ' -f 4) \
+	  --generic-ssh-key $(shell vagrant ssh-config | grep IdentityFile | cut -d ' ' -f 4) \
+	  --generic-ip-address $(shell vagrant ssh-config | grep HostName | cut -d ' ' -f 4) \
+	  --generic-ssh-port $(shell vagrant ssh-config | grep Port | cut -d ' ' -f 4) \
 	  image-builder-rpi
 
 test-integration: test-integration-image test-integration-docker
