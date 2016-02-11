@@ -51,14 +51,6 @@ describe "SD-Card Image" do
     end
   end
 
-  context "Binary vi" do
-    let(:stdout) { run_mounted("file-architecture /usr/bin/dpkg").stdout }
-
-    it "is compiled for ARM architecture" do
-      expect(stdout).to contain('arm')
-    end
-  end
-
   context "/etc/fstab" do
     let(:stdout) { run_mounted("cat /etc/fstab").stdout }
 
