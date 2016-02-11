@@ -20,7 +20,7 @@ Here is an example how all the GitHub repos play together:
 
 You can contribute to this repo by forking it and sending us pull requests. Feedback is always welcome!
 
-You can build the root filesystem locally with Vagrant.
+You can build the SD-Card image locally with Vagrant.
 
 ### Setting up build environment
 Make sure you have [vagrant](https://docs.vagrantup.com/v2/installation/) and [docker-machine](https://docs.docker.com/machine/install-machine/) installed. Then run the following command to create the Vagrant box and the Docker Machine connection. The Vagrant box is needed as a vanilla boot2docker VM is not able to run guestfish inside.
