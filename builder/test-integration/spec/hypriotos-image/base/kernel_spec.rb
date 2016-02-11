@@ -48,12 +48,12 @@ end
 # with installed kernel headers
 describe file('/lib/modules/4.1.12-hypriotos+/build') do
   it { should be_symlink }
-  it { should be_linked_to '/usr/src/linux-headers-4.1.12-hypriotos+' }
+#  it { should be_linked_to '/usr/src/linux-headers-4.1.12-hypriotos+' }
 end
 
 describe file('/lib/modules/4.1.12-hypriotos-v7+/build') do
   it { should be_symlink }
-  it { should be_linked_to '/usr/src/linux-headers-4.1.12-hypriotos-v7+' }
+#  it { should be_linked_to '/usr/src/linux-headers-4.1.12-hypriotos-v7+' }
 end
 
 describe file('/usr/src/linux-headers-4.1.12-hypriotos-v7+') do

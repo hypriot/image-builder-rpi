@@ -14,22 +14,10 @@ describe package('htop') do
   it { should be_installed }
 end
 
-describe package('fake-hwclock') do
-  it { should be_installed }
-end
-
 describe package('occi') do
-  it { should be_installed }
+  it { should_not be_installed }
 end
 
 describe package('usbutils') do
-  it { should be_installed }
-end
-
-describe package('firmware-ralink') do
-  it { should be_installed }
-end
-
-describe package('firmware-realtek') do
   it { should be_installed }
 end
