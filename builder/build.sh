@@ -31,6 +31,13 @@ IMAGE_NAME="sd-card-rpi-${IMAGE_VERSION}.img"
 ROOT_PARTITION_SIZE="1435"
 BOOT_PARTITION_SIZE="64"
 
+# specific versions of kernel/firmware and docker tools
+export KERNEL_BUILD="20151102-222318"
+export KERNEL_VERSION="4.1.12"
+export DOCKER_ENGINE_VERSION="1.9.1-1"
+export DOCKER_COMPOSE_VERSION="1.5.2-80"
+export DOCKER_MACHINE_VERSION="0.4.1-72"
+
 # create build directory for assembling our image filesystem
 rm -rf ${BUILD_PATH}
 mkdir ${BUILD_PATH}

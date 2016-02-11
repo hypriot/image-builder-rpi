@@ -22,24 +22,8 @@ You can contribute to this repo by forking it and sending us pull requests. Feed
 
 You can build the root filesystem locally with Vagrant.
 
-## Setting up build environment
-Make sure you have [vagrant](https://docs.vagrantup.com/v2/installation/) and [docker-machine](https://docs.docker.com/machine/install-machine/) installed.
-
-A `vagrant up` in the root folder of this repository sets up a Ubuntu Trusty VM with the latest Docker installed. We need this Vagrant box as a vanilla boot2docker VM is not able to run guestfish properly.
-
-To use this Docker instance from your host one can use `docker-machine`.  
-To set it up with your Vagrant VM execute the following command:
-
-```bash
-docker-machine create -d generic \
-  --generic-ssh-user $(vagrant ssh-config | grep ' User ' | awk '{print $2}') \
-  --generic-ssh-key $(vagrant ssh-config | grep IdentityFile | awk '{gsub(/"/, "", $2); print $2}') \
-  --generic-ip-address $(vagrant ssh-config | grep HostName | awk '{print $2}') \
-  --generic-ssh-port $(vagrant ssh-config | grep Port | awk '{print $2}') \
-  image-builder-rpi
-```
-
-or just the following as a shortcut to spin up the Vagrant box and create the Docker Machine connection:
+### Setting up build environment
+Make sure you have [vagrant](https://docs.vagrantup.com/v2/installation/) and [docker-machine](https://docs.docker.com/machine/install-machine/) installed. Then run the following command to create the Vagrant box and the Docker Machine connection. The Vagrant box is needed as a vanilla boot2docker VM is not able to run guestfish inside.
 
 ```bash
 make docker-machine
@@ -61,7 +45,7 @@ make sd-image
 
 ### Run Serverspec tests
 
-To test the compressed SD-Card image with Serverspec just run. It will expand the SD-Card image in a Docker container and run the Serverspec tests in `builder/test/` folder against it.
+To test the compressed SD-Card image with [Serverspec](http://serverspec.org) just run the following command. It will expand the SD-Card image in a Docker container and run the Serverspec tests in `builder/test/` folder against it.
 
 ```bash
 make test
@@ -69,11 +53,14 @@ make test
 
 ### Run integration tests
 
-Now flash the SD-Card image and boot up a Raspberry Pi. Run the Serverspec integration tests in `builder/test-integration/` folder against your Raspberry Pi.
+Now flash the SD-Card image and boot up a Raspberry Pi. Run the [Serverspec](http://serverspec.org) integration tests in `builder/test-integration/` folder against your Raspberry Pi. Set the environment variable `BOARD` to the IP address or host name of your running Raspberry Pi.
 
 ```bash
+flash sd-card-rpi-dirty.img.zip
 BOARD=black-pearl.local make test-integration
 ```
+
+This test works with any Docker Machine, so you do not need to create the Vagrant box.
 
 ## License
 
