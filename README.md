@@ -62,6 +62,16 @@ BOARD=black-pearl.local make test-integration
 
 This test works with any Docker Machine, so you do not need to create the Vagrant box.
 
+## Deployment
+
+For maintainers of this project you can release a new version and deploy the SD-Card image to GitHub releases with
+
+```bash
+TAG=v0.0.1 make tag
+```
+
+After that open the GitHub release of this version and fill it with relevant changes and links to resolved issues.
+
 ## License
 
 MIT - see the [LICENSE](./LICENSE) file for details.
