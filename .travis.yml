@@ -3,6 +3,7 @@ services:
   - docker
 language: bash
 script:
+  - make shellcheck
   - VERSION=${TRAVIS_TAG} make sd-image
 deploy:
   provider: releases

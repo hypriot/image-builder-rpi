@@ -2,9 +2,10 @@
 set -ex
 
 # set up /etc/resolv.conf
-export DEST=$(readlink -m /etc/resolv.conf)
-mkdir -p $(dirname ${DEST})
-echo "nameserver 8.8.8.8" > ${DEST}
+DEST=$(readlink -m /etc/resolv.conf)
+export DEST
+mkdir -p "$(dirname "${DEST}")"
+echo "nameserver 8.8.8.8" > "${DEST}"
 
 # set up hypriot rpi repository for rpi specific kernel- and firmware-packages
 wget -q https://packagecloud.io/gpg.key -O - | apt-key add -
@@ -18,13 +19,13 @@ apt-get update
 
 # install kernel- and firmware-packages
 apt-get install -y \
-  raspberrypi-bootloader=${KERNEL_BUILD} \
-  libraspberrypi0=${KERNEL_BUILD} \
-  libraspberrypi-dev=${KERNEL_BUILD} \
-  libraspberrypi-bin=${KERNEL_BUILD} \
-  libraspberrypi-doc=${KERNEL_BUILD} \
-  linux-headers-${KERNEL_VERSION}-hypriotos-v7+ \
-  linux-headers-${KERNEL_VERSION}-hypriotos+
+  "raspberrypi-bootloader=${KERNEL_BUILD}" \
+  "libraspberrypi0=${KERNEL_BUILD}" \
+  "libraspberrypi-dev=${KERNEL_BUILD}" \
+  "libraspberrypi-bin=${KERNEL_BUILD}" \
+  "libraspberrypi-doc=${KERNEL_BUILD}" \
+  "linux-headers-${KERNEL_VERSION}-hypriotos-v7+" \
+  "linux-headers-${KERNEL_VERSION}-hypriotos+"
 
 # enable serial console
 printf "# Spawn a getty on Raspberry Pi serial line\nT0:23:respawn:/sbin/getty -L ttyAMA0 115200 vt100\n" >> /etc/inittab
@@ -47,9 +48,9 @@ proc /proc proc defaults 0 0
 
 # install hypriot packages for docker-tools
 apt-get install -y \
-  docker-hypriot=${DOCKER_ENGINE_VERSION} \
-  docker-compose=${DOCKER_COMPOSE_VERSION} \
-  docker-machine=${DOCKER_MACHINE_VERSION}
+  "docker-hypriot=${DOCKER_ENGINE_VERSION}" \
+  "docker-compose=${DOCKER_COMPOSE_VERSION}" \
+  "docker-machine=${DOCKER_MACHINE_VERSION}"
 
 # enable Docker systemd service
 systemctl enable docker

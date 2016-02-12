@@ -18,6 +18,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
     awscli \
     ruby \
     ruby-dev \
+    shellcheck \
     --no-install-recommends && \
     rm -rf /var/lib/apt/lists/*
 

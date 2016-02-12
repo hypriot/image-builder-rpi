@@ -87,7 +87,7 @@ if [ ! -f "${BUILD_RESULT_PATH}/${RAW_IMAGE}.zip" ]; then
   wget -q -O ${BUILD_RESULT_PATH}/${RAW_IMAGE}.zip https://github.com/hypriot/image-builder-raw/releases/download/${RAW_IMAGE_VERSION}/${RAW_IMAGE}.zip
 fi
 
-unzip -p ${BUILD_RESULT_PATH}/${RAW_IMAGE} > /${IMAGE_NAME}
+unzip -p ${BUILD_RESULT_PATH}/${RAW_IMAGE} > "/${IMAGE_NAME}"
 
 # create the image and add root base filesystem
 guestfish -a "/${IMAGE_NAME}"<<_EOF_
@@ -104,7 +104,7 @@ _EOF_
 umask 0000
 
 # compress image
-zip ${BUILD_RESULT_PATH}/${IMAGE_NAME}.zip ${IMAGE_NAME}
+zip "${BUILD_RESULT_PATH}/${IMAGE_NAME}.zip" "${IMAGE_NAME}"
 
 # test sd-image that we have built
 VERSION=${IMAGE_VERSION} rspec --format documentation --color ${BUILD_RESULT_PATH}/builder/test

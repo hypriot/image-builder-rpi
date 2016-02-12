@@ -1,3 +1,6 @@
+#!/bin/bash
+set -ex
+
 if ! [ -h /dev/disk/by-label/root ]; then
   echo "/dev/disk/by-label/root does not exist or is not a symlink. Don't know how to expand"
   return 0
