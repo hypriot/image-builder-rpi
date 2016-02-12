@@ -6,7 +6,7 @@ end
 
 describe command('dpkg -l docker-hypriot') do
   its(:stdout) { should match /ii  docker-hypriot/ }
-  its(:stdout) { should match /1.10.0-1/ }
+  its(:stdout) { should match /1.10.1-1/ }
   its(:exit_status) { should eq 0 }
 end
 
@@ -55,13 +55,13 @@ describe file('/etc/bash_completion.d/docker') do
 end
 
 describe command('docker -v') do
-  its(:stdout) { should match /Docker version 1.10.0, build/ }
+  its(:stdout) { should match /Docker version 1.10.1, build/ }
   its(:exit_status) { should eq 0 }
 end
 
 describe command('docker version') do
-  its(:stdout) { should match /Client:. Version:      1.10.0. API version:  1.22/m }
-  its(:stdout) { should match /Server:. Version:      1.10.0. API version:  1.22/m }
+  its(:stdout) { should match /Client:. Version:      1.10.1. API version:  1.22/m }
+  its(:stdout) { should match /Server:. Version:      1.10.1. API version:  1.22/m }
   its(:exit_status) { should eq 0 }
 end
 
