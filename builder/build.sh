@@ -15,7 +15,7 @@ BUILD_RESULT_PATH="/workspace"
 BUILD_PATH="/build"
 
 # config vars for the root file system
-HYPRIOT_OS_VERSION="v0.7.1"
+HYPRIOT_OS_VERSION="v0.7.2"
 ROOTFS_TAR="rootfs-armhf-${HYPRIOT_OS_VERSION}.tar.gz"
 ROOTFS_TAR_PATH="${BUILD_RESULT_PATH}/${ROOTFS_TAR}"
 
@@ -24,7 +24,7 @@ echo TRAVIS_TAG="${TRAVIS_TAG}"
 
 # name of the ready made raw image for RPi
 RAW_IMAGE="rpi-raw.img"
-RAW_IMAGE_VERSION="v0.1.0"
+RAW_IMAGE_VERSION="v0.1.1"
 
 # name of the sd-image we gonna create
 HYPRIOT_IMAGE_VERSION=${VERSION:="dirty"}
@@ -34,7 +34,7 @@ export HYPRIOT_IMAGE_VERSION
 # specific versions of kernel/firmware and docker tools
 export KERNEL_BUILD="20151102-222318"
 export KERNEL_VERSION="4.1.12"
-export DOCKER_ENGINE_VERSION="1.10.0-1"
+export DOCKER_ENGINE_VERSION="1.10.1-1"
 export DOCKER_COMPOSE_VERSION="1.6.0-27"
 export DOCKER_MACHINE_VERSION="0.4.1-72"
 
