@@ -7,7 +7,7 @@
 This repo builds the SD card image with HypriotOS for the Raspberry Pi 2. To build this SD-Card image we have to
 
  * take the files for the root filesystem from [`os-rootfs`](https://github.com/hypriot/os-rootfs)
- * take the empty raw filesystem from [`image-buidler-raw`](https://github.com/hypriot/image-builder-raw) with the two partitions
+ * take the empty raw filesystem from [`image-builder-raw`](https://github.com/hypriot/image-builder-raw) with the two partitions
  * add Hypriot's Debian repos
  * install the Raspberry Pi kernel from [`rpi-kernel`](https://github.com/hypriot/rpi-kernel)
  * install Docker tools Docker Engine, Docker Compose and Docker Machine
