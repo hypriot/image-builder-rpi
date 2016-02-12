@@ -15,17 +15,21 @@ BUILD_RESULT_PATH="/workspace"
 BUILD_PATH="/build"
 
 # config vars for the root file system
-ROOTFS_TAR_VERSION="v0.7.0"
-ROOTFS_TAR="rootfs-armhf-${ROOTFS_TAR_VERSION}.tar.gz"
+HYPRIOT_OS_VERSION="v0.7.1"
+ROOTFS_TAR="rootfs-armhf-${HYPRIOT_OS_VERSION}.tar.gz"
 ROOTFS_TAR_PATH="${BUILD_RESULT_PATH}/${ROOTFS_TAR}"
+
+# Show TRAVSI_TAG in travis builds
+echo TRAVIS_TAG="${TRAVIS_TAG}"
 
 # name of the ready made raw image for RPi
 RAW_IMAGE="rpi-raw.img"
 RAW_IMAGE_VERSION="v0.1.0"
 
 # name of the sd-image we gonna create
-IMAGE_VERSION=${VERSION:="dirty"}
-IMAGE_NAME="sd-card-rpi-${IMAGE_VERSION}.img"
+HYPRIOT_IMAGE_VERSION=${VERSION:="dirty"}
+HYPRIOT_IMAGE_NAME="sd-card-rpi-${HYPRIOT_IMAGE_VERSION}.img"
+export HYPRIOT_IMAGE_VERSION
 
 # specific versions of kernel/firmware and docker tools
 export KERNEL_BUILD="20151102-222318"
@@ -40,7 +44,7 @@ mkdir ${BUILD_PATH}
 
 # download our base root file system
 if [ ! -f "${ROOTFS_TAR_PATH}" ]; then
-  wget -q -O ${ROOTFS_TAR_PATH} https://github.com/hypriot/os-rootfs/releases/download/${ROOTFS_TAR_VERSION}/${ROOTFS_TAR}
+  wget -q -O ${ROOTFS_TAR_PATH} https://github.com/hypriot/os-rootfs/releases/download/${HYPRIOT_OS_VERSION}/${ROOTFS_TAR}
 fi
 
 # extract root file system
@@ -87,10 +91,10 @@ if [ ! -f "${BUILD_RESULT_PATH}/${RAW_IMAGE}.zip" ]; then
   wget -q -O ${BUILD_RESULT_PATH}/${RAW_IMAGE}.zip https://github.com/hypriot/image-builder-raw/releases/download/${RAW_IMAGE_VERSION}/${RAW_IMAGE}.zip
 fi
 
-unzip -p ${BUILD_RESULT_PATH}/${RAW_IMAGE} > "/${IMAGE_NAME}"
+unzip -p ${BUILD_RESULT_PATH}/${RAW_IMAGE} > "/${HYPRIOT_IMAGE_NAME}"
 
 # create the image and add root base filesystem
-guestfish -a "/${IMAGE_NAME}"<<_EOF_
+guestfish -a "/${HYPRIOT_IMAGE_NAME}"<<_EOF_
   run
   #import filesystem content
   mount /dev/sda2 /
@@ -104,7 +108,7 @@ _EOF_
 umask 0000
 
 # compress image
-zip "${BUILD_RESULT_PATH}/${IMAGE_NAME}.zip" "${IMAGE_NAME}"
+zip "${BUILD_RESULT_PATH}/${HYPRIOT_IMAGE_NAME}.zip" "${HYPRIOT_IMAGE_NAME}"
 
 # test sd-image that we have built
-VERSION=${IMAGE_VERSION} rspec --format documentation --color ${BUILD_RESULT_PATH}/builder/test
+VERSION=${HYPRIOT_IMAGE_VERSION} rspec --format documentation --color ${BUILD_RESULT_PATH}/builder/test

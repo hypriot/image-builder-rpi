@@ -23,26 +23,6 @@ describe "SD-Card Image" do
     end
   end
 
-  context "Root filesystem" do
-    let(:stdout) { run_mounted("cat /etc/os-release").stdout }
-
-    it "is based on debian" do
-      expect(stdout).to contain('debian')
-    end
-
-    it "is debian version jessie" do
-      expect(stdout).to contain('jessie')
-    end
-
-    it "is a HypriotOS" do
-      expect(stdout).to contain('HypriotOS')
-    end
-
-    it "is not dirty" do
-      expect(stdout).not_to contain('dirty')
-    end
-  end
-
   context "Binary dpkg" do
     let(:stdout) { run_mounted("file-architecture /usr/bin/dpkg").stdout }
 
