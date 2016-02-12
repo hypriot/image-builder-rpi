@@ -6,8 +6,8 @@ script:
   - make shellcheck
   - VERSION=${TRAVIS_TAG} make sd-image
 branches:
-only:
-  - master
+  only:
+    - master
 deploy:
   provider: releases
   api_key:
