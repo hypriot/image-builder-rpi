@@ -1,6 +1,9 @@
 #!/bin/bash
 set -ex
 
+# device specific settings
+HYPRIOT_DEVICE="Raspberry Pi"
+
 # set up /etc/resolv.conf
 DEST=$(readlink -m /etc/resolv.conf)
 export DEST
@@ -58,3 +61,7 @@ systemctl enable docker
 echo "Installing rpi-serial-console script"
 wget -q https://raw.githubusercontent.com/lurch/rpi-serial-console/master/rpi-serial-console -O usr/local/bin/rpi-serial-console
 chmod +x usr/local/bin/rpi-serial-console
+
+# set device label and version number
+echo "HYPRIOT_DEVICE=\"$HYPRIOT_DEVICE\"" >> /etc/os-release
+echo "HYPRIOT_IMAGE_VERSION=\"$HYPRIOT_IMAGE_VERSION\"" >> /etc/os-release
