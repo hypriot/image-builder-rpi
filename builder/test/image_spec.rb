@@ -1,6 +1,6 @@
 require_relative 'spec_helper'
 
-describe "SD-Card Image" do
+describe "SD card image" do
   it "exists" do
     image_file = file(image_path)
     expect(image_file).to exist
