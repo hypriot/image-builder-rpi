@@ -15,8 +15,8 @@ BUILD_RESULT_PATH="/workspace"
 BUILD_PATH="/build"
 
 # config vars for the root file system
-HYPRIOT_OS_VERSION="v0.7.2"
-ROOTFS_TAR="rootfs-armhf-${HYPRIOT_OS_VERSION}.tar.gz"
+HYPRIOT_OS_VERSION="v0.8.1"
+ROOTFS_TAR="rootfs-armhf-raspbian-${HYPRIOT_OS_VERSION}.tar.gz"
 ROOTFS_TAR_PATH="${BUILD_RESULT_PATH}/${ROOTFS_TAR}"
 
 # Show TRAVSI_TAG in travis builds
