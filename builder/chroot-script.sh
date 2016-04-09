@@ -20,6 +20,14 @@ echo 'deb https://packagecloud.io/Hypriot/Schatzkiste/debian/ wheezy main' >> /e
 # reload package sources
 apt-get update
 
+# install WiFi firmware packages (same as in Raspbian)
+apt-get install -y \
+  firmware-atheros \
+  firmware-brcm80211 \
+  firmware-libertas \
+  firmware-ralink \
+  firmware-realtek
+
 # install kernel- and firmware-packages
 apt-get install -y \
   "raspberrypi-bootloader=${KERNEL_BUILD}" \
