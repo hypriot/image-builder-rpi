@@ -20,6 +20,14 @@ echo 'deb https://packagecloud.io/Hypriot/Schatzkiste/debian/ wheezy main' >> /e
 # reload package sources
 apt-get update
 
+# install WiFi firmware packages (same as in Raspbian)
+apt-get install -y \
+  firmware-atheros \
+  firmware-brcm80211 \
+  firmware-libertas \
+  firmware-ralink \
+  firmware-realtek
+
 # install kernel- and firmware-packages
 apt-get install -y \
   "raspberrypi-bootloader=${KERNEL_BUILD}" \
@@ -35,6 +43,11 @@ printf "# Spawn a getty on Raspberry Pi serial line\nT0:23:respawn:/sbin/getty -
 
 # boot/cmdline.txt
 echo "+dwc_otg.lpm_enable=0 console=tty1 root=/dev/mmcblk0p2 rootfstype=ext4 cgroup-enable=memory swapaccount=1 elevator=deadline rootwait console=ttyAMA0,115200 kgdboc=ttyAMA0,115200" > /boot/cmdline.txt
+
+# create a default boot/config.txt file (details see http://elinux.org/RPiconfig)
+echo "
+hdmi_force_hotplug=1
+" > boot/config.txt
 
 # /etc/modules
 echo "vchiq

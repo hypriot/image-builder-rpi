@@ -15,7 +15,7 @@ BUILD_RESULT_PATH="/workspace"
 BUILD_PATH="/build"
 
 # config vars for the root file system
-HYPRIOT_OS_VERSION="v0.8.1"
+HYPRIOT_OS_VERSION="v0.8.4"
 ROOTFS_TAR="rootfs-armhf-raspbian-${HYPRIOT_OS_VERSION}.tar.gz"
 ROOTFS_TAR_PATH="${BUILD_RESULT_PATH}/${ROOTFS_TAR}"
 
@@ -34,8 +34,8 @@ export HYPRIOT_IMAGE_VERSION
 # specific versions of kernel/firmware and docker tools
 export KERNEL_BUILD="20160404-055934"
 export KERNEL_VERSION="4.1.20"
-export DOCKER_ENGINE_VERSION="1.10.1-1"
-export DOCKER_COMPOSE_VERSION="1.6.0-27"
+export DOCKER_ENGINE_VERSION="1.10.3-1"
+export DOCKER_COMPOSE_VERSION="1.6.2-28"
 export DOCKER_MACHINE_VERSION="0.4.1-72"
 export DEVICE_INIT_VERSION="0.0.14"
 
