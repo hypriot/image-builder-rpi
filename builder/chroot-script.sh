@@ -68,7 +68,12 @@ proc /proc proc defaults 0 0
 
 # as the Pi does not have a hardware clock we need a fake one
 apt-get install -y \
-fake-hwclock
+  fake-hwclock
+
+# install packages for managing wireless interfaces
+apt-get install -y \
+  wpasupplicant \
+  wireless-tools \
 
 # install hypriot packages for docker-tools
 apt-get install -y \
