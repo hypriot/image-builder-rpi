@@ -62,6 +62,10 @@ proc /proc proc defaults 0 0
 /dev/mmcblk0p2 / ext4 defaults,noatime 0 1
 " > /etc/fstab
 
+# as the Pi does not have a hardware clock we need a fake one
+apt-get install -y \
+fake-hwclock
+
 # install hypriot packages for docker-tools
 apt-get install -y \
   "docker-hypriot=${DOCKER_ENGINE_VERSION}" \
