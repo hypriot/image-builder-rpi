@@ -50,6 +50,7 @@ echo "+dwc_otg.lpm_enable=0 console=tty1 root=/dev/mmcblk0p2 rootfstype=ext4 cgr
 # create a default boot/config.txt file (details see http://elinux.org/RPiconfig)
 echo "
 hdmi_force_hotplug=1
+core_freq=250
 " > boot/config.txt
 
 # /etc/modules
