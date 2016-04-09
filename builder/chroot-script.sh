@@ -44,6 +44,11 @@ printf "# Spawn a getty on Raspberry Pi serial line\nT0:23:respawn:/sbin/getty -
 # boot/cmdline.txt
 echo "+dwc_otg.lpm_enable=0 console=tty1 root=/dev/mmcblk0p2 rootfstype=ext4 cgroup-enable=memory swapaccount=1 elevator=deadline rootwait console=ttyAMA0,115200 kgdboc=ttyAMA0,115200" > /boot/cmdline.txt
 
+# create a default boot/config.txt file (details see http://elinux.org/RPiconfig)
+echo "
+hdmi_force_hotplug=1
+" > boot/config.txt
+
 # /etc/modules
 echo "vchiq
 snd_bcm2835
