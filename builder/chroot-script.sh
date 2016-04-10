@@ -74,6 +74,7 @@ apt-get install -y \
 apt-get install -y \
   wpasupplicant \
   wireless-tools \
+  ethtool
 
 # install hypriot packages for docker-tools
 apt-get install -y \
