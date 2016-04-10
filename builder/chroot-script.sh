@@ -75,6 +75,12 @@ apt-get install -y \
   wpasupplicant \
   wireless-tools \
 
+# add firmware and packages for managing bluetooth devices
+apt-get install -y \
+  --no-install-recommends \
+  bluetooth \
+  pi-bluetooth
+
 # install hypriot packages for docker-tools
 apt-get install -y \
   "docker-hypriot=${DOCKER_ENGINE_VERSION}" \

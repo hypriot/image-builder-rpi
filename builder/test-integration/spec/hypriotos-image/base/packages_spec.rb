@@ -49,3 +49,14 @@ end
 describe package('wireless-tools') do
   it { should be_installed }
 end
+
+describe 'for bluetooth-support' do
+  describe package('pi-bluetooth') do
+    it { should be_installed }
+  end
+
+  describe package('bluetooth') do
+    it { should be_installed }
+  end
+end
+
