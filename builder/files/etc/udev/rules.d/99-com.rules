@@ -1,0 +1,5 @@
+SUBSYSTEM=="gpio*", PROGRAM="/bin/sh -c 'chown -R root:gpio /sys/class/gpio && chmod -R 770 /sys/class/gpio; chown -R root:gpio /sys/devices/virtual/gpio && chmod -R 770 /sys/devices/virtual/gpio; chown -R root:gpio /sys/devices/platform/soc/*.gpio/gpio && chmod -R 770 /sys/devices/platform/soc/*.gpio/gpio'"
+SUBSYSTEM=="input", GROUP="input", MODE="0660"
+SUBSYSTEM=="i2c-dev", GROUP="i2c", MODE="0660"
+SUBSYSTEM=="spidev", GROUP="spi", MODE="0660"
+SUBSYSTEM=="bcm2835-gpiomem", GROUP="gpio", MODE="0660"
