@@ -6,7 +6,7 @@ end
 
 describe command('dpkg -l device-init') do
   its(:stdout) { should match /ii  device-init/ }
-  its(:stdout) { should match /0.0.14/ }
+  its(:stdout) { should match /0.1.3/ }
   its(:exit_status) { should eq 0 }
 end
 
