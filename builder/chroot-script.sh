@@ -74,7 +74,8 @@ apt-get install -y \
 apt-get install -y \
   wpasupplicant \
   wireless-tools \
-  ethtool
+  ethtool \
+  crda
 
 # add firmware and packages for managing bluetooth devices
 apt-get install -y \
