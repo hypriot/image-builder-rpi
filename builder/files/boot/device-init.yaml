@@ -4,3 +4,9 @@ docker:
   images:
     - "/var/local/rpi-consul_v0.6.4.tar.gz"
     - "/var/local/rpi-swarm_v1.2.0.tar.gz"
+# optional wireless network settings
+wifi:
+  interfaces:
+#     wlan0:
+#       ssid: "MyNetwork"
+#       password: "secret_password"
