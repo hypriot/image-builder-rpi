@@ -1,8 +1,6 @@
 # hostname for your HypriotOS device
 hostname: black-pearl
-# optional wireless network settings
-wifi:
-  interfaces:
-#     wlan0:
-#       ssid: "MyNetwork"
-#       password: "secret_password"
+docker:
+  images:
+    - "/var/local/rpi-consul_v0.6.4.tar.gz"
+    - "/var/local/rpi-swarm_v1.2.0.tar.gz"
