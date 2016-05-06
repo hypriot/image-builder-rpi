@@ -38,6 +38,7 @@ export DOCKER_ENGINE_VERSION="1.10.3-1"
 export DOCKER_COMPOSE_VERSION="1.6.2-28"
 export DOCKER_MACHINE_VERSION="0.4.1-72"
 export DEVICE_INIT_VERSION="0.1.4"
+export CLUSTER_LAB_VERSION="0.2.1-1"
 
 # create build directory for assembling our image filesystem
 rm -rf ${BUILD_PATH}
