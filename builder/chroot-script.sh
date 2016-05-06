@@ -105,6 +105,8 @@ wget -q https://github.com/hypriot/rpi-consul/releases/download/v0.6.4/rpi-consu
 # install Hypriot Cluster-Lab
 apt-get install -y \
   "hypriot-cluster-lab=${CLUSTER_LAB_VERSION}"
+# do not run cluster-lab automatically
+systemctl disable cluster-lab.service
 
 # set device label and version number
 echo "HYPRIOT_DEVICE=\"$HYPRIOT_DEVICE\"" >> /etc/os-release
