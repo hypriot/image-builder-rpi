@@ -93,6 +93,7 @@ apt-get install -y \
 # enable Docker systemd service
 systemctl enable docker
 
+
 echo "Installing rpi-serial-console script"
 wget -q https://raw.githubusercontent.com/lurch/rpi-serial-console/master/rpi-serial-console -O usr/local/bin/rpi-serial-console
 chmod +x usr/local/bin/rpi-serial-console
@@ -100,6 +101,10 @@ chmod +x usr/local/bin/rpi-serial-console
 # store Docker Swarm and Consul image files for preloading via device-init
 wget -q https://github.com/hypriot/rpi-swarm/releases/download/v1.2.0/rpi-swarm_v1.2.0.tar.gz -O var/local/rpi-swarm_v1.2.0.tar.gz
 wget -q https://github.com/hypriot/rpi-consul/releases/download/v0.6.4/rpi-consul_v0.6.4.tar.gz -O var/local/rpi-consul_v0.6.4.tar.gz
+
+# install Hypriot Cluster-Lab
+apt-get install -y \
+  "hypriot-cluster-lab=${CLUSTER_LAB_VERSION}"
 
 # set device label and version number
 echo "HYPRIOT_DEVICE=\"$HYPRIOT_DEVICE\"" >> /etc/os-release
