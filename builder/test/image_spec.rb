@@ -42,4 +42,17 @@ describe "SD card image" do
       expect(stdout).to contain('/dev/mmcblk0p2 / ext4')
     end
   end
+
+  context "Docker Images" do
+    let(:stdout) { run_mounted("ls /var/local").stdout }
+
+    it "Consul export file exists" do
+      expect(stdout).to contain('rpi-consul_v0.6.4.tar.gz')
+    end
+
+    it "Docker Swarm export file exists" do
+      expect(stdout).to contain('rpi-swarm_v1.2.0.tar.gz')
+    end
+  end
+
 end

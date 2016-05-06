@@ -46,12 +46,3 @@ describe "Root filesystem" do
     end
   end
 end
-
-# describe "Docker Images" do
-#   it "Consul export file exists" do
-#     expect(file('/var/local/rpi-consul_v0.6.4.tar.gz')).to exist
-#   end
-#   it "Docker Swarm export file exists" do
-#     expect(file('/var/local/rpi-swarm_v1.2.0.tar.gz')).to exist
-#   end
-# end

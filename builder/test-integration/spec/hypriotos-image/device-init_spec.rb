@@ -6,13 +6,17 @@ end
 
 describe command('dpkg -l device-init') do
   its(:stdout) { should match /ii  device-init/ }
-  its(:stdout) { should match /0.1.3/ }
+  its(:stdout) { should match /0.1.4/ }
   its(:exit_status) { should eq 0 }
 end
 
 describe file('/boot/device-init.yaml') do
   it { should be_file }
   its(:content) { should match /hostname: / }
+  its(:content) { should match /docker:/ }
+  its(:content) { should match /images:/ }
+  its(:content) { should match /- "\/var\/local\/rpi-consul_v0\.6\.4\.tar.gz"/ }
+  its(:content) { should match /- "\/var\/local\/rpi-swarm_v1.2\.0\.tar\.gz"/ }
 end
 
 describe file('/usr/local/bin/device-init') do
