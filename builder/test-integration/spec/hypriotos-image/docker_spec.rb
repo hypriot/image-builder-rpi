@@ -1,12 +1,12 @@
 require 'spec_helper'
 
-describe package('docker-hypriot') do
+describe package('docker-engine') do
   it { should be_installed }
 end
 
-describe command('dpkg -l docker-hypriot') do
-  its(:stdout) { should match /ii  docker-hypriot/ }
-  its(:stdout) { should match /1.10.3-1/ }
+describe command('dpkg -l docker-engine') do
+  its(:stdout) { should match /ii  docker-engine/ }
+  its(:stdout) { should match /1.11.1-1/ }
   its(:exit_status) { should eq 0 }
 end
 
@@ -16,15 +16,39 @@ describe file('/usr/bin/docker') do
   it { should be_owned_by 'root' }
 end
 
-describe file('/usr/lib/docker/dockerinit') do
+describe file('/usr/bin/docker-containerd') do
   it { should be_file }
   it { should be_mode 755 }
   it { should be_owned_by 'root' }
 end
 
-describe file('/etc/init.d/docker') do
+describe file('/usr/bin/docker-containerd-ctr') do
   it { should be_file }
   it { should be_mode 755 }
+  it { should be_owned_by 'root' }
+end
+
+describe file('/usr/bin/docker-containerd-shim') do
+  it { should be_file }
+  it { should be_mode 755 }
+  it { should be_owned_by 'root' }
+end
+
+describe file('/usr/bin/docker-runc') do
+  it { should be_file }
+  it { should be_mode 755 }
+  it { should be_owned_by 'root' }
+end
+
+describe file('/lib/systemd/system/docker.service') do
+  it { should be_file }
+  it { should be_mode 644 }
+  it { should be_owned_by 'root' }
+end
+
+describe file('/lib/systemd/system/docker.socket') do
+  it { should be_file }
+  it { should be_mode 644 }
   it { should be_owned_by 'root' }
 end
 
@@ -32,12 +56,12 @@ describe file('/etc/default/docker') do
   it { should be_file }
   it { should be_mode 644 }
   it { should be_owned_by 'root' }
-  its(:content) { should match /--storage-driver=overlay/ }
+#   its(:content) { should match /--storage-driver=overlay/ }
 end
 
 describe file('/var/lib/docker') do
   it { should be_directory }
-  it { should be_mode 701 }
+  it { should be_mode 711 }
   it { should be_owned_by 'root' }
 end
 
@@ -49,19 +73,19 @@ end
 
 describe file('/etc/bash_completion.d/docker') do
   it { should be_file }
-  it { should be_mode 755 }
+  it { should be_mode 644 }
   it { should be_owned_by 'root' }
   it { should be_file }
 end
 
 describe command('docker -v') do
-  its(:stdout) { should match /Docker version 1.10.3, build/ }
+  its(:stdout) { should match /Docker version 1.11.1, build/ }
   its(:exit_status) { should eq 0 }
 end
 
 describe command('docker version') do
-  its(:stdout) { should match /Client:. Version:      1.10.3. API version:  1.22/m }
-  its(:stdout) { should match /Server:. Version:      1.10.3. API version:  1.22/m }
+  its(:stdout) { should match /Client:. Version:      1.11.1. API version:  1.23/m }
+  its(:stdout) { should match /Server:. Version:      1.11.1. API version:  1.23/m }
   its(:exit_status) { should eq 0 }
 end
 

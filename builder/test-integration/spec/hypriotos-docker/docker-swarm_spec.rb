@@ -10,6 +10,6 @@ describe command('docker run --rm -t hypriot/rpi-swarm --version') do
 end
 
 describe command('docker images hypriot/rpi-swarm') do
-  its(:stdout) { should match /hypriot\/rpi-swarm .*latest .*8cd4dc8bb230 / }
+  its(:stdout) { should match /hypriot\/rpi-swarm .*latest .*07fafcb46ec6 / }
   its(:exit_status) { should eq 0 }
 end

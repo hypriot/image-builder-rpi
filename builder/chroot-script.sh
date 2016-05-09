@@ -85,7 +85,7 @@ apt-get install -y \
 
 # install hypriot packages for docker-tools
 apt-get install -y \
-  "docker-hypriot=${DOCKER_ENGINE_VERSION}" \
+  "docker-engine=${DOCKER_ENGINE_VERSION}" \
   "docker-compose=${DOCKER_COMPOSE_VERSION}" \
   "docker-machine=${DOCKER_MACHINE_VERSION}" \
   "device-init=${DEVICE_INIT_VERSION}"
