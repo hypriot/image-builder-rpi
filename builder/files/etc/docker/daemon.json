@@ -1,0 +1,4 @@
+{
+  "storage-driver": "overlay",
+  "hosts": ["fd://"]
+}
