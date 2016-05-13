@@ -99,7 +99,7 @@ wget -q https://raw.githubusercontent.com/lurch/rpi-serial-console/master/rpi-se
 chmod +x usr/local/bin/rpi-serial-console
 
 # store Docker Swarm and Consul image files for preloading via device-init
-wget -q https://github.com/hypriot/rpi-swarm/releases/download/v1.2.1/rpi-swarm_v1.2.1.tar.gz -O var/local/rpi-swarm_v1.2.1.tar.gz
+wget -q https://github.com/hypriot/rpi-swarm/releases/download/v1.2.2/rpi-swarm_v1.2.2.tar.gz -O var/local/rpi-swarm_v1.2.2.tar.gz
 wget -q https://github.com/hypriot/rpi-consul/releases/download/v0.6.4/rpi-consul_v0.6.4.tar.gz -O var/local/rpi-consul_v0.6.4.tar.gz
 
 # install Hypriot Cluster-Lab
