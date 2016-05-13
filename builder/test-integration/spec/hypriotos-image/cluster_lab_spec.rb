@@ -6,7 +6,7 @@ end
 
 describe command('dpkg -l hypriot-cluster-lab') do
   its(:stdout) { should match /ii  hypriot-cluster-lab/ }
-  its(:stdout) { should match /0.2.4/ }
+  its(:stdout) { should match /0.2.5/ }
   its(:exit_status) { should eq 0 }
 end
 
