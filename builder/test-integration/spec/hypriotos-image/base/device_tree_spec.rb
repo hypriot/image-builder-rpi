@@ -20,6 +20,6 @@ describe file('/proc/device-tree/model') do
 end
 
 describe command('vcdbg log msg') do
-  its(:stderr) { should match /Loading 'bcm.*\.dtb' from SD card/ }
+  its(:stderr) { should match /Loading 'bcm.*\.dtb' to/ }
   its(:exit_status) { should eq 0 }
 end

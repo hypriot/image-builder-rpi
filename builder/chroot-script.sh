@@ -33,6 +33,7 @@ apt-get install -y \
 
 # install kernel- and firmware-packages
 apt-get install -y \
+  "raspberrypi-kernel=${KERNEL_BUILD}" \
   "raspberrypi-bootloader=${KERNEL_BUILD}" \
   "libraspberrypi0=${KERNEL_BUILD}" \
   "libraspberrypi-dev=${KERNEL_BUILD}" \

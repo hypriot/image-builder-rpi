@@ -32,8 +32,8 @@ HYPRIOT_IMAGE_NAME="sd-card-rpi-${HYPRIOT_IMAGE_VERSION}.img"
 export HYPRIOT_IMAGE_VERSION
 
 # specific versions of kernel/firmware and docker tools
-export KERNEL_BUILD="20160404-055934"
-export KERNEL_VERSION="4.1.20"
+export KERNEL_BUILD="20160514-190208"
+export KERNEL_VERSION="4.4.10"
 export DOCKER_ENGINE_VERSION="1.11.1-1"
 export DOCKER_COMPOSE_VERSION="1.7.1-38"
 export DOCKER_MACHINE_VERSION="0.4.1-72"
