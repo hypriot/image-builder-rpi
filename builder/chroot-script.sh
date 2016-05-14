@@ -111,3 +111,4 @@ systemctl disable cluster-lab.service
 # set device label and version number
 echo "HYPRIOT_DEVICE=\"$HYPRIOT_DEVICE\"" >> /etc/os-release
 echo "HYPRIOT_IMAGE_VERSION=\"$HYPRIOT_IMAGE_VERSION\"" >> /etc/os-release
+cp /etc/os-release /boot/os-release
