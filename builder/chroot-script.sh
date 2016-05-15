@@ -55,9 +55,7 @@ enable_uart=1
 " > boot/config.txt
 
 # /etc/modules
-echo "vchiq
-snd_bcm2835
-bcm2835_rng
+echo "snd_bcm2835
 " >> /etc/modules
 
 # create /etc/fstab
