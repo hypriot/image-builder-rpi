@@ -1,7 +1,7 @@
 #!/bin/bash -e
 set -x
 # This script should be run only inside of a Docker container
-if [ ! -f /.dockerinit ]; then
+if [ ! -f /.dockerenv ]; then
   echo "ERROR: script works only in a Docker container!"
   exit 1
 fi
