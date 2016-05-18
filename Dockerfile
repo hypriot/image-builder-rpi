@@ -1,29 +1,12 @@
-FROM debian:jessie
+FROM hypriot/image-builder:latest
 
-RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
-    python-pip \
-    build-essential \
-    libguestfs-tools \
-    libncurses5-dev \
-    tree \
+RUN apt-get update && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y \
     binfmt-support \
     qemu \
     qemu-user-static \
-    debootstrap \
-    kpartx \
-    lvm2 \
-    dosfstools \
-    zip \
-    unzip \
-    awscli \
-    ruby \
-    ruby-dev \
-    shellcheck \
     --no-install-recommends && \
     rm -rf /var/lib/apt/lists/*
-
-RUN gem update --system && \
-    gem install --no-document serverspec
 
 COPY builder/ /builder/
 
