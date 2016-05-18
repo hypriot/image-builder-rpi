@@ -1,6 +1,7 @@
 default: build
 
 build:
+	docker build -t image-builder-rpi . || true
 	docker build -t image-builder-rpi .
 
 sd-image: build
