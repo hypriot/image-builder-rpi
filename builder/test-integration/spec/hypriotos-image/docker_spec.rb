@@ -52,11 +52,24 @@ describe file('/lib/systemd/system/docker.socket') do
   it { should be_owned_by 'root' }
 end
 
+describe file('/etc/systemd/system/docker.service') do
+  it { should be_file }
+  it { should be_mode 644 }
+  it { should be_owned_by 'root' }
+  its(:content) { should match /ExecStart=\/usr\/bin\/docker daemon -H fd:\/\/ --storage-driver overlay/ }
+end
+
+describe file('/var/run/docker.sock') do
+  it { should be_socket }
+  it { should be_mode 660 }
+  it { should be_owned_by 'root' }
+  it { should be_grouped_into 'docker' }
+end
+
 describe file('/etc/default/docker') do
   it { should be_file }
   it { should be_mode 644 }
   it { should be_owned_by 'root' }
-#   its(:content) { should match /--storage-driver=overlay/ }
 end
 
 describe file('/var/lib/docker') do
