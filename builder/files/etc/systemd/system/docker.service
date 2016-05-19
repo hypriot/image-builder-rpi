@@ -9,7 +9,7 @@ Type=notify
 # the default is not to use systemd for cgroups because the delegate issues still
 # exists and systemd currently does not support the cgroup feature set required
 # for containers run by docker
-ExecStart=/usr/bin/docker daemon
+ExecStart=/usr/bin/docker daemon -H fd:// --storage-driver overlay
 MountFlags=slave
 LimitNOFILE=1048576
 LimitNPROC=1048576
