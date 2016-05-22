@@ -88,8 +88,6 @@ tar -czf /image_with_kernel_boot.tar.gz -C ${BUILD_PATH}/boot .
 rm -Rf ${BUILD_PATH}/boot
 tar -czf /image_with_kernel_root.tar.gz -C ${BUILD_PATH} .
 
-ls -l /image_with_kernel_*
-
 # download the ready-made raw image for the RPi
 if [ ! -f "${BUILD_RESULT_PATH}/${RAW_IMAGE}.zip" ]; then
   wget -q -O ${BUILD_RESULT_PATH}/${RAW_IMAGE}.zip https://github.com/hypriot/image-builder-raw/releases/download/${RAW_IMAGE_VERSION}/${RAW_IMAGE}.zip
