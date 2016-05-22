@@ -24,7 +24,7 @@ echo TRAVIS_TAG="${TRAVIS_TAG}"
 
 # name of the ready made raw image for RPi
 RAW_IMAGE="rpi-raw.img"
-RAW_IMAGE_VERSION="v0.1.1"
+RAW_IMAGE_VERSION="v0.1.4"
 
 # name of the sd-image we gonna create
 HYPRIOT_IMAGE_VERSION=${VERSION:="dirty"}
@@ -36,7 +36,7 @@ export KERNEL_BUILD="20160520-141137"
 export KERNEL_VERSION="4.4.10"
 export DOCKER_ENGINE_VERSION="1.11.1-1"
 export DOCKER_COMPOSE_VERSION="1.7.1-38"
-export DOCKER_MACHINE_VERSION="0.4.1-72"
+export DOCKER_MACHINE_VERSION="0.7.0-18"
 export DEVICE_INIT_VERSION="0.1.5"
 export CLUSTER_LAB_VERSION="0.2.7-1"
 

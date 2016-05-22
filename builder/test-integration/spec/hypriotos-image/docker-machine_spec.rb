@@ -6,7 +6,7 @@ end
 
 describe command('dpkg -l docker-machine') do
   its(:stdout) { should match /ii  docker-machine/ }
-  its(:stdout) { should match /0.4.1-72/ }
+  its(:stdout) { should match /0.7.0-18/ }
   its(:exit_status) { should eq 0 }
 end
 
@@ -17,8 +17,7 @@ describe file('/usr/local/bin/docker-machine') do
 end
 
 describe command('docker-machine --version') do
-  its(:stdout) { should match /0.4.1/m }
-#  its(:stderr) { should match /^$/ }
+  its(:stdout) { should match /0.7.0/m }
   its(:exit_status) { should eq 0 }
 end
 
