@@ -24,7 +24,7 @@ echo TRAVIS_TAG="${TRAVIS_TAG}"
 
 # name of the ready made raw image for RPi
 RAW_IMAGE="rpi-raw.img"
-RAW_IMAGE_VERSION="v0.1.1"
+RAW_IMAGE_VERSION="v0.1.4"
 
 # name of the sd-image we gonna create
 HYPRIOT_IMAGE_VERSION=${VERSION:="dirty"}
@@ -87,6 +87,8 @@ rm -rf ${BUILD_PATH}/{dev,sys,proc}/*
 tar -czf /image_with_kernel_boot.tar.gz -C ${BUILD_PATH}/boot .
 rm -Rf ${BUILD_PATH}/boot
 tar -czf /image_with_kernel_root.tar.gz -C ${BUILD_PATH} .
+
+ls -l /image_with_kernel_*
 
 # download the ready-made raw image for the RPi
 if [ ! -f "${BUILD_RESULT_PATH}/${RAW_IMAGE}.zip" ]; then
