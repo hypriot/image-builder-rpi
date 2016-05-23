@@ -1,11 +1,11 @@
 require 'spec_helper'
 
-describe package('docker-engine') do
+describe package('docker-hypriot') do
   it { should be_installed }
 end
 
-describe command('dpkg -l docker-engine') do
-  its(:stdout) { should match /ii  docker-engine/ }
+describe command('dpkg -l docker-hypriot') do
+  its(:stdout) { should match /ii  docker-hypriot/ }
   its(:stdout) { should match /1.11.1-1/ }
   its(:exit_status) { should eq 0 }
 end
