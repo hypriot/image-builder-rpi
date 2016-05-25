@@ -14,8 +14,8 @@ deploy:
   api_key:
     secure: ldMoo+75b7ql+d/QcrICL9EpmqSt18Gtlb0Qfwb+xwxBcBmmnM7UpeOeU4K6KnPZ8fAOyfcm4XQLwJF40EUjspov8X7CY8gOxWHMRp6mAebUgbk3toZSjxxRy1BAd7bewG+dcv4ZuDU0802A6LG5dCBcrgZg9q4JhMYBOUzbR7+p7LNm4ZMMpNlV8MpCsZCg5A+rLJ8IxoCamQW2r/IwcMY+/aWjlvBN8FHD7HN4p5hD1qclB9tg5id+Ar2tlXPpVKE+xT4eoAGtFJV56JQ8zQ3dGst4lb3tMWUWAxUjmh2YNrf5yHMoaEV8NkcKP16HaYDdWSThhohf6D+7mDmxB1tYRlpMr0W5gLtDVZP+OEdGYS7cmwpl76dPO8LNtPkbh+k59QRofrxn41UdGKKovZiry3lPzaYnW54OTLJohYSIEo3W5c17XgNkRFSO40B1dhrwmLupk+UQcPIl6MQ4uorG1Wh5RpRnaEA6Z2kP3/E+WusqjH3+e8/Sr4S34hSHVpGq4rkUUDVskEGJ510uEiLEC26oKAXdTOClfQhOtf4rlOoIXkMZUMBDkT3xU6uOwEboqHNhwCTHOXOVG8mmr7VddeE7wJxJsnGDfJRbqO0Dm1K6f9mnavuFXQc5GnrXmBIvw4JlISnBf6124h36stUe3hqCqkNPZCZWQi2C2Zk=
   file:
-    - sd-card-rpi-${TRAVIS_TAG}.img.zip
-    - sd-card-rpi-${TRAVIS_TAG}.img.zip.sha256
+    - hypriotos-rpi-${TRAVIS_TAG}.img.zip
+    - hypriotos-rpi-${TRAVIS_TAG}.img.zip.sha256
   on:
     tags: true
     repo: hypriot/image-builder-rpi

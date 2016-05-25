@@ -2,7 +2,7 @@ require 'serverspec'
 set :backend, :exec
 
 def image_path
-  return "sd-card-rpi-#{ENV['VERSION']}.img"
+  return "hypriotos-rpi-#{ENV['VERSION']}.img"
 end
 
 def run( cmd )
