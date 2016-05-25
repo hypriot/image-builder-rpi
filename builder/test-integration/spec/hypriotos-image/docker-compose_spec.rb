@@ -6,7 +6,7 @@ end
 
 describe command('dpkg -l docker-compose') do
   its(:stdout) { should match /ii  docker-compose/ }
-  its(:stdout) { should match /1.7.1-38/ }
+  its(:stdout) { should match /1.7.1-40/ }
   its(:exit_status) { should eq 0 }
 end
 
