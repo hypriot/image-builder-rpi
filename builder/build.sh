@@ -37,10 +37,10 @@ export HYPRIOT_IMAGE_VERSION
 export KERNEL_BUILD="20160520-141137"
 export KERNEL_VERSION="4.4.10"
 export DOCKER_ENGINE_VERSION="1.11.1-1"
-export DOCKER_COMPOSE_VERSION="1.7.1-38"
+export DOCKER_COMPOSE_VERSION="1.7.1-40"
 export DOCKER_MACHINE_VERSION="0.7.0-26"
-export DEVICE_INIT_VERSION="0.1.5"
-export CLUSTER_LAB_VERSION="0.2.8-1"
+export DEVICE_INIT_VERSION="0.1.7"
+export CLUSTER_LAB_VERSION="0.2.12-1"
 
 # create build directory for assembling our image filesystem
 rm -rf ${BUILD_PATH}
