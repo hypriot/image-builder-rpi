@@ -3,6 +3,11 @@ default: build
 build:
 	docker build -t image-builder-rpi .
 
+get-cluster-lab-images:
+	mkdir -p builder/files/var/local/
+	# store Docker Swarm and Consul image files for preloading via device-init
+	wget -q https://github.com/hypriot/rpi-swarm/releases/download/v1.2.2/rpi-swarm_v1.2.2.tar.gz -O builder/files/var/local/rpi-swarm_v1.2.2.tar.gz
+	wget -q https://github.com/hypriot/rpi-consul/releases/download/v0.6.4/rpi-consul_v0.6.4.tar.gz -O builder/files/var/local/rpi-consul_v0.6.4.tar.gz
 sd-image: build
 	docker run --rm --privileged -v $(shell pwd):/workspace -v /boot:/boot -v /lib/modules:/lib/modules -e TRAVIS_TAG -e VERSION image-builder-rpi
 
