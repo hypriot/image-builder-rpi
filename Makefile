@@ -5,9 +5,15 @@ build:
 
 get-cluster-lab-images:
 	mkdir -p builder/files/var/local/
-	# store Docker Swarm and Consul image files for preloading via device-init
-	wget -q https://github.com/hypriot/rpi-swarm/releases/download/v1.2.2/rpi-swarm_v1.2.2.tar.gz -O builder/files/var/local/rpi-swarm_v1.2.2.tar.gz
-	wget -q https://github.com/hypriot/rpi-consul/releases/download/v0.6.4/rpi-consul_v0.6.4.tar.gz -O builder/files/var/local/rpi-consul_v0.6.4.tar.gz
+
+	docker pull hypriot/rpi-consul:${CONSUL_VERSION}
+	docker save --output=builder/files/var/local/rpi-consul_${CONSUL_VERSION}.tar hypriot/rpi-consul:${CONSUL_VERSION}
+	gzip builder/files/var/local/rpi-consul_${CONSUL_VERSION}.tar
+
+	docker pull hypriot/rpi-swarm:${SWARM_VERSION}
+	docker save --output=builder/files/var/local/rpi-swarm_${SWARM_VERSION}.tar hypriot/rpi-swarm:${SWARM_VERSION}
+	gzip builder/files/var/local/rpi-swarm_${SWARM_VERSION}.tar
+
 
 sd-image: build
 	docker run --rm --privileged -v $(shell pwd):/workspace -v /boot:/boot -v /lib/modules:/lib/modules -e TRAVIS_TAG -e VERSION image-builder-rpi
