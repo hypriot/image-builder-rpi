@@ -4,7 +4,7 @@ services:
 language: bash
 script:
   - make shellcheck
-  - make SWARM_VERSION=v1.2.2 CONSUL_VERSION=v0.6.4 get-cluster-lab-images
+  - make SWARM_VERSION=1.2.2 CONSUL_VERSION=0.6.4 get-cluster-lab-images
   - VERSION=${TRAVIS_TAG} make sd-image
 branches:
   only:
