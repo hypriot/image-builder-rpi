@@ -1,9 +1,7 @@
 #!/bin/bash
 set -ex
 
-
 KEYSERVER="ha.pool.sks-keyservers.net"
-KEYSERVER="hkp://keyserver.ubuntu.com:80"
 
 function clean_print(){
   local fingerprint="${2}"
@@ -52,7 +50,7 @@ function get_gpg(){
   elif [[ -z "${KEY_URL}" ]]; then
     echo "no source given try to load from key server"
 #    gpg --keyserver "${KEYSERVER}" --recv-keys "${GPG_KEY}"
-#    apt-key adv --keyserver "${KEYSERVER}" --recv-keys "${GPG_KEY}"
+    apt-key adv --keyserver "${KEYSERVER}" --recv-keys "${GPG_KEY}"
     return $?
   else
     echo "keyfile given"
@@ -75,7 +73,7 @@ function get_gpg(){
   if [[ "${GPG_KEY}" == "${CHECK}" ]]; then
     echo "key OK add to apt"
     apt-key add "${KEY_FILE}"
-#    rm -f "${KEY_FILE}"
+    rm -f "${KEY_FILE}"
     return 0
   else
     echo "key invalid"
