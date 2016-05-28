@@ -1,6 +1,7 @@
 #!/bin/bash
 set -ex
 
+source ./gpgcheck.sh
 # device specific settings
 HYPRIOT_DEVICE="Raspberry Pi"
 
@@ -11,13 +12,19 @@ mkdir -p "$(dirname "${DEST}")"
 echo "nameserver 8.8.8.8" > "${DEST}"
 
 # set up hypriot rpi repository for rpi specific kernel- and firmware-packages
-wget -q https://packagecloud.io/gpg.key -O - | apt-key add -
+PACKAGECLOUD_FPR=418A7F2FB0E1E6E7EABF6FE8C2E73424D59097AB
+PACKAGECLOUD_KEY_URL=https://packagecloud.io/gpg.key
+get_gpg "${PACKAGECLOUD_FPR}" "${PACKAGECLOUD_KEY_URL}"
+
 echo 'deb https://packagecloud.io/Hypriot/rpi/debian/ jessie main' > /etc/apt/sources.list.d/hypriot.list
 
 # set up hypriot schatzkiste repository for generic packages
 echo 'deb https://packagecloud.io/Hypriot/Schatzkiste/debian/ jessie main' >> /etc/apt/sources.list.d/hypriot.list
 
-wget -q -O - http://archive.raspberrypi.org/debian/raspberrypi.gpg.key | apt-key add -
+
+RPI_ORG_FPR=CF8A1AF502A2AA2D763BAE7E82B129927FA3303E RPI_ORG_KEY_URL=http://archive.raspberrypi.org/debian/raspberrypi.gpg.key
+get_gpg "${RPI_ORG_FPR}" "${RPI_ORG_KEY_URL}"
+
 echo 'deb http://archive.raspberrypi.org/debian/ jessie main' | tee /etc/apt/sources.list.d/raspberrypi.list
 
 # reload package sources
