@@ -1,7 +1,7 @@
 #!/bin/bash
 
-KEYSERVER="ha.pool.sks-keyservers.net"
-KEYSERVER="hkp://keyserver.ubuntu.com:80"
+#KEYSERVER="ha.pool.sks-keyservers.net"
+#KEYSERVER="hkp://keyserver.ubuntu.com:80"
 
 function clean_print(){
   local fingerprint="${2}"
