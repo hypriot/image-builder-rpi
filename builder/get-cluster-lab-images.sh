@@ -1,6 +1,8 @@
 #!/bin/bash
 
-source versions.config
+pwd
+
+source versions.config || source ../versions.config
 
 # pull save and zip consul
 docker pull hypriot/rpi-consul:"${CONSUL_VERSION}"
