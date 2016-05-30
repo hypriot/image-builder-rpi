@@ -4,16 +4,7 @@ build:
 	docker build -t image-builder-rpi .
 
 get-cluster-lab-images:
-	mkdir -p builder/files/var/local/
-
-	docker pull hypriot/rpi-consul:${CONSUL_VERSION}
-	docker save --output=builder/files/var/local/rpi-consul_${CONSUL_VERSION}.tar hypriot/rpi-consul:${CONSUL_VERSION}
-	gzip builder/files/var/local/rpi-consul_${CONSUL_VERSION}.tar
-
-	docker pull hypriot/rpi-swarm:${SWARM_VERSION}
-	docker save --output=builder/files/var/local/rpi-swarm_${SWARM_VERSION}.tar hypriot/rpi-swarm:${SWARM_VERSION}
-	gzip builder/files/var/local/rpi-swarm_${SWARM_VERSION}.tar
-
+	$(shell bash builder/get-cluster-lab-images.sh)
 
 sd-image: build
 	docker run --rm --privileged -v $(shell pwd):/workspace -v /boot:/boot -v /lib/modules:/lib/modules -e TRAVIS_TAG -e VERSION image-builder-rpi
