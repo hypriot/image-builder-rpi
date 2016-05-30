@@ -6,6 +6,9 @@ if [ ! -f /.dockerenv ]; then
   exit 1
 fi
 
+# get versions for software that needs to be installed
+source ../versions.config
+
 ### setting up some important variables to control the build process
 
 # place to store our created sd-image file
@@ -14,33 +17,16 @@ BUILD_RESULT_PATH="/workspace"
 # place to build our sd-image
 BUILD_PATH="/build"
 
-# config vars for the root file system
-HYPRIOT_OS_VERSION="v0.8.6"
-ROOTFS_TAR_CHECKSUM="d1b9642317d5154ddfe5042b21232d10a036ff677cf100bcf916da81a5c811ad"
 ROOTFS_TAR="rootfs-armhf-raspbian-${HYPRIOT_OS_VERSION}.tar.gz"
 ROOTFS_TAR_PATH="${BUILD_RESULT_PATH}/${ROOTFS_TAR}"
 
 # Show TRAVSI_TAG in travis builds
 echo TRAVIS_TAG="${TRAVIS_TAG}"
 
-# name of the ready made raw image for RPi
-RAW_IMAGE="rpi-raw.img"
-RAW_IMAGE_VERSION="v0.1.4"
-RAW_IMAGE_CHECKSUM="a242769dec546dbda335204d4e6bb4eb64685009d235a2a881605bdf44766b0a"
-
 # name of the sd-image we gonna create
 HYPRIOT_IMAGE_VERSION=${VERSION:="dirty"}
 HYPRIOT_IMAGE_NAME="hypriotos-rpi-${HYPRIOT_IMAGE_VERSION}.img"
 export HYPRIOT_IMAGE_VERSION
-
-# specific versions of kernel/firmware and docker tools
-export KERNEL_BUILD="20160520-141137"
-export KERNEL_VERSION="4.4.10"
-export DOCKER_ENGINE_VERSION="1.11.1-1"
-export DOCKER_COMPOSE_VERSION="1.7.1-40"
-export DOCKER_MACHINE_VERSION="0.7.0-26"
-export DEVICE_INIT_VERSION="0.1.7"
-export CLUSTER_LAB_VERSION="0.2.12-1"
 
 # create build directory for assembling our image filesystem
 rm -rf ${BUILD_PATH}
