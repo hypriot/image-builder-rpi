@@ -7,7 +7,7 @@ if [ ! -f /.dockerenv ]; then
 fi
 
 # get versions for software that needs to be installed
-source ../versions.config
+source versions.config
 
 ### setting up some important variables to control the build process
 
