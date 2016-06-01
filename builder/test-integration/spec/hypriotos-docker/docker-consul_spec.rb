@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe file('/var/local/rpi-consul_v0.6.4.tar.gz') do
+describe file('/var/local/rpi-consul_0.6.4.tar.gz') do
   it { should be_file }
 end
 
