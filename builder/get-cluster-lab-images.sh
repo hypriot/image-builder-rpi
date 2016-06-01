@@ -1,7 +1,5 @@
 #!/bin/bash
 
-pwd
-
 source versions.config || source ../versions.config
 
 # pull save and zip consul
