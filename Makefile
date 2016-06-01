@@ -6,7 +6,7 @@ build:
 get-cluster-lab-images:
 	builder/get-cluster-lab-images.sh
 
-sd-image: build
+sd-image: get-cluster-lab-images build
 	docker run --rm --privileged -v $(shell pwd):/workspace -v /boot:/boot -v /lib/modules:/lib/modules -e TRAVIS_TAG -e VERSION image-builder-rpi
 
 shell: build
