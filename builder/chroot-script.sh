@@ -77,7 +77,7 @@ function get_gpg(){
     return 0
   else
     echo "key invalid"
-    return 1
+    exit 1
   fi
 }
 
