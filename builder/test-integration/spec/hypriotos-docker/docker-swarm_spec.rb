@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe file('/var/local/rpi-swarm_v1.2.2.tar.gz') do
+describe file('/var/local/rpi-swarm_1.2.2.tar.gz') do
   it { should be_file }
 end
 
