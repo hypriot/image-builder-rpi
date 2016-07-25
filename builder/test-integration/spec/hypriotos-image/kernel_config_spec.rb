@@ -30,6 +30,7 @@ describe command('zcat /proc/config.gz') do
   its(:stdout) { should match /CONFIG_CPUSETS=y/ }
   its(:stdout) { should match /CONFIG_MEMCG=y/ }
   its(:stdout) { should match /CONFIG_KEYS=y/ }
+  its(:stdout) { should match /CONFIG_IPVLAN=m/ }
   its(:stdout) { should match /CONFIG_MACVLAN=m/ }
   its(:stdout) { should match /CONFIG_VETH=m/ }
   its(:stdout) { should match /CONFIG_BRIDGE=m/ }
