@@ -8,10 +8,6 @@ describe file('/proc/device-tree') do
   it { should be_owned_by 'root' }
 end
 
-describe file('/proc/device-tree/display') do
-  it { should be_directory}
-end
-
 describe file('/proc/device-tree/model') do
   it { should be_file }
   it { should be_mode 444 }
