@@ -13,6 +13,7 @@ describe user('pirate') do
   it { should have_home_directory '/home/pirate' }
   it { should have_login_shell '/bin/bash' }
   it { should belong_to_group 'docker' }
+  it { should belong_to_group 'video' }
 end
 
 describe file('/etc/sudoers') do
