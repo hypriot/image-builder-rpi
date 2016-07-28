@@ -132,6 +132,9 @@ apt-get install -y \
   "linux-headers-${KERNEL_VERSION}-hypriotos-v7+" \
   "linux-headers-${KERNEL_VERSION}-hypriotos+"
 
+# add user pirate to group video (for using the Raspberry Pi camera)
+usermod -a -G video pirate
+
 # enable serial console
 printf "# Spawn a getty on Raspberry Pi serial line\nT0:23:respawn:/sbin/getty -L ttyAMA0 115200 vt100\n" >> /etc/inittab
 
@@ -143,6 +146,12 @@ echo "
 hdmi_force_hotplug=1
 enable_uart=1
 " > boot/config.txt
+
+echo "# camera settings, see http://elinux.org/RPiconfig#Camera
+start_x=1
+disable_camera_led=1
+gpu_mem=128
+" >> boot/config.txt
 
 # /etc/modules
 echo "snd_bcm2835
