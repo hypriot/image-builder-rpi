@@ -207,3 +207,6 @@ systemctl disable cluster-lab.service
 echo "HYPRIOT_DEVICE=\"$HYPRIOT_DEVICE\"" >> /etc/os-release
 echo "HYPRIOT_IMAGE_VERSION=\"$HYPRIOT_IMAGE_VERSION\"" >> /etc/os-release
 cp /etc/os-release /boot/os-release
+
+# improve network stability, hypriot/image-builder-rpi#57
+echo 1 > /proc/sys/net/ipv4/netfilter/ip_conntrack_tcp_be_liberal
