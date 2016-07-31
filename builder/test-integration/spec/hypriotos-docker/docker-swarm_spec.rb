@@ -1,11 +1,11 @@
 require 'spec_helper'
 
-describe file('/var/local/rpi-swarm_1.2.2.tar.gz') do
+describe file('/var/local/rpi-swarm_1.2.4.tar.gz') do
   it { should be_file }
 end
 
 describe command('docker run --rm -t hypriot/rpi-swarm --version') do
-  its(:stdout) { should match /swarm version 1.2.2 \(HEAD\)/ }
+  its(:stdout) { should match /swarm version 1.2.4 \(HEAD\)/ }
   its(:exit_status) { should eq 0 }
 end
 

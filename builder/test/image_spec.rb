@@ -51,7 +51,7 @@ describe "SD card image" do
     end
 
     it "Docker Swarm export file exists" do
-      expect(stdout).to contain('rpi-swarm_1.2.2.tar.gz')
+      expect(stdout).to contain('rpi-swarm_1.2.4.tar.gz')
     end
   end
 
