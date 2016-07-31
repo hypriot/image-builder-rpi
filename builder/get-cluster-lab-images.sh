@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 source versions.config || source ../versions.config
 
