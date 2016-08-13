@@ -42,6 +42,10 @@ describe package('firmware-realtek') do
   it { should be_installed }
 end
 
+describe package('lsb-release') do
+  it { should be_installed }
+end
+
 describe package('wpasupplicant') do
   it { should be_installed }
 end

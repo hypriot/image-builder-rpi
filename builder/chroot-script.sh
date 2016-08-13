@@ -181,6 +181,10 @@ apt-get install -y \
   bluetooth \
   pi-bluetooth
 
+# ensure compatibility with Docker install.sh, so `raspbian` will be detected correctly
+apt-get install -y \
+  lsb-release
+
 # install hypriot packages for docker-tools
 apt-get install -y \
   "docker-hypriot=${DOCKER_ENGINE_VERSION}" \
