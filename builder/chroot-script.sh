@@ -128,7 +128,6 @@ apt-get install -y \
   "libraspberrypi0=${KERNEL_BUILD}" \
   "libraspberrypi-dev=${KERNEL_BUILD}" \
   "libraspberrypi-bin=${KERNEL_BUILD}" \
-  "libraspberrypi-doc=${KERNEL_BUILD}" \
   "linux-headers-${KERNEL_VERSION}-hypriotos-v7+" \
   "linux-headers-${KERNEL_VERSION}-hypriotos+"
 
