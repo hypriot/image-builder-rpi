@@ -3,10 +3,7 @@ default: build
 build:
 	docker build -t image-builder-rpi .
 
-get-cluster-lab-images:
-	builder/get-cluster-lab-images.sh
-
-sd-image: get-cluster-lab-images build
+sd-image: build
 	docker run --rm --privileged -v $(shell pwd):/workspace -v /boot:/boot -v /lib/modules:/lib/modules -e TRAVIS_TAG -e VERSION image-builder-rpi
 
 shell: build
