@@ -186,13 +186,13 @@ apt-get install -y \
 
 # install hypriot packages for docker-tools
 apt-get install -y \
-  "docker-hypriot=${DOCKER_ENGINE_VERSION}" \
   "docker-compose=${DOCKER_COMPOSE_VERSION}" \
   "docker-machine=${DOCKER_MACHINE_VERSION}" \
   "device-init=${DEVICE_INIT_VERSION}"
 
-# enable Docker systemd service
-systemctl enable docker
+# set up Docker APT repository and install docker-engine package
+#TODO: pin package version to ${DOCKER_ENGINE_VERSION}
+curl -sSL https://test.docker.com | /bin/sh
 
 
 echo "Installing rpi-serial-console script"

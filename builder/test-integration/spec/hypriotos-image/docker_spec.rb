@@ -1,12 +1,12 @@
 require 'spec_helper'
 
-describe package('docker-hypriot') do
+describe package('docker-engine') do
   it { should be_installed }
 end
 
-describe command('dpkg -l docker-hypriot') do
-  its(:stdout) { should match /ii  docker-hypriot/ }
-  its(:stdout) { should match /1.11.1-1/ }
+describe command('dpkg -l docker-engine') do
+  its(:stdout) { should match /ii  docker-engine/ }
+  its(:stdout) { should match /1.12.1~rc1-0~jessie/ }
   its(:exit_status) { should eq 0 }
 end
 
@@ -56,7 +56,7 @@ describe file('/etc/systemd/system/docker.service') do
   it { should be_file }
   it { should be_mode 644 }
   it { should be_owned_by 'root' }
-  its(:content) { should match /ExecStart=\/usr\/bin\/docker daemon -H fd:\/\/ --storage-driver overlay/ }
+  its(:content) { should match /ExecStart=\/usr\/bin\/dockerd --storage-driver overlay -H fd:\/\// }
 end
 
 describe file('/var/run/docker.sock') do
@@ -92,13 +92,13 @@ describe file('/etc/bash_completion.d/docker') do
 end
 
 describe command('docker -v') do
-  its(:stdout) { should match /Docker version 1.11.1, build/ }
+  its(:stdout) { should match /Docker version 1.12.1-rc1, build/ }
   its(:exit_status) { should eq 0 }
 end
 
 describe command('docker version') do
-  its(:stdout) { should match /Client:. Version:      1.11.1. API version:  1.23/m }
-  its(:stdout) { should match /Server:. Version:      1.11.1. API version:  1.23/m }
+  its(:stdout) { should match /Client:. Version:      1.12.1-rc1. API version:  1.24/m }
+  its(:stdout) { should match /Server:. Version:      1.12.1-rc1. API version:  1.24/m }
   its(:exit_status) { should eq 0 }
 end
 
