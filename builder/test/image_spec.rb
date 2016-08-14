@@ -43,14 +43,6 @@ describe "SD card image" do
     end
   end
 
-  context "Docker daemon config" do
-    let(:stdout) { run_mounted("cat /etc/docker/daemon.json").stdout }
-
-    it "Daemon config is empty" do
-      expect(stdout).to contain("{\n}\n\n")
-    end
-  end
-
   context "Docker service file" do
     let(:stdout) { run_mounted("cat /etc/systemd/system/docker.service").stdout }
 
