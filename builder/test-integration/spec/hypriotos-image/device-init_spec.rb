@@ -13,10 +13,6 @@ end
 describe file('/boot/device-init.yaml') do
   it { should be_file }
   its(:content) { should match /hostname: / }
-  its(:content) { should match /docker:/ }
-  its(:content) { should match /images:/ }
-  its(:content) { should match /- \/var\/local\/rpi-consul_0.6.4.tar.gz/ }
-  its(:content) { should match /- \/var\/local\/rpi-swarm_1.2.2.tar.gz/ }
 end
 
 describe file('/usr/local/bin/device-init') do
