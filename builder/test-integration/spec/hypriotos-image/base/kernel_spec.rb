@@ -53,21 +53,10 @@ describe file('/lib/modules/4.1.20-v7+') do
   it { should_not be_directory }
 end
 
-# with installed kernel headers
 describe file('/lib/modules/4.4.15-hypriotos+/build') do
   it { should be_symlink }
-#  it { should be_linked_to '/usr/src/linux-headers-4.4.15-hypriotos+' }
 end
 
 describe file('/lib/modules/4.4.15-hypriotos-v7+/build') do
   it { should be_symlink }
-#  it { should be_linked_to '/usr/src/linux-headers-4.4.15-hypriotos-v7+' }
-end
-
-describe file('/usr/src/linux-headers-4.4.15-hypriotos-v7+') do
-  it { should be_directory }
-end
-
-describe file('/usr/src/linux-headers-4.4.15-hypriotos+') do
-  it { should be_directory }
 end
