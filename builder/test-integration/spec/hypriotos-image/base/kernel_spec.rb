@@ -53,10 +53,10 @@ describe file('/lib/modules/4.1.20-v7+') do
   it { should_not be_directory }
 end
 
-describe file('/lib/modules/4.4.15-hypriotos+/build') do
-  it { should be_symlink }
+describe file('/lib/modules/4.4.15-hypriotos+/kernel') do
+  it { should be_directory }
 end
 
-describe file('/lib/modules/4.4.15-hypriotos-v7+/build') do
-  it { should be_symlink }
+describe file('/lib/modules/4.4.15-hypriotos-v7+/kernel') do
+  it { should be_directory }
 end
