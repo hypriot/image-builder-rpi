@@ -76,8 +76,11 @@ umount -l ${BUILD_PATH}/sys
 rm -rf ${BUILD_PATH}/{dev,sys,proc}/*
 
 tar -czf /image_with_kernel_boot.tar.gz -C ${BUILD_PATH}/boot .
+du -sh ${BUILD_PATH}/boot
 rm -Rf ${BUILD_PATH}/boot
 tar -czf /image_with_kernel_root.tar.gz -C ${BUILD_PATH} .
+du -sh ${BUILD_PATH}
+ls -alh /image_with_kernel_*.tar.gz
 
 # download the ready-made raw image for the RPi
 if [ ! -f "${BUILD_RESULT_PATH}/${RAW_IMAGE}.zip" ]; then

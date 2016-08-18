@@ -127,9 +127,7 @@ apt-get install -y \
   "raspberrypi-bootloader=${KERNEL_BUILD}" \
   "libraspberrypi0=${KERNEL_BUILD}" \
   "libraspberrypi-dev=${KERNEL_BUILD}" \
-  "libraspberrypi-bin=${KERNEL_BUILD}" \
-  "linux-headers-${KERNEL_VERSION}-hypriotos-v7+" \
-  "linux-headers-${KERNEL_VERSION}-hypriotos+"
+  "libraspberrypi-bin=${KERNEL_BUILD}"
 
 # add user pirate to group video (for using the Raspberry Pi camera)
 usermod -a -G video pirate
