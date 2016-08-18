@@ -190,7 +190,7 @@ apt-get install -y \
 
 # set up Docker APT repository and install docker-engine package
 #TODO: pin package version to ${DOCKER_ENGINE_VERSION}
-curl -sSL https://test.docker.com | /bin/sh
+curl -sSL https://get.docker.com | /bin/sh
 
 
 echo "Installing rpi-serial-console script"
