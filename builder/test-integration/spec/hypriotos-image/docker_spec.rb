@@ -40,19 +40,13 @@ describe file('/usr/bin/docker-runc') do
   it { should be_owned_by 'root' }
 end
 
-describe file('/lib/systemd/system/docker.service') do
-  it { should be_file }
-  it { should be_mode 644 }
-  it { should be_owned_by 'root' }
-end
-
 describe file('/lib/systemd/system/docker.socket') do
   it { should be_file }
   it { should be_mode 644 }
   it { should be_owned_by 'root' }
 end
 
-describe file('/etc/systemd/system/docker.service') do
+describe file('/etc/systemd/system/docker.service.d/overlay.conf') do
   it { should be_file }
   it { should be_mode 644 }
   it { should be_owned_by 'root' }
