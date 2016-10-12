@@ -112,6 +112,7 @@ echo 'deb http://archive.raspberrypi.org/debian/ jessie main' | tee /etc/apt/sou
 
 # reload package sources
 apt-get update
+apt-get upgrade -y
 
 # install WiFi firmware packages (same as in Raspbian)
 apt-get install -y \
