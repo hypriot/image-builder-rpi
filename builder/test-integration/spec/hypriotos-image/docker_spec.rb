@@ -6,7 +6,7 @@ end
 
 describe command('dpkg -l docker-engine') do
   its(:stdout) { should match /ii  docker-engine/ }
-  its(:stdout) { should match /1.12.5-0~deb/ }
+  its(:stdout) { should match /1.12.5-0~raspbian-jessie/ }
   its(:exit_status) { should eq 0 }
 end
 
