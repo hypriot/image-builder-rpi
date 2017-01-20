@@ -65,7 +65,7 @@ describe file('/var/lib/docker') do
   it { should be_owned_by 'root' }
 end
 
-describe file('/var/lib/docker/overlay') do
+describe file('/var/lib/docker/overlay2') do
   it { should be_directory }
   it { should be_mode 700 }
   it { should be_owned_by 'root' }
