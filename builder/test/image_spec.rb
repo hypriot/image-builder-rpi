@@ -42,12 +42,4 @@ describe "SD card image" do
       expect(stdout).to contain('/dev/mmcblk0p2 / ext4')
     end
   end
-
-  context "Docker service file" do
-    let(:stdout) { run_mounted("cat /etc/systemd/system/docker.service.d/overlay.conf").stdout }
-
-    it "Daemon uses overlay storage driver" do
-      expect(stdout).to contain("--storage-driver overlay")
-    end
-  end
 end

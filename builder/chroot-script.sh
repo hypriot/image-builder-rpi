@@ -191,10 +191,6 @@ apt-get install -y \
 
 # set up Docker APT repository and install docker-engine package
 #TODO: pin package version to ${DOCKER_ENGINE_VERSION}
-# Create Raspbian specific systemd drop-in file, use overlay by default
-mkdir -p /etc/systemd/system/docker.service.d
-echo -e "[Service]\nExecStart=\nExecStart=/usr/bin/dockerd --storage-driver overlay -H fd://" \
-  > /etc/systemd/system/docker.service.d/overlay.conf
 curl -sSL https://get.docker.com | /bin/sh
 
 

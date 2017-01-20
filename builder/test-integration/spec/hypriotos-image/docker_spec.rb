@@ -46,13 +46,6 @@ describe file('/lib/systemd/system/docker.socket') do
   it { should be_owned_by 'root' }
 end
 
-describe file('/etc/systemd/system/docker.service.d/overlay.conf') do
-  it { should be_file }
-  it { should be_mode 644 }
-  it { should be_owned_by 'root' }
-  its(:content) { should match /ExecStart=\/usr\/bin\/dockerd --storage-driver overlay -H fd:\/\// }
-end
-
 describe file('/var/run/docker.sock') do
   it { should be_socket }
   it { should be_mode 660 }
