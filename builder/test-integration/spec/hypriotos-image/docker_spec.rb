@@ -6,7 +6,7 @@ end
 
 describe command('dpkg -l docker-engine') do
   its(:stdout) { should match /ii  docker-engine/ }
-  its(:stdout) { should match /1.12.5-0~raspbian-jessie/ }
+  its(:stdout) { should match /1.13.0-0~raspbian-jessie/ }
   its(:exit_status) { should eq 0 }
 end
 
@@ -65,7 +65,7 @@ describe file('/var/lib/docker') do
   it { should be_owned_by 'root' }
 end
 
-describe file('/var/lib/docker/overlay') do
+describe file('/var/lib/docker/overlay2') do
   it { should be_directory }
   it { should be_mode 700 }
   it { should be_owned_by 'root' }
@@ -79,13 +79,13 @@ describe file('/etc/bash_completion.d/docker') do
 end
 
 describe command('docker -v') do
-  its(:stdout) { should match /Docker version 1.12.5, build/ }
+  its(:stdout) { should match /Docker version 1.13.0, build/ }
   its(:exit_status) { should eq 0 }
 end
 
 describe command('docker version') do
-  its(:stdout) { should match /Client:. Version:      1.12.5. API version:  1.24/m }
-  its(:stdout) { should match /Server:. Version:      1.12.5. API version:  1.24/m }
+  its(:stdout) { should match /Client:. Version:      1.13.0. API version:  1.25/m }
+  its(:stdout) { should match /Server:. Version:      1.13.0. API version:  1.25/m }
   its(:exit_status) { should eq 0 }
 end
 
