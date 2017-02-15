@@ -84,8 +84,8 @@ describe command('docker -v') do
 end
 
 describe command('docker version') do
-  its(:stdout) { should match /Client:. Version:      1.13.1. API version:  1.25/m }
-  its(:stdout) { should match /Server:. Version:      1.13.1. API version:  1.25/m }
+  its(:stdout) { should match /Client:. Version:      1.13.1. API version:  1.26/m }
+  its(:stdout) { should match /Server:. Version:      1.13.1. API version:  1.26/m }
   its(:exit_status) { should eq 0 }
 end
 
