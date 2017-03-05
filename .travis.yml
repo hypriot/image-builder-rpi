@@ -12,8 +12,7 @@ branches:
 deploy:
   provider: releases
   skip_cleanup: true
-  api_key:
-    secure: H6eGuM+fgJEzlrV1N5KpKVZ6yiGVJPSjy5V7lYCO0cUFJ0bZuvHAoxg3es3+oNVJ7x4opd5oWhPTruZHuYX1B8cADETiNxd9IFIYlMFS0QFZwbhvbvk6kLTUI7XUjc42xBmNrO4ipSgLp+fERrbXk2qO8Cj3pOWsZYPC5bhG5ZAOt6+wSJ4wsDpPgENkDLUpigMZ+2J4EzoEDNKwnURJ4YmVOtGMfEafqh72lWdk1E6tRoZ03TLmYx9/ycbwcbhd1LCXUIUR7ZXPf/YmQuNhExgSBo2/hFs9uyZ+LNXzTWuh+9DC7ddqZ6l/SkkVFr4qTDHVgvz6KxGjhr1ueWzR+7JJkskFpS4cr1r41jF30WCC+VxKSVsw7KQo/qwGT4hwEPMyseJNggyilntZRSAMZDiUDoEEbmcR6gjgIqwqfv8mHQqURrQYKPktTTDmqxN4DvNHuKTsyFIsVX0Z8t7j/351T7eiiq6+kzrqbNB6G9HzpSHhl92xjt2KxDK33wFg/JqFlKFrQY2NdHIKEFmm1TZD5RcHeKwoxMS7V0/dFzVv77PWPphQfbo846sHvZRNWCy/mneJzAk9wvACMW4MkdGJhHgdxOjnve9aTYM7/hXHwCs8eOGOu+3m46PzKZbIhcq/kcLew7xL/5j0GU+wF/YuvtIIXeTzUjPFMloLWKo=
+  api_key: ${GITHUB_TOKEN}
   file:
     - hypriotos-rpi-${TRAVIS_TAG}.img.zip
     - hypriotos-rpi-${TRAVIS_TAG}.img.zip.sha256
