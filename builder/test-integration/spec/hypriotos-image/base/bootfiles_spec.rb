@@ -18,6 +18,12 @@ describe file('/boot/fixup.dat') do
   it { should be_owned_by 'root' }
 end
 
+describe file('/boot/bcm2708-rpi-0-w.dtb') do
+  it { should be_file }
+  it { should be_mode 755 }
+  it { should be_owned_by 'root' }
+end
+
 describe file('/boot/bcm2708-rpi-b.dtb') do
   it { should be_file }
   it { should be_mode 755 }
@@ -43,6 +49,12 @@ describe file('/boot/bcm2709-rpi-2-b.dtb') do
 end
 
 describe file('/boot/bcm2710-rpi-3-b.dtb') do
+  it { should be_file }
+  it { should be_mode 755 }
+  it { should be_owned_by 'root' }
+end
+
+describe file('/boot/bcm2710-rpi-cm3.dtb') do
   it { should be_file }
   it { should be_mode 755 }
   it { should be_owned_by 'root' }
