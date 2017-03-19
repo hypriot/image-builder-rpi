@@ -116,6 +116,7 @@ apt-get upgrade -y
 
 # install WiFi firmware packages (same as in Raspbian)
 apt-get install -y \
+  --no-install-recommends \
   firmware-atheros \
   firmware-brcm80211 \
   firmware-libertas \
@@ -124,6 +125,7 @@ apt-get install -y \
 
 # install kernel- and firmware-packages
 apt-get install -y \
+  --no-install-recommends \
   "raspberrypi-kernel=${KERNEL_BUILD}" \
   "raspberrypi-bootloader=${KERNEL_BUILD}" \
   "libraspberrypi0=${KERNEL_BUILD}" \
@@ -164,10 +166,12 @@ proc /proc proc defaults 0 0
 
 # as the Pi does not have a hardware clock we need a fake one
 apt-get install -y \
+  --no-install-recommends \
   fake-hwclock
 
 # install packages for managing wireless interfaces
 apt-get install -y \
+  --no-install-recommends \
   wpasupplicant \
   wireless-tools \
   ethtool \
@@ -181,18 +185,23 @@ apt-get install -y \
 
 # ensure compatibility with Docker install.sh, so `raspbian` will be detected correctly
 apt-get install -y \
+  --no-install-recommends \
   lsb-release
 
 # install hypriot packages for docker-tools
 apt-get install -y \
-  "docker-compose=${DOCKER_COMPOSE_VERSION}" \
+  --no-install-recommends \
   "docker-machine=${DOCKER_MACHINE_VERSION}" \
   "device-init=${DEVICE_INIT_VERSION}"
 
-# set up Docker APT repository and install docker-engine package
-#TODO: pin package version to ${DOCKER_ENGINE_VERSION}
-curl -sSL https://get.docker.com | /bin/sh
+# install docker-compose
+apt-get install -y \
+  --no-install-recommends \
+  python-pip
+pip install docker-compose
 
+# set up Docker APT repository and install docker-engine package
+curl -sSL https://get.docker.com | /bin/sh
 
 echo "Installing rpi-serial-console script"
 wget -q https://raw.githubusercontent.com/lurch/rpi-serial-console/master/rpi-serial-console -O usr/local/bin/rpi-serial-console
