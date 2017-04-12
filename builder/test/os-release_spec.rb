@@ -36,8 +36,8 @@ describe "Root filesystem" do
     expect(stdout).to contain('^HYPRIOT_DEVICE="Raspberry Pi"$')
   end
 
-  it "uses os-rootfs version 'HYPRIOT_OS_VERSION=\"v1.0.0\"'" do
-    expect(stdout).to contain('^HYPRIOT_OS_VERSION="v1.0.0"$')
+  it "uses os-rootfs version 'HYPRIOT_OS_VERSION=\"v1.1.1\"'" do
+    expect(stdout).to contain('^HYPRIOT_OS_VERSION="v1.1.1"$')
   end
 
   if ENV.fetch('TRAVIS_TAG','') != ''
