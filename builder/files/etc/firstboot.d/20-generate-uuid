@@ -1,0 +1,4 @@
+#!/bin/bash
+set -ex
+
+dbus-uuidgen > /etc/machine-id
