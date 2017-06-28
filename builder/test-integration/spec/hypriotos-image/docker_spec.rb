@@ -1,12 +1,16 @@
 require 'spec_helper'
 
 describe package('docker-engine') do
+  it { should_not be_installed }
+end
+
+describe package('docker-ce') do
   it { should be_installed }
 end
 
-describe command('dpkg -l docker-engine') do
-  its(:stdout) { should match /ii  docker-engine/ }
-  its(:stdout) { should match /17.05.0~ce-0~raspbian-jessie/ }
+describe command('dpkg -l docker-ce') do
+  its(:stdout) { should match /ii  docker-ce/ }
+  its(:stdout) { should match /17.06.0~ce-0~debian/ }
   its(:exit_status) { should eq 0 }
 end
 
@@ -79,13 +83,13 @@ describe file('/etc/bash_completion.d/docker') do
 end
 
 describe command('docker -v') do
-  its(:stdout) { should match /Docker version 17.05.0-ce, build/ }
+  its(:stdout) { should match /Docker version 17.06.0-ce, build/ }
   its(:exit_status) { should eq 0 }
 end
 
 describe command('docker version') do
-  its(:stdout) { should match /Client:. Version:      17.05.0-ce. API version:  1.29/m }
-  its(:stdout) { should match /Server:. Version:      17.05.0-ce. API version:  1.29/m }
+  its(:stdout) { should match /Client:. Version:      17.06.0-ce. API version:  1.30/m }
+  its(:stdout) { should match /Server:. Version:      17.06.0-ce. API version:  1.30/m }
   its(:exit_status) { should eq 0 }
 end
 
