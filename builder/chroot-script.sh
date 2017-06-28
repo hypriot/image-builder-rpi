@@ -206,6 +206,7 @@ apt-get install -y \
 pip install docker-compose
 
 # set up Docker APT repository and install docker-engine package
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 apt-get install -y \
   --no-install-recommends \
   docker-ce
