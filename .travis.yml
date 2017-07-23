@@ -18,4 +18,4 @@ deploy:
     - hypriotos-rpi-${TRAVIS_TAG}.img.zip.sha256
   on:
     tags: true
-    repo: hypriot/image-builder-rpi
+    repo: ${TRAVIS_REPO_SLUG}
