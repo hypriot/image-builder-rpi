@@ -201,7 +201,7 @@ chmod +x /usr/local/bin/docker-machine
 apt-get install -y \
   --no-install-recommends \
   python-pip
-pip install docker-compose
+pip install docker-compose==${DOCKER_COMPOSE_VERSION}
 
 # set up Docker APT repository and install docker-engine package
 curl -sSL https://get.docker.com | /bin/sh
