@@ -104,6 +104,8 @@ echo 'deb https://packagecloud.io/Hypriot/rpi/debian/ jessie main' > /etc/apt/so
 # set up hypriot schatzkiste repository for generic packages
 echo 'deb https://packagecloud.io/Hypriot/Schatzkiste/debian/ jessie main' >> /etc/apt/sources.list.d/hypriot.list
 
+# set up Docker CE repository
+echo 'deb [arch=armhf] https://download.docker.com/linux/debian jessie edge' > /etc/apt/sources.list.d/docker.list
 
 RPI_ORG_FPR=CF8A1AF502A2AA2D763BAE7E82B129927FA3303E RPI_ORG_KEY_URL=http://archive.raspberrypi.org/debian/raspberrypi.gpg.key
 get_gpg "${RPI_ORG_FPR}" "${RPI_ORG_KEY_URL}"
@@ -204,7 +206,10 @@ apt-get install -y \
 pip install docker-compose
 
 # set up Docker APT repository and install docker-engine package
-curl -sSL https://get.docker.com | /bin/sh
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+apt-get install -y \
+  --no-install-recommends \
+  docker-ce
 
 echo "Installing rpi-serial-console script"
 wget -q https://raw.githubusercontent.com/lurch/rpi-serial-console/master/rpi-serial-console -O usr/local/bin/rpi-serial-console
