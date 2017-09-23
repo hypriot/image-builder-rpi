@@ -11,6 +11,6 @@ describe file('/usr/local/bin/docker-machine') do
 end
 
 describe command('docker-machine --version') do
-  its(:stdout) { should match /0.12.1/m }
+  its(:stdout) { should match /0.12.2/m }
   its(:exit_status) { should eq 0 }
 end
