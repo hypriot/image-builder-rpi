@@ -209,7 +209,7 @@ chmod +x /usr/local/bin/docker-machine
 apt-get install -y \
   --no-install-recommends \
   python-pip
-pip install docker-compose==${DOCKER_COMPOSE_VERSION}
+pip install "docker-compose==${DOCKER_COMPOSE_VERSION}"
 
 # install docker-ce (w/ install-recommends)
 apt-get install -y --force-yes \
