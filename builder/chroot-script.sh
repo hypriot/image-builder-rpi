@@ -205,6 +205,9 @@ ln -s /boot/meta-data /var/lib/cloud/seed/nocloud-net/meta-data
 curl -sSL -o /usr/local/bin/docker-machine "https://github.com/docker/machine/releases/download/v${DOCKER_MACHINE_VERSION}/docker-machine-Linux-armhf"
 chmod +x /usr/local/bin/docker-machine
 
+# install bash completion for Docker Machine
+curl -sSL "https://raw.githubusercontent.com/docker/machine/v${DOCKER_MACHINE_VERSION}/contrib/completion/bash/docker-machine.bash" -o /etc/bash_completion.d/docker-machine
+
 # install docker-compose
 apt-get install -y \
   --no-install-recommends \
