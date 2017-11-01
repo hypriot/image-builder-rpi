@@ -211,6 +211,9 @@ apt-get install -y \
   python-pip
 pip install "docker-compose==${DOCKER_COMPOSE_VERSION}"
 
+# install bash completion for Docker Compose
+curl -sSL "https://raw.githubusercontent.com/docker/compose/${DOCKER_COMPOSE_VERSION}/contrib/completion/bash/docker-compose" -o /etc/bash_completion.d/docker-compose
+
 # install docker-ce (w/ install-recommends)
 apt-get install -y --force-yes \
   "docker-ce=${DOCKER_CE_VERSION}"
