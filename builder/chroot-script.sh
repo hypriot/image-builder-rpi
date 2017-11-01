@@ -196,11 +196,6 @@ apt-get install -y \
   --no-install-recommends \
   lsb-release
 
-# install hypriot packages for docker-tools
-apt-get install -y \
-  --no-install-recommends \
-  "device-init=${DEVICE_INIT_VERSION}"
-
 # install docker-machine
 curl -sSL -o /usr/local/bin/docker-machine "https://github.com/docker/machine/releases/download/v${DOCKER_MACHINE_VERSION}/docker-machine-Linux-armhf"
 chmod +x /usr/local/bin/docker-machine

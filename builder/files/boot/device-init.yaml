@@ -1,9 +1,0 @@
-# hostname for your HypriotOS device
-hostname: black-pearl
-
-# optional wireless network settings
-wifi:
-  interfaces:
-#     wlan0:
-#       ssid: "MyNetwork"
-#       password: "secret_password"
