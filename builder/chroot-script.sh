@@ -140,9 +140,6 @@ apt-get install -y \
   "libraspberrypi-dev=${KERNEL_BUILD}" \
   "libraspberrypi-bin=${KERNEL_BUILD}"
 
-# add user pirate to group video (for using the Raspberry Pi camera)
-usermod -a -G video pirate
-
 # enable serial console
 printf "# Spawn a getty on Raspberry Pi serial line\nT0:23:respawn:/sbin/getty -L ttyAMA0 115200 vt100\n" >> /etc/inittab
 
@@ -196,10 +193,13 @@ apt-get install -y \
   --no-install-recommends \
   lsb-release
 
-# install hypriot packages for docker-tools
+# install cloud-init
 apt-get install -y \
-  --no-install-recommends \
-  "device-init=${DEVICE_INIT_VERSION}"
+  cloud-init
+
+mkdir -p /var/lib/cloud/seed/nocloud-net
+ln -s /boot/user-data /var/lib/cloud/seed/nocloud-net/user-data
+ln -s /boot/meta-data /var/lib/cloud/seed/nocloud-net/meta-data
 
 # install docker-machine
 curl -sSL -o /usr/local/bin/docker-machine "https://github.com/docker/machine/releases/download/v${DOCKER_MACHINE_VERSION}/docker-machine-Linux-armhf"

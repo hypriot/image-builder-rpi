@@ -24,15 +24,8 @@ end
 
 describe file('/etc/sudoers.d') do
   it { should be_directory }
-  it { should be_mode 755 }
+  it { should be_mode 750 }
   it { should be_owned_by 'root' }
-end
-
-describe file('/etc/sudoers.d/user-pirate') do
-  it { should be_file }
-  it { should be_mode 440 }
-  it { should be_owned_by 'root' }
-  its(:content) { should match /pirate ALL=NOPASSWD: ALL/ }
 end
 
 describe file('/root/.bashrc') do
