@@ -1,9 +1,5 @@
 require 'spec_helper'
 
-describe package('docker-compose') do
-  it { should_not be_installed }
-end
-
 describe file('/usr/local/bin/docker-compose') do
   it { should be_file }
   it { should be_mode 755 }
@@ -13,4 +9,10 @@ end
 describe command('docker-compose --version') do
   its(:stdout) { should match /1.16.1/m }
   its(:exit_status) { should eq 0 }
+end
+
+describe file('/etc/bash_completion.d/docker-compose') do
+  it { should be_file }
+  it { should be_mode 644 }
+  it { should be_owned_by 'root' }
 end
