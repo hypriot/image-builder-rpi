@@ -3,7 +3,7 @@
 ENV['VAGRANT_DEFAULT_PROVIDER'] = 'virtualbox'
 
 Vagrant.configure(2) do |config|
-  config.vm.box = "boxcutter/ubuntu1404"
+  config.vm.box = "ubuntu/xenial64"
 
   config.vm.network "forwarded_port", guest: 2376, host: 2376, auto_correct: true
   config.vm.synced_folder ".", "#{`pwd`.chomp}"
@@ -16,6 +16,7 @@ Vagrant.configure(2) do |config|
   config.vm.provider "virtualbox" do |vb|
     # Customize the amount of memory on the VM:
     vb.memory = "2048"
+    vb.cpus = 4
   end
 
   config.vm.provision "shell", inline: <<-SHELL
@@ -23,6 +24,20 @@ Vagrant.configure(2) do |config|
      echo "deb https://apt.dockerproject.org/repo ubuntu-trusty main" > /etc/apt/sources.list.d/docker.list
      sudo apt-get update
      sudo apt-get install -y linux-image-extra-$(uname -r)
-     sudo apt-get install -y docker-engine
+     sudo mkdir -p /etc/systemd/system/docker.service.d
+     # https://docs.docker.com/engine/admin/#troubleshoot-conflicts-between-the-daemonjson-and-startup-scripts
+ echo "
+[Service]
+ExecStart=
+ExecStart=/usr/bin/dockerd" > /etc/systemd/system/docker.service.d/docker.conf
+     sudo apt-get install -y docker.io
+ echo '
+ {
+ "hosts": ["tcp://0.0.0.0:2376"]
+ }
+ ' > /etc/docker/daemon.json
+     sudo systemctl daemon-reload
+     sudo systemctl enable docker
+     sudo systemctl start docker
   SHELL
 end

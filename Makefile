@@ -18,13 +18,8 @@ shellcheck: build
 vagrant:
 	vagrant up
 
-docker-machine: vagrant
-	docker-machine create -d generic \
-	  --generic-ssh-user $(shell vagrant ssh-config | grep ' User ' | cut -d ' ' -f 4) \
-	  --generic-ssh-key $(shell vagrant ssh-config | grep IdentityFile | cut -d ' ' -f 4) \
-	  --generic-ip-address $(shell vagrant ssh-config | grep HostName | cut -d ' ' -f 4) \
-	  --generic-ssh-port $(shell vagrant ssh-config | grep Port | cut -d ' ' -f 4) \
-	  image-builder-rpi
+docker-setup: vagrant
+	export DOCKER_HOST=tcp://127.0.0.1:2376
 
 test-integration: test-integration-image test-integration-docker
 
