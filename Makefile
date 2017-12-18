@@ -19,7 +19,7 @@ vagrant:
 	vagrant up
 
 docker-setup: vagrant
-	export DOCKER_HOST=tcp://127.0.0.1:2376
+	export DOCKER_HOST=tcp://127.0.0.1:2375
 
 test-integration: test-integration-image test-integration-docker
 

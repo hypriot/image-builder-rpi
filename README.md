@@ -42,7 +42,7 @@ Operating System: Ubuntu 16.04.3 LTS
 
 If not, export docker host
 ```bash
-export DOCKER_HOST=tcp://127.0.0.1:2376
+export DOCKER_HOST=tcp://127.0.0.1:2375
 ```
 ### Build the SD card image
 
