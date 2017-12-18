@@ -30,20 +30,22 @@ Then run the following command to create the Vagrant box and use the Vagrant Doc
 daemon. The Vagrant box is needed to run guestfish inside.
 Use `export VAGRANT_DEFAULT_PROVIDER=virtualbox` to strictly create a VirtualBox VM.
 
+Start vagrant box
 ```bash
-make docker-setup
+vagrant up
 ```
 
-Check you are using docker inside vagrant
+Export docker host
+```bash
+export DOCKER_HOST=tcp://127.0.0.1:2375
+```
+
+Check you are using docker from inside vagrant
 ```bash
 docker info | grep 'Operating System'
 Operating System: Ubuntu 16.04.3 LTS
 ```
 
-If not, export docker host
-```bash
-export DOCKER_HOST=tcp://127.0.0.1:2375
-```
 ### Build the SD card image
 
 From here you can just make the SD card image. The output will be written and

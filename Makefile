@@ -15,12 +15,6 @@ test:
 shellcheck: build
 	VERSION=dirty docker run --rm -ti -v $(shell pwd):/workspace image-builder-rpi bash -c 'shellcheck /workspace/builder/*.sh /workspace/builder/files/etc/firstboot.d/*'
 
-vagrant:
-	vagrant up
-
-docker-setup: vagrant
-	export DOCKER_HOST=tcp://127.0.0.1:2375
-
 test-integration: test-integration-image test-integration-docker
 
 test-integration-image:
