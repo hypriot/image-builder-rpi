@@ -25,20 +25,25 @@ You can build the SD card image locally with Vagrant.
 
 ### Setting up build environment
 
-Make sure you have [vagrant](https://docs.vagrantup.com/v2/installation/) and [docker-machine](https://docs.docker.com/machine/install-machine/) installed.
-Then run the following command to create the Vagrant box and the Docker Machine
-connection. The Vagrant box is needed as a vanilla boot2docker VM is not able to
-run guestfish inside. Use `export VAGRANT_DEFAULT_PROVIDER=virtualbox` to
-strictly create a VirtualBox VM.
+Make sure you have [vagrant](https://docs.vagrantup.com/v2/installation/) installed.
+Then run the following command to create the Vagrant box and use the Vagrant Docker
+daemon. The Vagrant box is needed to run guestfish inside.
+Use `export VAGRANT_DEFAULT_PROVIDER=virtualbox` to strictly create a VirtualBox VM.
 
+Start vagrant box
 ```bash
-make docker-machine
+vagrant up
 ```
 
-Now set the Docker environments to this new docker machine:
-
+Export docker host
 ```bash
-eval $(docker-machine env image-builder-rpi)
+export DOCKER_HOST=tcp://127.0.0.1:2375
+```
+
+Check you are using docker from inside vagrant
+```bash
+docker info | grep 'Operating System'
+Operating System: Ubuntu 16.04.3 LTS
 ```
 
 ### Build the SD card image

@@ -15,17 +15,6 @@ test:
 shellcheck: build
 	VERSION=dirty docker run --rm -ti -v $(shell pwd):/workspace image-builder-rpi bash -c 'shellcheck /workspace/builder/*.sh /workspace/builder/files/etc/firstboot.d/*'
 
-vagrant:
-	vagrant up
-
-docker-machine: vagrant
-	docker-machine create -d generic \
-	  --generic-ssh-user $(shell vagrant ssh-config | grep ' User ' | cut -d ' ' -f 4) \
-	  --generic-ssh-key $(shell vagrant ssh-config | grep IdentityFile | cut -d ' ' -f 4) \
-	  --generic-ip-address $(shell vagrant ssh-config | grep HostName | cut -d ' ' -f 4) \
-	  --generic-ssh-port $(shell vagrant ssh-config | grep Port | cut -d ' ' -f 4) \
-	  image-builder-rpi
-
 test-integration: test-integration-image test-integration-docker
 
 test-integration-image:
