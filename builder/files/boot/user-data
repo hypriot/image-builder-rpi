@@ -41,26 +41,7 @@ package_upgrade: false
 #  - ntp
 
 # # WiFi connect to HotSpot
-# # - use `wpa_passphrase SSID PASSWORD` to encrypt the psk
-# write_files:
-#   - content: |
-#       allow-hotplug wlan0
-#       iface wlan0 inet dhcp
-#       wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
-#       iface default inet dhcp
-#     path: /etc/network/interfaces.d/wlan0
-#   - content: |
-#       ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
-#       update_config=1
-#       network={
-#       ssid="YOUR_WIFI_SSID"
-#       psk="YOUR_WIFI_PASSWORD"
-#       proto=RSN
-#       key_mgmt=WPA-PSK
-#       pairwise=CCMP
-#       auth_alg=OPEN
-#       }
-#     path: /etc/wpa_supplicant/wpa_supplicant.conf
+# for setting up the WiFi see https://github.com/hypriot/flash#onboard-wifi
 
 # These commands will be ran once on first boot only
 runcmd:
