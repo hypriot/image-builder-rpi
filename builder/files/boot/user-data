@@ -17,7 +17,7 @@ users:
     gecos: "Hypriot Pirate"
     sudo: ALL=(ALL) NOPASSWD:ALL
     shell: /bin/bash
-    groups: users,docker,video
+    groups: users,docker,video,input
     plain_text_passwd: hypriot
     lock_passwd: false
     ssh_pwauth: true
