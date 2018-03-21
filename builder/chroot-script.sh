@@ -189,14 +189,12 @@ apt-get install -y \
   --no-install-recommends \
   wpasupplicant \
   wireless-tools \
-  ethtool \
   crda \
   raspberrypi-net-mods
 
 # add firmware and packages for managing bluetooth devices
 apt-get install -y \
   --no-install-recommends \
-  bluetooth \
   pi-bluetooth
 
 # ensure compatibility with Docker install.sh, so `raspbian` will be detected correctly
