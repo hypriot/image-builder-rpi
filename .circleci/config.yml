@@ -33,5 +33,5 @@ jobs:
               if [[ $CIRCLE_TAG = *"rc"* ]]; then
                 pre=-prerelease
               fi
-              ./ghr $pre -u hypriotuploader -b "HypriotOS $CIRCLE_TAG" $CIRCLE_TAG output/
+              ./ghr $pre -u hypriotuploader $CIRCLE_TAG output/
             fi
