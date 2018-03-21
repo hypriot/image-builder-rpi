@@ -200,7 +200,8 @@ apt-get install -y \
 # ensure compatibility with Docker install.sh, so `raspbian` will be detected correctly
 apt-get install -y \
   --no-install-recommends \
-  lsb-release
+  lsb-release \
+  gettext
 
 # install cloud-init
 apt-get install -y \
