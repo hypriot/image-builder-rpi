@@ -219,6 +219,7 @@ curl -sSL "https://raw.githubusercontent.com/docker/machine/v${DOCKER_MACHINE_VE
 
 # install docker-compose
 apt-get install -y \
+  --no-install-recommends \
   python
 curl -sSL https://bootstrap.pypa.io/get-pip.py | python
 pip install "docker-compose==${DOCKER_COMPOSE_VERSION}"
@@ -228,6 +229,7 @@ curl -sSL "https://raw.githubusercontent.com/docker/compose/${DOCKER_COMPOSE_VER
 
 # install docker-ce (w/ install-recommends)
 apt-get install -y --force-yes \
+  --no-install-recommends \
   "docker-ce=${DOCKER_CE_VERSION}"
 
 echo "Installing rpi-serial-console script"
