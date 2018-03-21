@@ -30,5 +30,8 @@ jobs:
             if [ "$CIRCLE_TAG" != "" ]; then
               curl -sSL https://github.com/tcnksm/ghr/releases/download/v0.5.4/ghr_v0.5.4_linux_amd64.zip -o ghr.zip
               unzip ghr.zip
-              ./ghr --debug -u hypriotuploader -b "HypriotOS $CIRCLE_TAG" $CIRCLE_TAG output/
+              if [[ $CIRCLE_TAG = *"rc"* ]]; then
+                pre=-prerelease
+              fi
+              ./ghr $pre -u hypriotuploader -b "HypriotOS $CIRCLE_TAG" $CIRCLE_TAG output/
             fi
