@@ -1,0 +1,15 @@
+version: 2
+jobs:
+  build:
+    machine: true
+    steps:
+      - checkout
+
+      - run: |
+          make shellcheck
+          VERSION=${CIRCLE_TAG} make sd-image
+          mkdir -p output
+          cp hypriotos* output/
+
+      - store_artifacts:
+          path: /home/circleci/project/output
