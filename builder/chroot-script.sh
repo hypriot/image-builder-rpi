@@ -134,14 +134,17 @@ apt-get install -y \
 # install kernel- and firmware-packages
 apt-get install -y \
   --no-install-recommends \
-  "raspberrypi-kernel=${KERNEL_BUILD}" \
-  "raspberrypi-bootloader=${KERNEL_BUILD}" \
-  "libraspberrypi0=${KERNEL_BUILD}" \
-  "libraspberrypi-dev=${KERNEL_BUILD}" \
-  "libraspberrypi-bin=${KERNEL_BUILD}"
+  raspberrypi-bootloader \
+  libraspberrypi0 \
+  libraspberrypi-dev \
+  libraspberrypi-bin
 
 # install special Docker enabled kernel
-if [ ! -z "${KERNEL_URL}" ]; then
+if [ -z "${KERNEL_URL}" ]; then
+  apt-get install -y \
+    --no-install-recommends \
+    "raspberrypi-kernel=${KERNEL_BUILD}"
+else
   curl -L -o /tmp/kernel.deb "${KERNEL_URL}"
   rm -f /boot/bcm2710-rpi-3-b-plus.dtb
   dpkg -i /tmp/kernel.deb
@@ -218,8 +221,8 @@ curl -sSL "https://raw.githubusercontent.com/docker/machine/v${DOCKER_MACHINE_VE
 
 # install docker-compose
 apt-get install -y \
-  --no-install-recommends \
-  python-pip
+  python
+curl -sSL https://bootstrap.pypa.io/get-pip.py | python
 pip install "docker-compose==${DOCKER_COMPOSE_VERSION}"
 
 # install bash completion for Docker Compose
