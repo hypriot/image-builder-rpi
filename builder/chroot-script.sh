@@ -99,10 +99,10 @@ PACKAGECLOUD_FPR=418A7F2FB0E1E6E7EABF6FE8C2E73424D59097AB
 PACKAGECLOUD_KEY_URL=https://packagecloud.io/gpg.key
 get_gpg "${PACKAGECLOUD_FPR}" "${PACKAGECLOUD_KEY_URL}"
 
-echo 'deb https://packagecloud.io/Hypriot/rpi/debian/ jessie main' > /etc/apt/sources.list.d/hypriot.list
+echo 'deb https://packagecloud.io/Hypriot/rpi/debian/ stretch main' > /etc/apt/sources.list.d/hypriot.list
 
 # set up hypriot schatzkiste repository for generic packages
-echo 'deb https://packagecloud.io/Hypriot/Schatzkiste/debian/ jessie main' >> /etc/apt/sources.list.d/hypriot.list
+echo 'deb https://packagecloud.io/Hypriot/Schatzkiste/debian/ stretch main' >> /etc/apt/sources.list.d/hypriot.list
 
 # set up Docker CE repository
 DOCKERREPO_FPR=9DC858229FC7DD38854AE2D88D81803C0EBFCD88
@@ -110,13 +110,13 @@ DOCKERREPO_KEY_URL=https://download.docker.com/linux/raspbian/gpg
 get_gpg "${DOCKERREPO_FPR}" "${DOCKERREPO_KEY_URL}"
 
 CHANNEL=edge # stable, test or edge
-echo "deb [arch=armhf] https://download.docker.com/linux/raspbian jessie $CHANNEL" > /etc/apt/sources.list.d/docker.list
+echo "deb [arch=armhf] https://download.docker.com/linux/raspbian stretch $CHANNEL" > /etc/apt/sources.list.d/docker.list
 
 
 RPI_ORG_FPR=CF8A1AF502A2AA2D763BAE7E82B129927FA3303E RPI_ORG_KEY_URL=http://archive.raspberrypi.org/debian/raspberrypi.gpg.key
 get_gpg "${RPI_ORG_FPR}" "${RPI_ORG_KEY_URL}"
 
-echo 'deb http://archive.raspberrypi.org/debian/ jessie main' | tee /etc/apt/sources.list.d/raspberrypi.list
+echo 'deb http://archive.raspberrypi.org/debian/ stretch main' | tee /etc/apt/sources.list.d/raspberrypi.list
 
 # reload package sources
 apt-get update
@@ -128,7 +128,7 @@ apt-get install -y \
   firmware-atheros \
   firmware-brcm80211 \
   firmware-libertas \
-  firmware-ralink \
+  firmware-misc-nonfree \
   firmware-realtek
 
 # install kernel- and firmware-packages
@@ -139,6 +139,14 @@ apt-get install -y \
   "libraspberrypi0=${KERNEL_BUILD}" \
   "libraspberrypi-dev=${KERNEL_BUILD}" \
   "libraspberrypi-bin=${KERNEL_BUILD}"
+
+# install special Docker enabled kernel
+if [ ! -z "${KERNEL_URL}" ]; then
+  curl -L -o /tmp/kernel.deb "${KERNEL_URL}"
+  rm -f /boot/bcm2710-rpi-3-b-plus.dtb
+  dpkg -i /tmp/kernel.deb
+  rm /tmp/kernel.deb
+fi
 
 # enable serial console
 printf "# Spawn a getty on Raspberry Pi serial line\nT0:23:respawn:/sbin/getty -L ttyAMA0 115200 vt100\n" >> /etc/inittab
@@ -153,7 +161,7 @@ enable_uart=1
 " > boot/config.txt
 
 echo "# camera settings, see http://elinux.org/RPiconfig#Camera
-start_x=1
+start_x=0
 disable_camera_led=1
 gpu_mem=128
 " >> boot/config.txt
