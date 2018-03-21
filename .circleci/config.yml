@@ -5,11 +5,21 @@ jobs:
     steps:
       - checkout
 
-      - run: |
-          make shellcheck
-          VERSION=${CIRCLE_TAG} make sd-image
-          mkdir -p output
-          cp hypriotos* output/
+      - run:
+          name: Run Shellcheck
+          command: |
+            make shellcheck
+
+      - run:
+          name: Create SD image
+          command: |
+            VERSION=${CIRCLE_TAG} make sd-image
+
+      - run:
+          name: Prepare artifacts
+          command: |
+            mkdir -p output
+            cp hypriotos* output/
 
       - store_artifacts:
           path: /home/circleci/project/output
