@@ -5,3 +5,11 @@
 Package: firmware-*
 Pin: origin archive.raspberrypi.org
 Pin-Priority: 1001
+
+Package: libraspberrypi*
+Pin: origin archive.raspberrypi.org
+Pin-Priority: 1001
+
+Package: raspberrypi-bootloader
+Pin: origin archive.raspberrypi.org
+Pin-Priority: 1001
