@@ -232,6 +232,9 @@ apt-get install -y --force-yes \
   --no-install-recommends \
   "docker-ce=${DOCKER_CE_VERSION}"
 
+# install bash completion for Docker CLI
+curl -sSL https://raw.githubusercontent.com/docker/docker-ce/master/components/cli/contrib/completion/bash/docker -o /etc/bash_completion.d/docker
+
 echo "Installing rpi-serial-console script"
 wget -q https://raw.githubusercontent.com/lurch/rpi-serial-console/master/rpi-serial-console -O usr/local/bin/rpi-serial-console
 chmod +x usr/local/bin/rpi-serial-console
