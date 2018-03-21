@@ -136,7 +136,6 @@ apt-get install -y \
   --no-install-recommends \
   raspberrypi-bootloader \
   libraspberrypi0 \
-  libraspberrypi-dev \
   libraspberrypi-bin
 
 # install special Docker enabled kernel
@@ -191,7 +190,8 @@ apt-get install -y \
   wpasupplicant \
   wireless-tools \
   ethtool \
-  crda
+  crda \
+  raspberrypi-net-mods
 
 # add firmware and packages for managing bluetooth devices
 apt-get install -y \
