@@ -164,7 +164,7 @@ enable_uart=0
 echo "# camera settings, see http://elinux.org/RPiconfig#Camera
 start_x=0
 disable_camera_led=1
-gpu_mem=128
+gpu_mem=16
 " >> boot/config.txt
 
 # /etc/modules
