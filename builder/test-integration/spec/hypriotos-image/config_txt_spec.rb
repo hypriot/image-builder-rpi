@@ -6,5 +6,5 @@ describe file('/boot/config.txt') do
   its(:content) { should match /^enable_uart=0/ }
   its(:content) { should match /^start_x=0/ }
   its(:content) { should match /^disable_camera_led=1/ }
-  its(:content) { should match /^gpu_mem=128/ }
+  its(:content) { should match /^gpu_mem=16/ }
 end
