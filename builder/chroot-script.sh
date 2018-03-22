@@ -206,6 +206,9 @@ apt-get install -y \
 apt-get install -y \
   cloud-init
 
+# Fix package mirrors
+sed -i '/disable_root: true/a apt_preserve_sources_list: true' file
+
 mkdir -p /var/lib/cloud/seed/nocloud-net
 ln -s /boot/user-data /var/lib/cloud/seed/nocloud-net/user-data
 ln -s /boot/meta-data /var/lib/cloud/seed/nocloud-net/meta-data
