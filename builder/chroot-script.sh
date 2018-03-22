@@ -145,7 +145,6 @@ if [ -z "${KERNEL_URL}" ]; then
     "raspberrypi-kernel=${KERNEL_BUILD}"
 else
   curl -L -o /tmp/kernel.deb "${KERNEL_URL}"
-  rm -f /boot/bcm2710-rpi-3-b-plus.dtb
   dpkg -i /tmp/kernel.deb
   rm /tmp/kernel.deb
 fi
