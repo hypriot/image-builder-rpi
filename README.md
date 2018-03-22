@@ -1,16 +1,17 @@
 # image-builder-rpi
+
 [![Join the chat at https://gitter.im/hypriot/talk](https://badges.gitter.im/hypriot/talk.svg)](https://gitter.im/hypriot/talk?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Build Status](https://travis-ci.org/hypriot/image-builder-rpi.svg)](https://travis-ci.org/hypriot/image-builder-rpi)
+[![Build Status](https://circleci.com/gh/hypriot/image-builder-rpi.svg?style=svg)](https://circleci.com/gh/hypriot/image-builder-rpi)
 
 This repo builds the SD card image with HypriotOS for the Raspberry Pi 1, 2, 3
 and Zero. You can find released versions of the SD card image here in the GitHub
 releases page. To build this SD card image we have to
 
- * take the files for the root filesystem from [`os-rootfs`](https://github.com/hypriot/os-rootfs)
- * take the empty raw filesystem from [`image-builder-raw`](https://github.com/hypriot/image-builder-raw) with the two partitions
- * add Hypriot's Debian repos
- * install the Raspberry Pi kernel from [`rpi-kernel`](https://github.com/hypriot/rpi-kernel)
- * install Docker tools Docker Engine, Docker Compose and Docker Machine
+* take the files for the root filesystem from [`os-rootfs`](https://github.com/hypriot/os-rootfs)
+* take the empty raw filesystem from [`image-builder-raw`](https://github.com/hypriot/image-builder-raw) with the two partitions
+* add Hypriot's Debian repos
+* install the Raspberry Pi kernel from [`rpi-kernel`](https://github.com/hypriot/rpi-kernel)
+* install Docker tools Docker Engine, Docker Compose and Docker Machine
 
 Here is an example how all the GitHub repos play together:
 
@@ -31,16 +32,19 @@ daemon. The Vagrant box is needed to run guestfish inside.
 Use `export VAGRANT_DEFAULT_PROVIDER=virtualbox` to strictly create a VirtualBox VM.
 
 Start vagrant box
+
 ```bash
 vagrant up
 ```
 
 Export docker host
+
 ```bash
 export DOCKER_HOST=tcp://127.0.0.1:2375
 ```
 
 Check you are using docker from inside vagrant
+
 ```bash
 docker info | grep 'Operating System'
 Operating System: Ubuntu 16.04.3 LTS
