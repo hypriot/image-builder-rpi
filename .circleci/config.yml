@@ -35,3 +35,13 @@ jobs:
               fi
               ./ghr $pre -u hypriotuploader $CIRCLE_TAG output/
             fi
+
+workflows:
+  version: 2
+  build_and_deploy:
+    jobs:
+      - build:
+          filters:
+            tags:
+              only: /.*/
+              
