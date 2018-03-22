@@ -1,0 +1,37 @@
+version: 2
+jobs:
+  build:
+    machine: true
+    steps:
+      - checkout
+
+      - run:
+          name: Run Shellcheck
+          command: |
+            make shellcheck
+
+      - run:
+          name: Create SD image
+          command: |
+            VERSION=${CIRCLE_TAG} make sd-image || true
+
+      - run:
+          name: Prepare artifacts
+          command: |
+            mkdir -p output
+            cp hypriotos* output/
+
+      - store_artifacts:
+          path: /home/circleci/project/output
+
+      - deploy:
+          name: Deploy
+          command: |
+            if [ "$CIRCLE_TAG" != "" ]; then
+              curl -sSL https://github.com/tcnksm/ghr/releases/download/v0.5.4/ghr_v0.5.4_linux_amd64.zip -o ghr.zip
+              unzip ghr.zip
+              if [[ $CIRCLE_TAG = *"rc"* ]]; then
+                pre=-prerelease
+              fi
+              ./ghr $pre -u hypriotuploader $CIRCLE_TAG output/
+            fi

@@ -3,11 +3,3 @@
 Package: linux-headers-*-hypriotos*
 Pin: origin packagecloud.io/hypriot/schatzkiste
 Pin-Priority: 1001
-
-Package: libraspberrypi*
-Pin: origin packagecloud.io/hypriot/schatzkiste
-Pin-Priority: 1001
-
-Package: raspberrypi-bootloader
-Pin: origin packagecloud.io/hypriot/schatzkiste
-Pin-Priority: 1001
