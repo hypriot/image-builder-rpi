@@ -1,10 +1,10 @@
 require_relative 'spec_helper'
 
-describe file('/usr/lib/cloud/scripts/per-once/regenerate-machine-id') do		
+describe file('/var/lib/cloudd/scripts/per-once/regenerate-machine-id') do		
   it { should be_file }		
 end
 
-describe file('/usr/lib/cloud/scripts/per-once/resizefs') do		
+describe file('/var/lib/cloudd/scripts/per-once/resizefs') do		
   it { should be_file }		
 end
 
