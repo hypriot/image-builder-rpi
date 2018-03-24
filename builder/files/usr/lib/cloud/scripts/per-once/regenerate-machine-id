@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo "Regenerating machine id"
+dbus-uuidgen > /etc/machine-id

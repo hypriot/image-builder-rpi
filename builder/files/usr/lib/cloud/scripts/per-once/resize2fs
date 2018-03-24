@@ -1,0 +1,5 @@
+#!/bin/bash
+
+ROOT_DEV=$(findmnt / -o source -n)
+echo "Resize root filesystem $ROOT_DEV"
+resize2fs "$ROOT_DEV"
