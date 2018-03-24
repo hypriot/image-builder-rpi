@@ -1,4 +1,4 @@
-require 'spec_helper'		
+require_relative 'spec_helper'
 
 describe file('/usr/lib/cloud/scripts/per-once/regenerate-machine-id') do		
   it { should be_file }		
