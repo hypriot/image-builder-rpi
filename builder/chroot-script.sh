@@ -1,6 +1,9 @@
 #!/bin/bash
 set -ex
 
+echo "XXX1 Show cloud-init /usr/lib/cloud/scripts"
+find . /usr/lib/cloud/scripts -print
+
 KEYSERVER="ha.pool.sks-keyservers.net"
 
 function clean_print(){
@@ -212,6 +215,9 @@ sed -i '/disable_root: true/a apt_preserve_sources_list: true' /etc/cloud/cloud.
 mkdir -p /var/lib/cloud/seed/nocloud-net
 ln -s /boot/user-data /var/lib/cloud/seed/nocloud-net/user-data
 ln -s /boot/meta-data /var/lib/cloud/seed/nocloud-net/meta-data
+
+echo "XXX2 Show cloud-init /usr/lib/cloud/scripts"
+find . /usr/lib/cloud/scripts -print
 
 # install docker-machine
 curl -sSL -o /usr/local/bin/docker-machine "https://github.com/docker/machine/releases/download/v${DOCKER_MACHINE_VERSION}/docker-machine-Linux-armhf"
