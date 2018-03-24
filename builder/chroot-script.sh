@@ -1,8 +1,8 @@
 #!/bin/bash
 set -ex
 
-echo "XXX1 Show cloud-init /var/lib/cloudd/scripts"
-find /var/lib/cloudd/scripts -print
+echo "XXX1 Show cloud-init /var/lib/cloud/scripts"
+find /var/lib/cloud/scripts -print
 
 KEYSERVER="ha.pool.sks-keyservers.net"
 
@@ -216,8 +216,8 @@ mkdir -p /var/lib/cloud/seed/nocloud-net
 ln -s /boot/user-data /var/lib/cloud/seed/nocloud-net/user-data
 ln -s /boot/meta-data /var/lib/cloud/seed/nocloud-net/meta-data
 
-echo "XXX2 Show cloud-init /var/lib/cloudd/scripts"
-find /var/lib/cloudd/scripts -print
+echo "XXX2 Show cloud-init /var/lib/cloud/scripts"
+find /var/lib/cloud/scripts -print
 
 # install docker-machine
 curl -sSL -o /usr/local/bin/docker-machine "https://github.com/docker/machine/releases/download/v${DOCKER_MACHINE_VERSION}/docker-machine-Linux-armhf"
