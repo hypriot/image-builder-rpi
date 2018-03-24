@@ -1,17 +1,27 @@
 require_relative 'spec_helper'
 
-describe file('/var/lib/cloud/scripts/per-once/regenerate-machine-id') do
-  it { should be_file }
-end
+describe "cloud-init" do
+  context "/var/lib/cloud/scripts/per-once" do
+    let(:stdout) { run("ls -1 /var/lib/cloud/scripts/per-once").stdout }
 
-describe file('/var/lib/cloud/scripts/per-once/resizefs') do
-  it { should be_file }
-end
+    it "has a regenerate-machine-id script" do
+      expect(stdout).to contain('regenerate-machine-id')
+    end
 
-describe file('/var/lib/cloud/seed/nocloud-net/user-data') do
-  it { should be_linked_to '/boot/user-data' }
-end
+    it "has a resize2fs script" do
+      expect(stdout).to contain('resize2fs')
+    end
+  end
 
-describe file('/var/lib/cloud/seed/nocloud-net/meta-data') do
-  it { should be_linked_to '/boot/meta-data' }
+  context "/var/lib/cloud/seed/nocloud-net" do
+    let(:stdout) { run_mounted("ls -l /var/lib/cloud/seed/nocloud-net").stdout }
+
+    it "user-data is linked to /boot/user-data" do
+      expect(stdout).to contain('user-data -> /boot/user-data')
+    end
+
+    it "meta-data is linked to /boot/meta-data" do
+      expect(stdout).to contain('meta-data -> /boot/meta-data')
+    end
+  end
 end
