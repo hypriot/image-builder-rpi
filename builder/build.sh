@@ -103,7 +103,7 @@ guestfish -a "/${HYPRIOT_IMAGE_NAME}"<<_EOF_
   tar-in /image_with_kernel_boot.tar.gz /boot compress:gzip
 _EOF_
 
-# ensure that the travis-ci user can access the sd-card image file
+# ensure that the CircleCI user can access the sd-card image file
 umask 0000
 
 # compress image
