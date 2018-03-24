@@ -21,8 +21,8 @@ BUILD_PATH="/build"
 ROOTFS_TAR="rootfs-armhf-raspbian-${HYPRIOT_OS_VERSION}.tar.gz"
 ROOTFS_TAR_PATH="${BUILD_RESULT_PATH}/${ROOTFS_TAR}"
 
-# Show TRAVSI_TAG in travis builds
-echo TRAVIS_TAG="${TRAVIS_TAG}"
+# Show CIRCLE_TAG in Circle builds
+echo CIRCLE_TAG="${CIRCLE_TAG}"
 
 # name of the sd-image we gonna create
 HYPRIOT_IMAGE_VERSION=${VERSION:="dirty"}

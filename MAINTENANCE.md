@@ -4,7 +4,7 @@ This document explains how to maintain an image-builder repo.
 
 ## How it works
 
-The SD card is automatically built with [Travis](https://travis-ci.org).
+The SD card is automatically built with [Circle](https://circleci.com).
 You don't need real hardware to build and publish the SD card image.
 
 ### Pull requests
