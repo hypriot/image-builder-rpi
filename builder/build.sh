@@ -58,7 +58,6 @@ mount -t proc none ${BUILD_PATH}/proc
 mount -t sysfs none ${BUILD_PATH}/sys
 
 # modify/add image files directly
-# e.g. root partition resize script
 cp -R /builder/files/* ${BUILD_PATH}/
 
 # make our build directory the current root
