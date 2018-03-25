@@ -17,7 +17,7 @@ describe file('/var/lib/cloud/scripts/per-once/regenerate-machine-id') do
   it { should be_file }
 end
 
-describe file('/var/lib/cloud/scripts/per-once/resizefs') do
+describe file('/var/lib/cloud/scripts/per-once/resize2fs') do
   it { should be_file }
 end
 
