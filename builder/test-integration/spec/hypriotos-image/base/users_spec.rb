@@ -49,9 +49,3 @@ describe file('/home/pirate/.bash_prompt') do
   it { should be_mode 644 }
   it { should be_owned_by 'pirate' }
 end
-
-describe file('/etc/default/useradd') do
-  it { should be_file }
-  it { should be_owned_by 'root' }
-  its(:content) { should contain /SHELL=\/bin\/bash/ }
-end
