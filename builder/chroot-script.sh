@@ -178,6 +178,9 @@ proc /proc proc defaults 0 0
 /dev/mmcblk0p2 / ext4 defaults,noatime 0 1
 " > /etc/fstab
 
+# Fix default shell for new users created with useradd
+sed -i 's,SHELL=/bin/sh,SHELL=/bin/bash,' /etc/default/useradd
+
 # as the Pi does not have a hardware clock we need a fake one
 apt-get install -y \
   --no-install-recommends \
