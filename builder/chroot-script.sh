@@ -206,12 +206,16 @@ apt-get install -y \
 apt-get install -y \
   cloud-init
 
-# Fix package mirrors
+# Fix cloud-init package mirrors
 sed -i '/disable_root: true/a apt_preserve_sources_list: true' /etc/cloud/cloud.cfg
 
+# Link cloud-init config to VFAT /boot partition
 mkdir -p /var/lib/cloud/seed/nocloud-net
 ln -s /boot/user-data /var/lib/cloud/seed/nocloud-net/user-data
 ln -s /boot/meta-data /var/lib/cloud/seed/nocloud-net/meta-data
+
+# Fix duplicate IP address for eth0, remove file from os-rootfs
+rm -f /etc/network/interfaces.d/eth0
 
 # install docker-machine
 curl -sSL -o /usr/local/bin/docker-machine "https://github.com/docker/machine/releases/download/v${DOCKER_MACHINE_VERSION}/docker-machine-Linux-armhf"
