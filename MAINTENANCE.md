@@ -4,13 +4,13 @@ This document explains how to maintain an image-builder repo.
 
 ## How it works
 
-The SD card is automatically built with [Travis](https://travis-ci.org).
+The SD card is automatically built with [Circle](https://circleci.com).
 You don't need real hardware to build and publish the SD card image.
 
 ### Pull requests
 
-Pull requests are also built and checked with Travis.
-See the `.travis.yml` file which commands are run for each Git commit.
+Pull requests are also built and checked with Circle.
+See the `.circleci/config.yml` file which commands are run for each Git commit.
 The tests defined in `builder/test/` check the SD card image for each Git
 commit and before releasing a new SD card image.
 
@@ -34,6 +34,6 @@ You can decide if it's a pre-release with the checkbox at the bottom.
 
 Then press "Publish release".
 
-After that Travis starts a new tagged build with that version tag and also
-runs the deploy steps defined in `.travis.yml` and pushes the SD card image
+After that Circle starts a new tagged build with that version tag and also
+runs the deploy steps defined in `.circleci/config.yml` and pushes the SD card image
 to the GitHub release.

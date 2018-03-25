@@ -13,7 +13,7 @@ jobs:
       - run:
           name: Create SD image
           command: |
-            VERSION=${CIRCLE_TAG} make sd-image || true
+            VERSION=${CIRCLE_TAG} make sd-image
 
       - run:
           name: Prepare artifacts

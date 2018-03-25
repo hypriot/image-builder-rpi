@@ -21,8 +21,8 @@ BUILD_PATH="/build"
 ROOTFS_TAR="rootfs-armhf-raspbian-${HYPRIOT_OS_VERSION}.tar.gz"
 ROOTFS_TAR_PATH="${BUILD_RESULT_PATH}/${ROOTFS_TAR}"
 
-# Show TRAVSI_TAG in travis builds
-echo TRAVIS_TAG="${TRAVIS_TAG}"
+# Show CIRCLE_TAG in Circle builds
+echo CIRCLE_TAG="${CIRCLE_TAG}"
 
 # name of the sd-image we gonna create
 HYPRIOT_IMAGE_VERSION=${VERSION:="dirty"}
@@ -58,7 +58,6 @@ mount -t proc none ${BUILD_PATH}/proc
 mount -t sysfs none ${BUILD_PATH}/sys
 
 # modify/add image files directly
-# e.g. root partition resize script
 cp -R /builder/files/* ${BUILD_PATH}/
 
 # make our build directory the current root
@@ -104,7 +103,7 @@ guestfish -a "/${HYPRIOT_IMAGE_NAME}"<<_EOF_
   tar-in /image_with_kernel_boot.tar.gz /boot compress:gzip
 _EOF_
 
-# ensure that the travis-ci user can access the sd-card image file
+# ensure that the CircleCI user can access the sd-card image file
 umask 0000
 
 # compress image
