@@ -56,3 +56,6 @@ describe 'for bluetooth-support' do
   end
 end
 
+describe package('raspi-config') do
+  it { should be_installed }
+end
