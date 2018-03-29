@@ -11,6 +11,7 @@ end
 
 describe file('/boot/meta-data') do
   it { should be_file }
+  its(:content) { should match /instance-id: / }
 end
 
 describe file('/var/lib/cloud/scripts/per-once/regenerate-machine-id') do
