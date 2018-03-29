@@ -101,9 +101,6 @@ get_gpg "${PACKAGECLOUD_FPR}" "${PACKAGECLOUD_KEY_URL}"
 
 echo 'deb https://packagecloud.io/Hypriot/rpi/debian/ stretch main' > /etc/apt/sources.list.d/hypriot.list
 
-# set up hypriot schatzkiste repository for generic packages
-echo 'deb https://packagecloud.io/Hypriot/Schatzkiste/debian/ stretch main' >> /etc/apt/sources.list.d/hypriot.list
-
 # set up Docker CE repository
 DOCKERREPO_FPR=9DC858229FC7DD38854AE2D88D81803C0EBFCD88
 DOCKERREPO_KEY_URL=https://download.docker.com/linux/raspbian/gpg
