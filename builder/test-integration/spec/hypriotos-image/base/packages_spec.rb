@@ -59,3 +59,7 @@ end
 describe package('raspi-config') do
   it { should be_installed }
 end
+
+describe package('rfkill') do
+  it { should be_installed }
+end
