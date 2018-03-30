@@ -187,7 +187,8 @@ apt-get install -y \
   wpasupplicant \
   wireless-tools \
   crda \
-  raspberrypi-net-mods
+  raspberrypi-net-mods \
+  rfkill
 
 # add firmware and packages for managing bluetooth devices
 apt-get install -y \
@@ -202,6 +203,7 @@ apt-get install -y \
 
 # install cloud-init
 apt-get install -y \
+  --no-install-recommends \
   cloud-init
 
 # Fix cloud-init package mirrors
