@@ -7,7 +7,6 @@ describe command('zcat /proc/config.gz') do
   its(:stdout) { should match /CONFIG_FTRACE=y/ }
   its(:stdout) { should match /CONFIG_DYNAMIC_FTRACE=y/ }
   its(:stdout) { should match /CONFIG_HAVE_DYNAMIC_FTRACE=y/ }
-  its(:stdout) { should match /CONFIG_BCM2708_VCHIQ=y/ }
   its(:stdout) { should match /CONFIG_HW_RANDOM_BCM2835=y/ }
   # Docker specific kernel settings (see https://github.com/docker/docker/blob/master/contrib/check-config.sh)
   ## Generally Necessary:
