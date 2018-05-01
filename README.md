@@ -2,7 +2,7 @@
 
 [![Join the chat at https://gitter.im/hypriot/talk](https://badges.gitter.im/hypriot/talk.svg)](https://gitter.im/hypriot/talk?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Build Status](https://circleci.com/gh/hypriot/image-builder-rpi.svg?style=svg)](https://circleci.com/gh/hypriot/image-builder-rpi)
-[![Latest Release](https://img.shields.io/github/downloads/hypriot/image-builder-rpi/v1.8.0/total.svg)](https://github.com/hypriot/image-builder-rpi/releases/tag/v1.8.0)
+[![Latest Release](https://img.shields.io/github/downloads/hypriot/image-builder-rpi/v1.9.0/total.svg)](https://github.com/hypriot/image-builder-rpi/releases/tag/v1.9.0)
 [![All Releases](https://img.shields.io/github/downloads/hypriot/image-builder-rpi/total.svg)](https://github.com/hypriot/image-builder-rpi/releases)
 
 This repo builds the SD card image with HypriotOS for the Raspberry Pi 1, 2, 3
