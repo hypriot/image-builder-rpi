@@ -1,0 +1,52 @@
+#!/bin/sh -e
+#
+# rc.local
+#
+# This script is executed at the end of each multiuser runlevel.
+# value on error.
+#
+# In order to enable or disable this script just change the execution
+# bits.
+#
+# By default this script does nothing.
+
+# Print the IP address
+_IP=$(hostname -I) || true
+if [ "$_IP" ]; then
+  printf "My IP address is %s\n" "$_IP"
+  echo $_IP > /var/www/ip-address.html
+fi
+
+#START RASPIMJPEG SECTION
+mkdir -p /dev/shm/mjpeg
+chown www-data:www-data /dev/shm/mjpeg
+chmod 777 /dev/shm/mjpeg
+sleep 4;su -c 'raspimjpeg > /dev/null 2>&1 &' www-data
+if [ -e /etc/debian_version ]; then
+  sleep 4;su -c 'php /var/www/html/schedule.php > /dev/null 2>&1 &' www-data
+else
+  sleep 4;su -s '/bin/bash' -c 'php /var/www/html/schedule.php > /dev/null 2>&1 &' www-data
+fi
+#END RASPIMJPEG SECTION
+
+sleep 30;
+ifdown wlan0
+service hostapd start
+ifup wlan0
+
+# connect hotspot clients to wlan0
+sysctl -w net.ipv4.ip_forward=1
+iptables -t nat -A POSTROUTING -s 172.24.1.0/24 ! -d 172.24.1.0/24 -j MASQUERADE
+
+# attempt to get all the above running at once:
+sleep 10;
+ifdown --force wlan0 && ifdown --force ap0 && ifup ap0 && ifup wlan0
+
+# redirect incoming requests to welcome page
+# disable until we get wlan0 working
+#iptables -t nat -A PREROUTING -p tcp --dport 443 -j DNAT --to-destination 172.24.1.1:80
+#iptables -t nat -A PREROUTING -p tcp --dport 80 -j DNAT --to-destination 172.24.1.1:80 
+
+systemctl restart dnsmasq
+
+exit 0

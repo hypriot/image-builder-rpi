@@ -8,17 +8,17 @@
 # Documentation: http://cloudinit.readthedocs.io/en/0.7.9/index.html
 
 # Set your hostname here, the manage_etc_hosts will update the hosts file entries as well
-hostname: black-pearl
+hostname: publiclab-pi
 manage_etc_hosts: true
 
 # You could modify this for your own user information
 users:
-  - name: pirate
-    gecos: "Hypriot Pirate"
+  - name: publiclab
+    gecos: "Public Lab community researcher"
     sudo: ALL=(ALL) NOPASSWD:ALL
     shell: /bin/bash
     groups: users,docker,video,input
-    plain_text_passwd: hypriot
+    plain_text_passwd: publiclab
     lock_passwd: false
     ssh_pwauth: true
     chpasswd: { expire: false }
@@ -39,6 +39,13 @@ package_upgrade: false
 # # Install any additional apt packages you need here
 # packages:
 #  - ntp
+
+packages:
+  - dnsmasq
+    hostapd
+    screen
+    git-core
+    curl
 
 # # WiFi connect to HotSpot
 # # - use `wpa_passphrase SSID PASSWORD` to encrypt the psk

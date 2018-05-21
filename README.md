@@ -1,3 +1,7 @@
+# Public Lab Virtual Pi Project
+
+This project is a modification of the HypriotOS SD card builder. More info on Public Lab's Virtual Pi project can be found at [publiclab-virtual-pi/](publiclab-virtual-pi/README.md) directory.
+
 # image-builder-rpi
 
 [![Join the chat at https://gitter.im/hypriot/talk](https://badges.gitter.im/hypriot/talk.svg)](https://gitter.im/hypriot/talk?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
