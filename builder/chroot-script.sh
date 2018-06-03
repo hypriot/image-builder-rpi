@@ -213,9 +213,23 @@ sed -i '/disable_root: true/a apt_preserve_sources_list: true' /etc/cloud/cloud.
 mkdir -p /var/lib/cloud/seed/nocloud-net
 ln -s /boot/user-data /var/lib/cloud/seed/nocloud-net/user-data
 ln -s /boot/meta-data /var/lib/cloud/seed/nocloud-net/meta-data
+ln -s /boot/network-config /var/lib/cloud/seed/nocloud-net/network-config
 
 # Fix duplicate IP address for eth0, remove file from os-rootfs
 rm -f /etc/network/interfaces.d/eth0
+
+# Disable dhcpcd - it has a conflict with cloud-init network config
+systemctl mask dhcpcd
+
+# Fix /etc/network/interfaces so the cloud-init network config is used
+echo "source /etc/network/interfaces.d/*" > /etc/network/interfaces
+
+# Install resolvconf ...
+apt-get install -y \
+  resolvconf
+
+# and disable systemd-resolved - it doesn't work with cloud-init network config
+systemctl mask systemd-resolved
 
 # install docker-machine
 curl -sSL -o /usr/local/bin/docker-machine "https://github.com/docker/machine/releases/download/v${DOCKER_MACHINE_VERSION}/docker-machine-Linux-armhf"
