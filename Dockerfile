@@ -1,11 +1,9 @@
 FROM hypriot/image-builder:latest
 
-RUN apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y \
-    binfmt-support \
-    qemu \
-    qemu-user-static \
-    --no-install-recommends && \
+RUN set -euxo pipefail; \
+    export DEBIAN_FRONTEND=noninteractive; \
+    apt-get update; \
+    apt-get install -y binfmt-support qemu qemu-user-static --no-install-recommends; \
     rm -rf /var/lib/apt/lists/*
 
 COPY builder/ /builder/

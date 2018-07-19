@@ -1,5 +1,7 @@
-#!/bin/bash -e
-set -x
+#!/bin/bash
+
+set -euxo pipefail
+
 # This script should be run only inside of a Docker container
 if [ ! -f /.dockerenv ]; then
   echo "ERROR: script works only in a Docker container!"
@@ -29,8 +31,16 @@ HYPRIOT_IMAGE_VERSION=${VERSION:="dirty"}
 HYPRIOT_IMAGE_NAME="hypriotos-rpi-${HYPRIOT_IMAGE_VERSION}.img"
 export HYPRIOT_IMAGE_VERSION
 
+# ensure no paths are mounted
+mountpoint -q -- "${BUILD_PATH}/dev/pts" && umount -l ${BUILD_PATH}/dev/pts
+mountpoint -q -- "${BUILD_PATH}/dev" && umount -l ${BUILD_PATH}/dev
+mountpoint -q -- "${BUILD_PATH}/proc" && umount -l ${BUILD_PATH}/proc
+mountpoint -q -- "${BUILD_PATH}/sys" && umount -l ${BUILD_PATH}/sys
+
 # create build directory for assembling our image filesystem
 rm -rf ${BUILD_PATH}
+
+# create build directory for assembling our image filesystem
 mkdir ${BUILD_PATH}
 
 # download our base root file system

@@ -3,3 +3,5 @@
 *.img.zip
 *.tar.gz
 .vagrant/
+/*.log
+*.iml

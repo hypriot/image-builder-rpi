@@ -98,22 +98,19 @@ echo "nameserver 8.8.8.8" > "${DEST}"
 PACKAGECLOUD_FPR=418A7F2FB0E1E6E7EABF6FE8C2E73424D59097AB
 PACKAGECLOUD_KEY_URL=https://packagecloud.io/gpg.key
 get_gpg "${PACKAGECLOUD_FPR}" "${PACKAGECLOUD_KEY_URL}"
-
-echo 'deb https://packagecloud.io/Hypriot/rpi/debian/ stretch main' > /etc/apt/sources.list.d/hypriot.list
+echo 'deb https://packagecloud.io/Hypriot/rpi/debian/ $(lsb_release -cs) main' > /etc/apt/sources.list.d/hypriot.list
 
 # set up Docker CE repository
 DOCKERREPO_FPR=9DC858229FC7DD38854AE2D88D81803C0EBFCD88
 DOCKERREPO_KEY_URL=https://download.docker.com/linux/raspbian/gpg
 get_gpg "${DOCKERREPO_FPR}" "${DOCKERREPO_KEY_URL}"
-
-CHANNEL=edge # stable, test or edge
-echo "deb [arch=armhf] https://download.docker.com/linux/raspbian stretch $CHANNEL" > /etc/apt/sources.list.d/docker.list
+echo "deb [arch=armhf] https://download.docker.com/linux/raspbian $(lsb_release -cs) stable" > /etc/apt/sources.list.d/docker.list
 
 
-RPI_ORG_FPR=CF8A1AF502A2AA2D763BAE7E82B129927FA3303E RPI_ORG_KEY_URL=http://archive.raspberrypi.org/debian/raspberrypi.gpg.key
+RPI_ORG_FPR=CF8A1AF502A2AA2D763BAE7E82B129927FA3303E
+RPI_ORG_KEY_URL=http://archive.raspberrypi.org/debian/raspberrypi.gpg.key
 get_gpg "${RPI_ORG_FPR}" "${RPI_ORG_KEY_URL}"
-
-echo 'deb http://archive.raspberrypi.org/debian/ stretch main' | tee /etc/apt/sources.list.d/raspberrypi.list
+echo 'deb http://archive.raspberrypi.org/debian $(lsb_release -cs) main' > /etc/apt/sources.list.d/raspberrypi.list
 
 # reload package sources
 apt-get update
@@ -201,8 +198,11 @@ apt-get install -y \
   gettext
 
 # install cloud-init
-apt-get install -y \
-  cloud-init
+apiBase="https://api.launchpad.net/1.0/ubuntu"
+latestVersion="$(curl -fsSL "$apiBase/+archive/primary?ws.op=getPublishedBinaries&pocket=Updates&binary_name=cloud-init&exact_match=true&status=Published&distro_arch_series=$apiBase/bionic/armhf" | python -mjson.tool | awk -F'"' '/binary_package_version/{print $4}')"
+curl -fsSL "https://launchpad.net/ubuntu/+archive/primary/+files/cloud-init_${latestVersion}_all.deb" -o /tmp/cloud-init.deb
+dpkg -i /tmp/cloud-init.deb
+apt-get install -f -y
 
 # Fix cloud-init package mirrors
 sed -i '/disable_root: true/a apt_preserve_sources_list: true' /etc/cloud/cloud.cfg
@@ -233,7 +233,7 @@ pip install "docker-compose==${DOCKER_COMPOSE_VERSION}"
 curl -sSL "https://raw.githubusercontent.com/docker/compose/${DOCKER_COMPOSE_VERSION}/contrib/completion/bash/docker-compose" -o /etc/bash_completion.d/docker-compose
 
 # install docker-ce (w/ install-recommends)
-apt-get install -y --force-yes \
+apt-get install -y --allow-downgrades \
   --no-install-recommends \
   "docker-ce=${DOCKER_CE_VERSION}"
 
