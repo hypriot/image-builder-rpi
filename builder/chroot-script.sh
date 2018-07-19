@@ -183,6 +183,7 @@ apt-get install -y \
 
 # install packages for managing wireless interfaces
 apt-get install -y \
+  -o DPkg::options::=--force-confmiss \
   --no-install-recommends \
   wpasupplicant \
   wireless-tools \
