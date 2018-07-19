@@ -14,6 +14,7 @@ URL to view images.
  - [x] Research reproducible build method
  - [ ] Translate loose scripts into build
  - [ ] Setup automated build process
+ - [ ] Make sure built image is equivalent to original
  - [ ] Convert hostapd configuration.
 
 ## Secondary feature goals
