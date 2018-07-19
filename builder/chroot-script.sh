@@ -182,8 +182,8 @@ apt-get install -y \
   fake-hwclock
 
 # install packages for managing wireless interfaces
-apt-get install -y \
-  -o DPkg::options::=--force-confmiss \
+apt-get  -o Dpkg::Options::=--force-confdef \
+  install -y \
   --no-install-recommends \
   wpasupplicant \
   wireless-tools \
