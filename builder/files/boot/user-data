@@ -40,13 +40,6 @@ package_upgrade: false
 # packages:
 #  - ntp
 
-packages:
-  - dnsmasq
-    hostapd
-    screen
-    git-core
-    curl
-
 # # WiFi connect to HotSpot
 # # - use `wpa_passphrase SSID PASSWORD` to encrypt the psk
 # write_files:

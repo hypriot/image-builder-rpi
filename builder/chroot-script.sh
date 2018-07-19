@@ -187,7 +187,16 @@ apt-get install -y \
   wpasupplicant \
   wireless-tools \
   crda \
-  raspberrypi-net-mods
+  raspberrypi-net-mods \
+  dnsmasq \
+  hostapd
+
+# install packages for Public Lab tools
+apt-get install -y \
+  --no-install-recommends \
+  screen \
+  lighttpd \
+  dialog
 
 # add firmware and packages for managing bluetooth devices
 apt-get install -y \
