@@ -36,8 +36,8 @@ Vagrant.configure(2) do |config|
     sudo apt-get install -y \
       apt-transport-https \
       ca-certificates \
-      software-properties-common \
-      docker-ce
+      docker-ce \
+      software-properties-common
 
     mkdir -p /etc/systemd/system/docker.service.d/
     # https://docs.docker.com/engine/admin/#troubleshoot-conflicts-between-the-daemonjson-and-startup-scripts
