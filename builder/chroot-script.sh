@@ -1,5 +1,6 @@
 #!/bin/bash
-set -ex
+
+set -euxo pipefail
 
 KEYSERVER="ha.pool.sks-keyservers.net"
 
@@ -94,23 +95,25 @@ export DEST
 mkdir -p "$(dirname "${DEST}")"
 echo "nameserver 8.8.8.8" > "${DEST}"
 
+RELEASE="stretch" # todo ideally this should be retrieved from a command like lsb_release, but it is not installed.
+
 # set up hypriot rpi repository for rpi specific kernel- and firmware-packages
 PACKAGECLOUD_FPR=418A7F2FB0E1E6E7EABF6FE8C2E73424D59097AB
 PACKAGECLOUD_KEY_URL=https://packagecloud.io/gpg.key
 get_gpg "${PACKAGECLOUD_FPR}" "${PACKAGECLOUD_KEY_URL}"
-echo 'deb https://packagecloud.io/Hypriot/rpi/debian/ $(lsb_release -cs) main' > /etc/apt/sources.list.d/hypriot.list
+echo "deb https://packagecloud.io/Hypriot/rpi/debian/ ${RELEASE} main" > /etc/apt/sources.list.d/hypriot.list
 
 # set up Docker CE repository
 DOCKERREPO_FPR=9DC858229FC7DD38854AE2D88D81803C0EBFCD88
 DOCKERREPO_KEY_URL=https://download.docker.com/linux/raspbian/gpg
 get_gpg "${DOCKERREPO_FPR}" "${DOCKERREPO_KEY_URL}"
-echo "deb [arch=armhf] https://download.docker.com/linux/raspbian $(lsb_release -cs) ${DOCKER_CHANNEL}" > /etc/apt/sources.list.d/docker.list
+echo "deb [arch=armhf] https://download.docker.com/linux/raspbian ${RELEASE} ${DOCKER_CHANNEL}" > /etc/apt/sources.list.d/docker.list
 
 
 RPI_ORG_FPR=CF8A1AF502A2AA2D763BAE7E82B129927FA3303E
 RPI_ORG_KEY_URL=http://archive.raspberrypi.org/debian/raspberrypi.gpg.key
 get_gpg "${RPI_ORG_FPR}" "${RPI_ORG_KEY_URL}"
-echo 'deb http://archive.raspberrypi.org/debian $(lsb_release -cs) main' > /etc/apt/sources.list.d/raspberrypi.list
+echo "deb http://archive.raspberrypi.org/debian ${RELEASE} main" > /etc/apt/sources.list.d/raspberrypi.list
 
 # reload package sources
 apt-get update

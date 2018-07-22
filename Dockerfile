@@ -1,6 +1,6 @@
 FROM hypriot/image-builder:latest
 
-RUN set -euxo pipefail; \
+RUN set -eux; \
     export DEBIAN_FRONTEND=noninteractive; \
     apt-get update; \
     apt-get install -y --no-install-recommends \
