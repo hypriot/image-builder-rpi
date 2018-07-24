@@ -12,10 +12,10 @@ URL to view images.
 ## Project parts
 
  - [x] Research reproducible build method
- - [ ] Translate loose scripts into build
- - [ ] Setup automated build process
- - [ ] Make sure built image is equivalent to original
- - [ ] Convert hostapd configuration.
+ - [x] Translate loose scripts into build
+ - [x] Setup automated build process
+ - [x] Make sure built image is equivalent to original ** original 'lite' image
+ - [x] Convert hostapd configuration.
 
 ## Secondary feature goals
 
