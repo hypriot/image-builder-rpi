@@ -200,7 +200,11 @@ apt-get install -y \
   --no-install-recommends \
   screen \
   lighttpd \
+  php7.0-fpm \
+  php-cgi \
   dialog
+
+lighttpd-enable-mod fastcgi-php
 
 # add firmware and packages for managing bluetooth devices
 apt-get install -y \
