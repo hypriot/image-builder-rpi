@@ -117,7 +117,7 @@ echo 'deb http://archive.raspberrypi.org/debian/ stretch main' | tee /etc/apt/so
 
 # reload package sources
 apt-get update
-apt-get upgrade -y
+# apt-get upgrade -y
 
 # install packages
 apt-get  -o Dpkg::Options::=--force-confdef \
