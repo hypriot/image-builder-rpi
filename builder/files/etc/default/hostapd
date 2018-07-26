@@ -9,4 +9,4 @@ DAEMON_CONF="/etc/hostapd/hostapd.conf"
 # Note that -B (daemon mode) and -P (pidfile) options are automatically
 # configured by the init.d script and must not be added to DAEMON_OPTS.
 #
-DAEMON_OPTS="-dd"
+#DAEMON_OPTS=""

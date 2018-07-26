@@ -13,12 +13,12 @@ manage_etc_hosts: true
 
 # You could modify this for your own user information
 users:
-  - name: publiclab
+  - name: lab
     gecos: "Public Lab community researcher"
     sudo: ALL=(ALL) NOPASSWD:ALL
     shell: /bin/bash
     groups: users,docker,video,input,adm
-    plain_text_passwd: publiclab
+    plain_text_passwd: public
     lock_passwd: false
     ssh_pwauth: true
     chpasswd: { expire: false }
