@@ -119,22 +119,36 @@ echo 'deb http://archive.raspberrypi.org/debian/ stretch main' | tee /etc/apt/so
 apt-get update
 apt-get upgrade -y
 
-# install WiFi firmware packages (same as in Raspbian)
-apt-get install -y \
+# install packages
+apt-get  -o Dpkg::Options::=--force-confdef \
+  install -y \
   --no-install-recommends \
   firmware-atheros \
   firmware-brcm80211 \
   firmware-libertas \
   firmware-misc-nonfree \
-  firmware-realtek
-
-# install kernel- and firmware-packages
-apt-get install -y \
-  --no-install-recommends \
+  firmware-realtek \
   raspberrypi-bootloader \
   libraspberrypi0 \
   libraspberrypi-bin \
-  raspi-config
+  raspi-config \
+  wpasupplicant \
+  wireless-tools \
+  crda \
+  raspberrypi-net-mods \
+  dnsmasq \
+  hostapd \
+  fake-hwclock \
+  screen \
+  lighttpd \
+  php7.0-fpm \
+  php-cgi \
+  dialog\
+  pi-bluetooth \
+  lsb-release \
+  gettext \
+  cloud-init
+
 
 # install special Docker enabled kernel
 if [ -z "${KERNEL_URL}" ]; then
@@ -176,48 +190,6 @@ proc /proc proc defaults 0 0
 /dev/mmcblk0p2 / ext4 defaults,noatime 0 1
 " > /etc/fstab
 
-# as the Pi does not have a hardware clock we need a fake one
-apt-get install -y \
-  --no-install-recommends \
-  fake-hwclock
-
-# install packages for managing wireless interfaces
-apt-get  -o Dpkg::Options::=--force-confdef \
-  install -y \
-  --no-install-recommends \
-  wpasupplicant \
-  wireless-tools \
-  crda \
-  raspberrypi-net-mods \
-  dnsmasq \
-  hostapd
-
-# install packages for Public Lab tools
-apt-get install -y \
-  --no-install-recommends \
-  screen \
-  lighttpd \
-  php7.0-fpm \
-  php-cgi \
-  dialog
-
-lighttpd-enable-mod fastcgi-php
-
-# add firmware and packages for managing bluetooth devices
-apt-get install -y \
-  --no-install-recommends \
-  pi-bluetooth
-
-# ensure compatibility with Docker install.sh, so `raspbian` will be detected correctly
-apt-get install -y \
-  --no-install-recommends \
-  lsb-release \
-  gettext
-
-# install cloud-init
-apt-get install -y \
-  cloud-init
-
 # Fix cloud-init package mirrors
 sed -i '/disable_root: true/a apt_preserve_sources_list: true' /etc/cloud/cloud.cfg
 
@@ -229,30 +201,7 @@ ln -s /boot/meta-data /var/lib/cloud/seed/nocloud-net/meta-data
 # Fix duplicate IP address for eth0, remove file from os-rootfs
 rm -f /etc/network/interfaces.d/eth0
 
-# install docker-machine
-curl -sSL -o /usr/local/bin/docker-machine "https://github.com/docker/machine/releases/download/v${DOCKER_MACHINE_VERSION}/docker-machine-Linux-armhf"
-chmod +x /usr/local/bin/docker-machine
-
-# install bash completion for Docker Machine
-curl -sSL "https://raw.githubusercontent.com/docker/machine/v${DOCKER_MACHINE_VERSION}/contrib/completion/bash/docker-machine.bash" -o /etc/bash_completion.d/docker-machine
-
-# install docker-compose
-apt-get install -y \
-  --no-install-recommends \
-  python
-curl -sSL https://bootstrap.pypa.io/get-pip.py | python
-pip install "docker-compose==${DOCKER_COMPOSE_VERSION}"
-
-# install bash completion for Docker Compose
-curl -sSL "https://raw.githubusercontent.com/docker/compose/${DOCKER_COMPOSE_VERSION}/contrib/completion/bash/docker-compose" -o /etc/bash_completion.d/docker-compose
-
-# install docker-ce (w/ install-recommends)
-apt-get install -y --force-yes \
-  --no-install-recommends \
-  "docker-ce=${DOCKER_CE_VERSION}"
-
-# install bash completion for Docker CLI
-curl -sSL https://raw.githubusercontent.com/docker/docker-ce/master/components/cli/contrib/completion/bash/docker -o /etc/bash_completion.d/docker
+lighttpd-enable-mod fastcgi-php
 
 echo "Installing rpi-serial-console script"
 wget -q https://raw.githubusercontent.com/lurch/rpi-serial-console/master/rpi-serial-console -O usr/local/bin/rpi-serial-console
