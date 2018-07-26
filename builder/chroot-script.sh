@@ -151,7 +151,7 @@ fi
 printf "# Spawn a getty on Raspberry Pi serial line\nT0:23:respawn:/sbin/getty -L ttyAMA0 115200 vt100\n" >> /etc/inittab
 
 # boot/cmdline.txt
-echo "dwc_otg.lpm_enable=0 console=serial0,115200 console=tty1 root=/dev/mmcblk0p2 rootfstype=ext4 cgroup_enable=cpuset cgroup_enable=memory swapaccount=1 elevator=deadline fsck.repair=yes rootwait modules-load=dwc2,g_ether quiet init=/usr/lib/raspi-config/init_resize.sh" > /boot/cmdline.txt
+echo "dwc_otg.lpm_enable=0 console=serial0,115200 console=tty1 root=/dev/mmcblk0p2 rootfstype=ext4 cgroup_enable=cpuset cgroup_enable=memory swapaccount=1 elevator=deadline fsck.repair=yes rootwait quiet init=/usr/lib/raspi-config/init_resize.sh" > /boot/cmdline.txt
 
 # create a default boot/config.txt file (details see http://elinux.org/RPiconfig)
 echo "
@@ -160,12 +160,9 @@ enable_uart=0
 " > boot/config.txt
 
 echo "# camera settings, see http://elinux.org/RPiconfig#Camera
-start_x=1
-disable_camera_led=0
-gpu_mem=128
-
-# USB OTG
-dtoverlay=dwc2
+start_x=0
+disable_camera_led=1
+gpu_mem=16
 " >> boot/config.txt
 
 # /etc/modules
