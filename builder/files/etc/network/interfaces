@@ -22,7 +22,6 @@ iface main inet dhcp
 allow-hotplug ap0
 iface ap0 inet static  
     pre-up iw phy phy0 interface add ap0 type __ap
-    pre-up ip link set ap0 address b8:27:eb:50:13:09
     post-up systemctl restart hostapd
     post-up systemctl restart dnsmasq
     post-down iw dev ap0 del
