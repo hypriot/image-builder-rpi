@@ -164,11 +164,6 @@ python -m pip install "docker-compose==${DOCKER_COMPOSE_VERSION}"
 # fix eth0 interface name
 ln -s /dev/null /etc/systemd/network/99-default.link
 
-# Neither are needed. Both can be fairly simply be installed using cloud-init or "apt-get update && apt-get install git/wget"
-sudo apt-get autoremove --purge \
-    git \
-    wget
-
 # cleanup APT cache and lists
 apt-get clean
 rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
