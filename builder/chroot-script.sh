@@ -202,6 +202,8 @@ ln -s /boot/meta-data /var/lib/cloud/seed/nocloud-net/meta-data
 rm -f /etc/network/interfaces.d/eth0
 
 lighttpd-enable-mod fastcgi-php
+systemctl disable dhcpcd
+systemctl disable hciuart
 
 echo "Installing rpi-serial-console script"
 wget -q https://raw.githubusercontent.com/lurch/rpi-serial-console/master/rpi-serial-console -O usr/local/bin/rpi-serial-console
