@@ -1,0 +1,13 @@
+image: gitlab/dind
+
+before_script:
+  - docker info
+  - apt-get update && apt-get install -y --no-install-recommends make linux-image-generic
+
+job:
+  script:
+    - make sd-image
+  artifacts:
+    paths:
+    - hypriotos-rpi-dirty.img.zip
+    - hypriotos-rpi-dirty.img.zip.sha256
