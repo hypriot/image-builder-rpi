@@ -125,10 +125,7 @@ pip install pip --upgrade # this requires logging out and logging back in to be 
 # Instead use "python -m pip <args>", after logout and back in, pip install etc should work.
 
 # install cloud-init
-apiBase="https://api.launchpad.net/1.0/ubuntu"
-# todo this url is ugly. need to find a nicer way of representing it.
-latestVersion="$(curl -fsSL "$apiBase/+archive/primary?ws.op=getPublishedBinaries&pocket=Updates&binary_name=cloud-init&exact_match=true&status=Published&distro_arch_series=$apiBase/bionic/armhf" | python3 -mjson.tool | awk -F'"' '/binary_package_version/{print $4}')"
-curl -fsSL "https://launchpad.net/ubuntu/+archive/primary/+files/cloud-init_${latestVersion}_all.deb" -o /tmp/cloud-init.deb
+curl -fsSL "https://launchpad.net/ubuntu/+archive/primary/+files/cloud-init_${CLOUD_INIT_VERSION}_all.deb" -o /tmp/cloud-init.deb
 dpkg --install --force-depends --force-confold /tmp/cloud-init.deb
 apt-get install --fix-broken --assume-yes
 
