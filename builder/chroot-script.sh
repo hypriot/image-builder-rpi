@@ -125,9 +125,10 @@ pip install pip --upgrade # this requires logging out and logging back in to be 
 # Instead use "python -m pip <args>", after logout and back in, pip install etc should work.
 
 # install cloud-init
-curl -fsSL "https://launchpad.net/ubuntu/+archive/primary/+files/cloud-init_${CLOUD_INIT_VERSION}_all.deb" -o /tmp/cloud-init.deb
-dpkg --install --force-depends --force-confold /tmp/cloud-init.deb
-apt-get install --fix-broken --assume-yes
+apt-get install --assume-yes cloud-init
+
+# Fix cloud-init package mirrors
+sed -i '/disable_root: true/a apt_preserve_sources_list: true' /etc/cloud/cloud.cfg
 
 # Link cloud-init config to VFAT /boot partition
 mkdir -p /var/lib/cloud/seed/nocloud-net

@@ -24,11 +24,7 @@ ROOTFS_TAR="rootfs-armhf-raspbian-${HYPRIOT_OS_VERSION}.tar.gz"
 ROOTFS_TAR_PATH="${BUILD_RESULT_PATH}/${ROOTFS_TAR}"
 
 # Show CIRCLE_TAG in Circle builds
-if [[ -z ${CIRCLE_TAG+x} ]]; then
-    echo "CIRCLE_TAG NOT SET"
-else
-    echo "CIRCLE_TAG=${CIRCLE_TAG}"
-fi
+echo CIRCLE_TAG="${CIRCLE_TAG:-}"
 
 # name of the sd-image we gonna create
 HYPRIOT_IMAGE_VERSION=${VERSION:="dirty"}
@@ -121,7 +117,7 @@ _EOF_
 umask 0000
 
 # compress image
-zip "${BUILD_RESULT_PATH}/${HYPRIOT_IMAGE_NAME}.zip" "${HYPRIOT_IMAGE_NAME}"
+zip "${BUILD_RESULT_PATH}/${HYPRIOT_IMAGE_NAME}.zip" "/${HYPRIOT_IMAGE_NAME}"
 cd ${BUILD_RESULT_PATH} && sha256sum "${HYPRIOT_IMAGE_NAME}.zip" > "${HYPRIOT_IMAGE_NAME}.zip.sha256" && cd -
 
 # test sd-image that we have built
