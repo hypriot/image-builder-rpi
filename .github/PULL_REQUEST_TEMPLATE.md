@@ -21,6 +21,8 @@ Generating the image will take a few minutes. Once the image is prepared, and if
 2. On this page, click the `Jobs` tab, next to `Pipeline`
 3. Click the green `Passed` button
 4. Click `Download` in the right-hand sidebar
+5. Unzip the `artifacts.zip` file, and also the `hypriotos-rpi-camera_web.img.zip` within it
+6. Use a program like https://etcher.io/ to flash it to an SD card
 
 You'll also be able to read the output of the image generation in this window.
 
