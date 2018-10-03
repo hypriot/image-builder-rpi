@@ -44,7 +44,7 @@ Desired in the short term:
   - Camera is pre-enabled
   - USB OTG is also enabled (with IP address `192.168.7.2`)
 
-Check planning issue #5 for other plans.
+Check planning issue [5](https://github.com/publiclab/image-builder-rpi/issues/5) for other plans.
 
 We've disabled for build performance:
   - Docker tools
