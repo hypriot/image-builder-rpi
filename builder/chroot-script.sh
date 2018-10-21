@@ -202,7 +202,8 @@ apt-get install -y \
 
 # install cloud-init
 apt-get install -y \
-  cloud-init
+  cloud-init \
+  ssh-import-id
 
 # Fix cloud-init package mirrors
 sed -i '/disable_root: true/a apt_preserve_sources_list: true' /etc/cloud/cloud.cfg
