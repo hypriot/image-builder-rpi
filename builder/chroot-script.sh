@@ -95,7 +95,7 @@ mkdir -p "$(dirname "${DEST}")"
 echo "nameserver 8.8.8.8" > "${DEST}"
 
 # set up hypriot rpi repository for rpi specific kernel- and firmware-packages
-PACKAGECLOUD_FPR=418A7F2FB0E1E6E7EABF6FE8C2E73424D59097AB
+PACKAGECLOUD_FPR=D8EAF1CF410D178519A07E0F6429A77EC26E2C1E
 PACKAGECLOUD_KEY_URL=https://packagecloud.io/gpg.key
 get_gpg "${PACKAGECLOUD_FPR}" "${PACKAGECLOUD_KEY_URL}"
 
