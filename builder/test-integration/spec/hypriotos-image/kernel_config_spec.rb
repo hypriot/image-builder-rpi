@@ -37,19 +37,19 @@ describe command('zcat /proc/config.gz') do
   ## Optional Features:
   its(:stdout) { should match /CONFIG_USER_NS=y/ }
   its(:stdout) { should match /CONFIG_SECCOMP=y/ }
-  its(:stdout) { should match /CONFIG_CGROUP_PIDS=y/ }
-  its(:stdout) { should match /CONFIG_MEMCG_SWAP=y/ }
-  its(:stdout) { should match /CONFIG_MEMCG_SWAP_ENABLED=y/ }
+  # its(:stdout) { should match /CONFIG_CGROUP_PIDS=y/ }
+  # its(:stdout) { should match /CONFIG_MEMCG_SWAP=y/ }
+  # its(:stdout) { should match /CONFIG_MEMCG_SWAP_ENABLED=y/ }
   its(:stdout) { should match /CONFIG_BLK_CGROUP=y/ }
   its(:stdout) { should match /CONFIG_BLK_DEV_THROTTLING=y/ }
   its(:stdout) { should match /CONFIG_IOSCHED_CFQ=y/ }
   its(:stdout) { should match /CONFIG_CFQ_GROUP_IOSCHED=y/ }
-  its(:stdout) { should match /CONFIG_CGROUP_PERF=y/ }
+  # its(:stdout) { should match /CONFIG_CGROUP_PERF=y/ }
   its(:stdout) { should match /CONFIG_NET_CLS_CGROUP=m/ }
-  its(:stdout) { should match /CONFIG_CGROUP_NET_PRIO=y/ }
-  its(:stdout) { should match /CONFIG_CFS_BANDWIDTH=y/ }
+  # its(:stdout) { should match /CONFIG_CGROUP_NET_PRIO=y/ }
+  # its(:stdout) { should match /CONFIG_CFS_BANDWIDTH=y/ }
   its(:stdout) { should match /CONFIG_FAIR_GROUP_SCHED=y/ }
-  its(:stdout) { should match /CONFIG_RT_GROUP_SCHED=y/ }
+  # its(:stdout) { should match /CONFIG_RT_GROUP_SCHED=y/ }
   its(:stdout) { should match /CONFIG_IP_VS=m/ }
   its(:stdout) { should match /CONFIG_EXT4_FS=y/ }
   its(:stdout) { should match /CONFIG_EXT4_FS_POSIX_ACL=y/ }

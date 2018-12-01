@@ -1,5 +1,0 @@
-# ensure that only Hypriot kernel packages get installed
-
-Package: raspberrypi-kernel*
-Pin: origin packagecloud.io/hypriot/rpi
-Pin-Priority: 1001
