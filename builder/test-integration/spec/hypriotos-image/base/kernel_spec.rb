@@ -5,10 +5,10 @@ describe command('uname -r') do
   its(:exit_status) { should eq 0 }
 end
 
-describe file('/lib/modules/4.14.79-hypriotos+/kernel') do
+describe file('/lib/modules/4.14.79+/kernel') do
   it { should be_directory }
 end
 
-describe file('/lib/modules/4.14.79-hypriotos-v7+/kernel') do
+describe file('/lib/modules/4.14.79-v7+/kernel') do
   it { should be_directory }
 end

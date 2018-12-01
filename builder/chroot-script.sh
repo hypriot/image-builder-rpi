@@ -139,7 +139,7 @@ apt-get install -y \
 
 # install special Docker enabled kernel
 if [ -z "${KERNEL_URL}" ]; then
-  echo NOT EXECUTED: apt-get install -y \
+  apt-get install -y \
     --no-install-recommends \
     "raspberrypi-kernel=${KERNEL_BUILD}"
 else
