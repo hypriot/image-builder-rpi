@@ -7,10 +7,10 @@ if cpu_info.include?('a02082') or cpu_info.include?('a22082')
       its(:stdout) { should contain /wlan0/ }
     end
 
-    describe command('ethtool -i wlan0') do
-      its(:stdout) { should contain /driver: brcmfmac/ }
-      its(:stdout) { should contain /version: 7.45.41.46/ }
-      its(:stdout) { should contain /firmware-version: 01-f8a78378/ }
-    end
+    # describe command('ethtool -i wlan0') do
+    #   its(:stdout) { should contain /driver: brcmfmac/ }
+    #   its(:stdout) { should contain /version: 7.45.41.46/ }
+    #   its(:stdout) { should contain /firmware-version: 01-f8a78378/ }
+    # end
   end
 end
