@@ -139,6 +139,7 @@ apt-get install -y \
 if [ -z "${KERNEL_URL}" ]; then
   apt-get install -y \
     --no-install-recommends \
+    --allow-unauthenticated \
     "raspberrypi-kernel=${KERNEL_BUILD}"
 else
   curl -L -o /tmp/kernel.deb "${KERNEL_URL}"
