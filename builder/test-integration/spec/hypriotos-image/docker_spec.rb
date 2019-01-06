@@ -9,12 +9,12 @@ describe package('docker-ce') do
 end
 
 describe package('docker-ce-cli') do
-  it { should be_installed }
+  it { should_not be_installed }
 end
 
 describe command('dpkg -l docker-ce') do
   its(:stdout) { should match /ii  docker-ce/ }
-  its(:stdout) { should match /5:18.06.1~3-0~raspbian-stretch/ }
+  its(:stdout) { should match /18.06.1~ce~3-0~raspbian/ }
   its(:stdout) { should match /armhf/ }
   its(:exit_status) { should eq 0 }
 end
@@ -75,13 +75,13 @@ describe file('/etc/bash_completion.d/docker') do
 end
 
 describe command('docker -v') do
-  its(:stdout) { should match /Docker version 18.06.1, build/ }
+  its(:stdout) { should match /Docker version 18.06.1-ce, build/ }
   its(:exit_status) { should eq 0 }
 end
 
 describe command('docker version') do
-  its(:stdout) { should match /Client:. Version:           18.06.1. API version:       1.39/m }
-  its(:stdout) { should match /Server: Docker Engine - Community. Engine:.  Version:          18.06.1.  API version:      1.39/m }
+  its(:stdout) { should match /Client:. Version:           18.06.1-ce. API version:       1.38/m }
+  its(:stdout) { should match /Server:. Engine:.  Version:          18.06.1-ce.  API version:      1.38/m }
   its(:exit_status) { should eq 0 }
 end
 
