@@ -27,18 +27,30 @@ end
 
 
 describe package('containerd.io') do
-  it { should be_installed }
+  it { should_not be_installed }
 end
 
-describe file('/usr/bin/containerd') do
+describe file('/usr/bin/docker-containerd') do
   it { should be_file }
   it { should be_mode 755 }
   it { should be_owned_by 'root' }
 end
 
-describe file('/usr/bin/containerd-shim') do
+describe file('/usr/bin/docker-containerd-ctr') do
   it { should be_file }
   it { should be_mode 755 }
+  it { should be_owned_by 'root' }
+end
+
+describe file('/usr/bin/docker-runc') do
+  it { should be_file }
+  it { should be_mode 755 }
+  it { should be_owned_by 'root' }
+end
+
+describe file('/lib/systemd/system/docker.socket') do
+  it { should be_file }
+  it { should be_mode 644 }
   it { should be_owned_by 'root' }
 end
 
@@ -49,11 +61,11 @@ describe file('/var/run/docker.sock') do
   it { should be_grouped_into 'docker' }
 end
 
-# describe file('/etc/default/docker') do
-#   it { should be_file }
-#   it { should be_mode 644 }
-#   it { should be_owned_by 'root' }
-# end
+describe file('/etc/default/docker') do
+  it { should be_file }
+  it { should be_mode 644 }
+  it { should be_owned_by 'root' }
+end
 
 describe file('/var/lib/docker') do
   it { should be_directory }
