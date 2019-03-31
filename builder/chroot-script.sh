@@ -225,6 +225,11 @@ pip install "docker-compose==${DOCKER_COMPOSE_VERSION}"
 # install bash completion for Docker Compose
 curl -sSL "https://raw.githubusercontent.com/docker/compose/${DOCKER_COMPOSE_VERSION}/contrib/completion/bash/docker-compose" -o /etc/bash_completion.d/docker-compose
 
+# set up Docker CE pinning for armv6l bug in docker
+# See https://github.com/moby/moby/issues/38175
+
+echo -e 'Package: docker-ce\nPin: version 18.06.*\nPin-Priority: 1000' | tee /etc/apt/preferences.d/docker-ce
+
 # install docker-ce (w/ install-recommends)
 apt-get install -y --force-yes \
   --no-install-recommends \
