@@ -2,5 +2,5 @@
 # Hypriot rpi repo get installed
 
 Package: containerd.io
-Pin: origin packagecloud.io/hypriot/rpi
+Pin: origin packagecloud.io
 Pin-Priority: 1001
