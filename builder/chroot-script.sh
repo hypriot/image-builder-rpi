@@ -101,6 +101,9 @@ get_gpg "${DOCKERREPO_FPR}" "${DOCKERREPO_KEY_URL}"
 
 echo "deb [arch=armhf] https://download.docker.com/linux/raspbian stretch $DOCKER_CE_CHANNEL" > /etc/apt/sources.list.d/docker.list
 
+# set up hypriot rpi repository for raspbian specific packages
+echo 'deb https://packagecloud.io/Hypriot/rpi/raspbian/ stretch main' >> /etc/apt/sources.list.d/hypriot.list
+curl -L https://packagecloud.io/Hypriot/rpi/gpgkey | sudo apt-key add -
 
 RPI_ORG_FPR=CF8A1AF502A2AA2D763BAE7E82B129927FA3303E RPI_ORG_KEY_URL=http://archive.raspberrypi.org/debian/raspberrypi.gpg.key
 get_gpg "${RPI_ORG_FPR}" "${RPI_ORG_KEY_URL}"
@@ -224,11 +227,6 @@ pip install "docker-compose==${DOCKER_COMPOSE_VERSION}"
 
 # install bash completion for Docker Compose
 curl -sSL "https://raw.githubusercontent.com/docker/compose/${DOCKER_COMPOSE_VERSION}/contrib/completion/bash/docker-compose" -o /etc/bash_completion.d/docker-compose
-
-# set up Docker CE pinning for armv6l bug in docker
-# See https://github.com/moby/moby/issues/38175
-
-echo -e 'Package: docker-ce\nPin: version 18.06.*\nPin-Priority: 1000' | tee /etc/apt/preferences.d/docker-ce
 
 # install docker-ce (w/ install-recommends)
 apt-get install -y --force-yes \
