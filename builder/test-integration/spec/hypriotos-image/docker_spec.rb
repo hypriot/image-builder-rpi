@@ -9,12 +9,12 @@ describe package('docker-ce') do
 end
 
 describe package('docker-ce-cli') do
-  it { should_not be_installed }
+  it { should be_installed }
 end
 
 describe command('dpkg -l docker-ce') do
   its(:stdout) { should match /ii  docker-ce/ }
-  its(:stdout) { should match /18.06.3~ce~3-0~raspbian/ }
+  its(:stdout) { should match /19.03.0~1.1.beta1-0~raspbian-stretch/ }
   its(:stdout) { should match /armhf/ }
   its(:exit_status) { should eq 0 }
 end
@@ -27,22 +27,22 @@ end
 
 
 describe package('containerd.io') do
-  it { should_not be_installed }
+  it { should be_installed }
 end
 
-describe file('/usr/bin/docker-containerd') do
+describe file('/usr/bin/containerd') do
   it { should be_file }
   it { should be_mode 755 }
   it { should be_owned_by 'root' }
 end
 
-describe file('/usr/bin/docker-containerd-ctr') do
+describe file('/usr/bin/ctr') do
   it { should be_file }
   it { should be_mode 755 }
   it { should be_owned_by 'root' }
 end
 
-describe file('/usr/bin/docker-runc') do
+describe file('/usr/sbin/runc') do
   it { should be_file }
   it { should be_mode 755 }
   it { should be_owned_by 'root' }
@@ -87,13 +87,13 @@ describe file('/etc/bash_completion.d/docker') do
 end
 
 describe command('docker -v') do
-  its(:stdout) { should match /Docker version 18.06.3-ce, build/ }
+  its(:stdout) { should match /Docker version 19.03.0-beta1, build/ }
   its(:exit_status) { should eq 0 }
 end
 
 describe command('docker version') do
-  its(:stdout) { should match /Client:. Version:           18.06.3-ce. API version:       1.38/m }
-  its(:stdout) { should match /Server:. Engine:.  Version:          18.06.3-ce.  API version:      1.38/m }
+  its(:stdout) { should match /Client:. Version:           19.03.0-beta1. API version:       1.40/m }
+  its(:stdout) { should match /Server:. Engine:.  Version:          19.03.0-beta1.  API version:      1.40/m }
   its(:exit_status) { should eq 0 }
 end
 
