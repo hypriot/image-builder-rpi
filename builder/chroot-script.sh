@@ -146,7 +146,7 @@ fi
 printf "# Spawn a getty on Raspberry Pi serial line\nT0:23:respawn:/sbin/getty -L ttyAMA0 115200 vt100\n" >> /etc/inittab
 
 # boot/cmdline.txt
-echo "dwc_otg.lpm_enable=0 console=serial0,115200 console=tty1 root=/dev/mmcblk0p2 rootfstype=ext4 cgroup_enable=cpuset cgroup_enable=memory swapaccount=1 elevator=deadline fsck.repair=yes rootwait quiet init=/usr/lib/raspi-config/init_resize.sh" > /boot/cmdline.txt
+echo "dwc_otg.lpm_enable=0 console=serial0,115200 console=tty1 root=PARTUUID=${IMAGE_PARTUUID_PREFIX}-02 rootfstype=ext4 cgroup_enable=cpuset cgroup_enable=memory swapaccount=1 elevator=deadline fsck.repair=yes rootwait quiet init=/usr/lib/raspi-config/init_resize.sh" > /boot/cmdline.txt
 
 # create a default boot/config.txt file (details see http://elinux.org/RPiconfig)
 echo "
@@ -167,8 +167,8 @@ echo "snd_bcm2835
 # create /etc/fstab
 echo "
 proc /proc proc defaults 0 0
-/dev/mmcblk0p1 /boot vfat defaults 0 0
-/dev/mmcblk0p2 / ext4 defaults,noatime 0 1
+PARTUUID=${IMAGE_PARTUUID_PREFIX}-01 /boot vfat defaults 0 0
+PARTUUID=${IMAGE_PARTUUID_PREFIX}-02 / ext4 defaults,noatime 0 1
 " > /etc/fstab
 
 # as the Pi does not have a hardware clock we need a fake one
@@ -199,6 +199,13 @@ apt-get install -y \
 apt-get install -y \
   cloud-init \
   ssh-import-id
+
+# install patch tool
+apt-get install -y \
+  patch
+
+# patch cloud-init source to fix but where PARTUUID partitions not resized
+patch /usr/lib/python3/dist-packages/cloudinit/config/cc_resizefs.py /usr/src/cloud-init/cc_resizefs.patch
 
 # Fix cloud-init package mirrors
 sed -i '/disable_root: true/a apt_preserve_sources_list: true' /etc/cloud/cloud.cfg
