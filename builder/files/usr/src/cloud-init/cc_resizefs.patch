@@ -1,0 +1,11 @@
+--- cc_resizefs.py	2019-04-10 11:22:50.000000000 -0400
++++ cc_resizefs.patched.py	2019-04-10 11:23:43.000000000 -0400
+@@ -86,6 +86,8 @@
+         return "/dev/disk/by-label/" + found[len("LABEL="):]
+     if found.startswith("UUID="):
+         return "/dev/disk/by-uuid/" + found[len("UUID="):]
++    if found.startswith("PARTUUID="):
++        return "/dev/disk/by-partuuid/" + found[len("PARTUUID="):]
+
+     return "/dev/" + found
+ 

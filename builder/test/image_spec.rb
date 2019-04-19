@@ -35,11 +35,11 @@ describe "SD card image" do
     let(:stdout) { run_mounted("cat /etc/fstab").stdout }
 
     it "has a vfat boot entry" do
-      expect(stdout).to contain('/dev/mmcblk0p1 /boot vfat')
+      expect(stdout).to match(/PARTUUID=[0-9a-z]{8}-01 \/boot vfat/)
     end
 
     it "has a ext4 root entry" do
-      expect(stdout).to contain('/dev/mmcblk0p2 / ext4')
+      expect(stdout).to match(/PARTUUID=[0-9a-z]{8}-02 \/ ext4/)
     end
   end
 end
