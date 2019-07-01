@@ -101,6 +101,8 @@ get_gpg "${DOCKERREPO_FPR}" "${DOCKERREPO_KEY_URL}"
 
 echo "deb [arch=armhf] https://download.docker.com/linux/raspbian stretch $DOCKER_CE_CHANNEL" > /etc/apt/sources.list.d/docker.list
 
+c_rehash
+
 # set up hypriot rpi repository for raspbian specific packages
 echo 'deb https://packagecloud.io/Hypriot/rpi/raspbian/ stretch main' >> /etc/apt/sources.list.d/hypriot.list
 curl -L https://packagecloud.io/Hypriot/rpi/gpgkey | apt-key add -
@@ -108,7 +110,7 @@ curl -L https://packagecloud.io/Hypriot/rpi/gpgkey | apt-key add -
 RPI_ORG_FPR=CF8A1AF502A2AA2D763BAE7E82B129927FA3303E RPI_ORG_KEY_URL=http://archive.raspberrypi.org/debian/raspberrypi.gpg.key
 get_gpg "${RPI_ORG_FPR}" "${RPI_ORG_KEY_URL}"
 
-echo 'deb http://archive.raspberrypi.org/debian/ stretch main' | tee /etc/apt/sources.list.d/raspberrypi.list
+echo 'deb http://archive.raspberrypi.org/debian/ buster main' | tee /etc/apt/sources.list.d/raspberrypi.list
 
 # reload package sources
 apt-get update
@@ -197,18 +199,9 @@ apt-get install -y \
 
 # install cloud-init
 apt-get install -y \
+  --no-install-recommends \
   cloud-init \
   ssh-import-id
-
-# install patch tool
-apt-get install -y \
-  patch
-
-# patch cloud-init source to fix but where PARTUUID partitions not resized
-patch /usr/lib/python3/dist-packages/cloudinit/config/cc_resizefs.py /usr/src/cloud-init/cc_resizefs.patch
-
-# Fix cloud-init package mirrors
-sed -i '/disable_root: true/a apt_preserve_sources_list: true' /etc/cloud/cloud.cfg
 
 # Link cloud-init config to VFAT /boot partition
 mkdir -p /var/lib/cloud/seed/nocloud-net
