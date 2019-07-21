@@ -18,12 +18,6 @@ describe file('/boot/fixup.dat') do
   it { should be_owned_by 'root' }
 end
 
-describe file('/boot/bcm2708-rpi-0-w.dtb') do
-  it { should be_file }
-  it { should be_mode 755 }
-  it { should be_owned_by 'root' }
-end
-
 describe file('/boot/bcm2708-rpi-b.dtb') do
   it { should be_file }
   it { should be_mode 755 }
