@@ -2,11 +2,6 @@
 # vim: syntax=yaml
 #
 
-# The current version of cloud-init in the Hypriot rpi-64 is 0.7.6
-# When dealing with cloud-init, it is SUPER important to know the version
-# I have wasted many hours creating servers to find out the module I was trying to use wasn't in the cloud-init version I had
-# Documentation: http://cloudinit.readthedocs.io/en/0.7.9/index.html
-
 # Set your hostname here, the manage_etc_hosts will update the hosts file entries as well
 hostname: black-pearl
 manage_etc_hosts: true
