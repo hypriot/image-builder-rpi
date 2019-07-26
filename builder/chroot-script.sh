@@ -99,12 +99,12 @@ DOCKERREPO_FPR=9DC858229FC7DD38854AE2D88D81803C0EBFCD88
 DOCKERREPO_KEY_URL=https://download.docker.com/linux/raspbian/gpg
 get_gpg "${DOCKERREPO_FPR}" "${DOCKERREPO_KEY_URL}"
 
-echo "deb [arch=armhf] https://download.docker.com/linux/raspbian stretch $DOCKER_CE_CHANNEL" > /etc/apt/sources.list.d/docker.list
+echo "deb [arch=armhf] https://download.docker.com/linux/raspbian buster $DOCKER_CE_CHANNEL" > /etc/apt/sources.list.d/docker.list
 
 c_rehash
 
 # set up hypriot rpi repository for raspbian specific packages
-echo 'deb https://packagecloud.io/Hypriot/rpi/raspbian/ stretch main' >> /etc/apt/sources.list.d/hypriot.list
+echo 'deb https://packagecloud.io/Hypriot/rpi/raspbian/ buster main' >> /etc/apt/sources.list.d/hypriot.list
 curl -L https://packagecloud.io/Hypriot/rpi/gpgkey | apt-key add -
 
 RPI_ORG_FPR=CF8A1AF502A2AA2D763BAE7E82B129927FA3303E RPI_ORG_KEY_URL=http://archive.raspberrypi.org/debian/raspberrypi.gpg.key
