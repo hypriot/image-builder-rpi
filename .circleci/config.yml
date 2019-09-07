@@ -19,7 +19,7 @@ jobs:
           name: Prepare artifacts
           command: |
             mkdir -p output
-            cp hypriotos* output/
+            cp hypriotos*zip* output/
 
       - store_artifacts:
           path: /home/circleci/project/output
