@@ -1,11 +1,11 @@
 require 'spec_helper'
 
-describe command('docker pull hypriot/rpi-node:0.12.0') do
+describe command('docker pull node:10.16.3-slim') do
   its(:exit_status) { should eq 0 }
 end
 
-describe command('docker run -t --rm hypriot/rpi-node:0.12.0 node --version') do
-  its(:stdout) { should match /v0.12.0/ }
+describe command('docker run -t --rm node:10.16.3-slim node --version') do
+  its(:stdout) { should match /v10.16.3/ }
 #  its(:stderr) { should match /^$/ }
   its(:exit_status) { should eq 0 }
 end
