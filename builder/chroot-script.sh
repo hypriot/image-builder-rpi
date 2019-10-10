@@ -103,10 +103,6 @@ echo "deb [arch=armhf] https://download.docker.com/linux/raspbian buster $DOCKER
 
 c_rehash
 
-# set up hypriot rpi repository for raspbian specific packages
-echo 'deb https://packagecloud.io/Hypriot/rpi/raspbian/ buster main' >> /etc/apt/sources.list.d/hypriot.list
-curl -L https://packagecloud.io/Hypriot/rpi/gpgkey | apt-key add -
-
 RPI_ORG_FPR=CF8A1AF502A2AA2D763BAE7E82B129927FA3303E RPI_ORG_KEY_URL=http://archive.raspberrypi.org/debian/raspberrypi.gpg.key
 get_gpg "${RPI_ORG_FPR}" "${RPI_ORG_KEY_URL}"
 
