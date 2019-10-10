@@ -14,7 +14,7 @@ end
 
 describe command('dpkg -l docker-ce') do
   its(:stdout) { should match /ii  docker-ce/ }
-  its(:stdout) { should match /5:19.03.2~3-0~raspbian/ }
+  its(:stdout) { should match /5:19.03.3~3-0~raspbian/ }
   its(:stdout) { should match /armhf/ }
   its(:exit_status) { should eq 0 }
 end
@@ -42,7 +42,7 @@ describe file('/usr/bin/ctr') do
   it { should be_owned_by 'root' }
 end
 
-describe file('/usr/sbin/runc') do
+describe file('/usr/bin/runc') do
   it { should be_file }
   it { should be_mode 755 }
   it { should be_owned_by 'root' }
@@ -87,13 +87,13 @@ describe file('/etc/bash_completion.d/docker') do
 end
 
 describe command('docker -v') do
-  its(:stdout) { should match /Docker version 19.03.2, build/ }
+  its(:stdout) { should match /Docker version 19.03.3, build/ }
   its(:exit_status) { should eq 0 }
 end
 
 describe command('docker version') do
-  its(:stdout) { should match /Client: Docker Engine - Community. Version:           19.03.2. API version:       1.40/m }
-  its(:stdout) { should match /Server: Docker Engine - Community. Engine:.  Version:          19.03.2.  API version:      1.40/m }
+  its(:stdout) { should match /Client: Docker Engine - Community. Version:           19.03.3. API version:       1.40/m }
+  its(:stdout) { should match /Server: Docker Engine - Community. Engine:.  Version:          19.03.3.  API version:      1.40/m }
   its(:exit_status) { should eq 0 }
 end
 
