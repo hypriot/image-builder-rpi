@@ -204,6 +204,17 @@ mkdir -p /var/lib/cloud/seed/nocloud-net
 ln -s /boot/user-data /var/lib/cloud/seed/nocloud-net/user-data
 ln -s /boot/meta-data /var/lib/cloud/seed/nocloud-net/meta-data
 
+mv /etc/fake-hwclock.data /boot/fake-hwclock.data
+ln -s /boot/fake-hwclock.data /etc/fake-hwclock.data
+mkdir -p /etc/systemd/system/fake-hwclock.service.d
+cat <<EOM |tee /etc/systemd/system/fake-hwclock.service.d/override.conf
+[Unit]
+After=boot.mount
+#Wants=boot.mount
+#Requires=boot.mount
+EOM
+systemctl daemon-reload
+
 # Fix duplicate IP address for eth0, remove file from os-rootfs
 rm -f /etc/network/interfaces.d/eth0
 
