@@ -228,9 +228,9 @@ curl -sSL "https://raw.githubusercontent.com/docker/machine/v${DOCKER_MACHINE_VE
 # install docker-compose
 apt-get install -y \
   --no-install-recommends \
-  python
-curl -sSL https://bootstrap.pypa.io/get-pip.py | python
-pip install "docker-compose==${DOCKER_COMPOSE_VERSION}"
+  python3 python3-pip
+update-alternatives --install /usr/bin/python python /usr/bin/python3.7 2
+pip3 install "docker-compose==${DOCKER_COMPOSE_VERSION}"
 
 # install bash completion for Docker Compose
 curl -sSL "https://raw.githubusercontent.com/docker/compose/${DOCKER_COMPOSE_VERSION}/contrib/completion/bash/docker-compose" -o /etc/bash_completion.d/docker-compose
