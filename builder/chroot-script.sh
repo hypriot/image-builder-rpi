@@ -228,7 +228,7 @@ curl -sSL "https://raw.githubusercontent.com/docker/machine/v${DOCKER_MACHINE_VE
 # install docker-compose
 apt-get install -y \
   --no-install-recommends \
-  python3 python3-pip
+  python3 python3-pip python3-setuptools
 update-alternatives --install /usr/bin/python python /usr/bin/python3.7 2
 pip3 install "docker-compose==${DOCKER_COMPOSE_VERSION}"
 
