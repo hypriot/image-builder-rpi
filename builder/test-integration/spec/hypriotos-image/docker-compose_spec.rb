@@ -7,7 +7,7 @@ describe file('/usr/local/bin/docker-compose') do
 end
 
 describe command('docker-compose --version') do
-  its(:stdout) { should match /1.25.4/m }
+  its(:stdout) { should match /1.25.5/m }
   its(:exit_status) { should eq 0 }
 end
 
