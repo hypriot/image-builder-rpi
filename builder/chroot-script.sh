@@ -210,7 +210,7 @@ ln -s /boot/fake-hwclock.data /etc/fake-hwclock.data
 mkdir -p /etc/systemd/system/fake-hwclock.service.d
 cat <<EOM |tee /etc/systemd/system/fake-hwclock.service.d/override.conf
 [Unit]
-After=boot.mount
+Before=systemd-fsck-root.service
 #Wants=boot.mount
 #Requires=boot.mount
 EOM
