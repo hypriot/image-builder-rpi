@@ -252,6 +252,7 @@ curl -sSL "https://raw.githubusercontent.com/docker/compose/${DOCKER_COMPOSE_VER
 # install docker-ce (w/ install-recommends)
 apt-get install -y --force-yes \
   --no-install-recommends \
+  "docker-ce-cli=${DOCKER_CE_VERSION}" \
   "docker-ce=${DOCKER_CE_VERSION}"
 
 # install bash completion for Docker CLI
