@@ -6,6 +6,14 @@ if [ ! -f /.dockerenv ]; then
   exit 1
 fi
 
+# Which provisioner to build with
+PROVISIONER=${PROVISIONER:=docker}
+export PROVISIONER
+if [ ! -f "/builder/provisioners/${PROVISIONER}.sh" ]; then
+  echo "${PROVISIONER} does not exist!"
+  exit 1
+fi
+
 # get versions for software that needs to be installed
 # shellcheck disable=SC1091
 source /workspace/versions.config
@@ -26,7 +34,7 @@ echo CIRCLE_TAG="${CIRCLE_TAG}"
 
 # name of the sd-image we gonna create
 HYPRIOT_IMAGE_VERSION=${VERSION:="dirty"}
-HYPRIOT_IMAGE_NAME="hypriotos-rpi-${HYPRIOT_IMAGE_VERSION}.img"
+HYPRIOT_IMAGE_NAME="hypriotos-rpi-${HYPRIOT_IMAGE_VERSION}-${PROVISIONER}.img"
 export HYPRIOT_IMAGE_VERSION
 
 # download the ready-made raw image for the RPi
@@ -73,6 +81,8 @@ mount -t sysfs none ${BUILD_PATH}/sys
 
 # modify/add image files directly
 cp -R /builder/files/* ${BUILD_PATH}/
+cp "/builder/provisioners/${PROVISIONER}.sh" ${BUILD_PATH}/provisioner.sh
+chmod 755 ${BUILD_PATH}/provisioner.sh
 
 # make our build directory the current root
 # and install the Rasberry Pi firmware, kernel packages,
@@ -95,6 +105,9 @@ rm -Rf ${BUILD_PATH}/boot
 tar -czf /image_with_kernel_root.tar.gz -C ${BUILD_PATH} .
 du -sh ${BUILD_PATH}
 ls -alh /image_with_kernel_*.tar.gz
+
+# enable supermin debug
+#export LIBGUESTFS_DEBUG=1 LIBGUESTFS_TRACE=1
 
 # create the image and add root base filesystem
 guestfish -a "${BUILD_RESULT_PATH}/${HYPRIOT_IMAGE_NAME}"<<_EOF_
