@@ -242,7 +242,8 @@ curl -sSL "https://raw.githubusercontent.com/docker/machine/v${DOCKER_MACHINE_VE
 # install docker-compose
 apt-get install -y \
   --no-install-recommends \
-  python3 python3-pip python3-setuptools
+  libc6-armel-cross python3-dev libffi-dev libssl-dev libc6-dev-armel-cross libncurses5-dev build-essential bison flex libssl-dev bc \
+  python3 python3-pip python3-setuptools gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf
 update-alternatives --install /usr/bin/python python /usr/bin/python3.7 2
 pip3 install "docker-compose==${DOCKER_COMPOSE_VERSION}"
 
